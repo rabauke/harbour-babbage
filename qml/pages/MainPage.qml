@@ -61,13 +61,22 @@ Page {
                 id: formula
                 text: ""
                 placeholderText: qsTr("Enter math expression")
-                inputMethodHints : Qt.ImhPreferNumbers
+                // onAccepted: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
             }
-            Button {
-                id: calc_button
-                text: qsTr("Calculate")
+            Row {
+                spacing: Theme.paddingMedium
                 anchors.horizontalCenter: parent.horizontalCenter
-                onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
+                Button {
+                    id: clear_button
+                    text: qsTr("Clear")
+                    //anchors.horizontalCenter: parent.horizontalCenter
+                    onClicked: {formula.text = "" }
+                }
+                Button {
+                    id: calc_button
+                    text: qsTr("Calculate")
+                    onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
+                }
             }
             TextEdit {
                 width: column.width-2*Theme.horizontalPageMargin

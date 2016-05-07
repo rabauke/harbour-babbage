@@ -14,5 +14,14 @@ QString calculator::calculate(QString formula) {
     }
     catch (...) {
     }
-    return formula+" = "+QString::number(res);
+    QString res_str=formula+"=";
+    res_str="•  " +
+            res_str.replace(" ", "").
+            replace("+"," + ").
+            replace("-"," − ").
+            replace("*", " · ").
+            replace("/", " / ").
+            replace("=", " = ").
+            replace("pi", "π") + (QString::number(res, 'g', 12).replace("-","−"));
+    return res_str.replace("inf", "∞");
 }

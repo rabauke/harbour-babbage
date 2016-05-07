@@ -125,8 +125,8 @@ private:
       {"-", 1},
       {"*", 2},
       {"/", 2},
-      {"^", 3},
-      {"_", 4} };
+      {"^", 4},
+      {"_", 3} };
 
     double abs  (double x) const { return std::abs(x); }
     double sin  (double x) const { return std::sin(x); }
