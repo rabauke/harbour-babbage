@@ -86,6 +86,7 @@ Page {
                 color: Theme.primaryColor
                 readOnly: true
                 wrapMode: TextEdit.Wrap
+                font.pixelSize: Theme.fontSizeMedium
             }
         }
     }
