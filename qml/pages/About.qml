@@ -28,7 +28,7 @@ Page {
             wrapMode: TextEdit.Wrap
             font.pixelSize: Theme.fontSizeSmall
             horizontalAlignment: TextEdit.AlignHCenter
-            text: "Fork me on github!\nhttps://github.com/rabauke/harbour-babbage"
+            text: qsTr("Fork me on github!\nhttps://github.com/rabauke/harbour-babbage")
         }
 
     }

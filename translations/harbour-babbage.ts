@@ -11,6 +11,11 @@
         <source>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/) and exponentiation (^) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf and erfc.  Enter pi for π.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Fork me on github!
+https://github.com/rabauke/harbour-babbage</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
