@@ -36,15 +36,17 @@ import harbour.babbage.qmlcomponents 1.0
 Page {
     id: page
 
-    // To enable PullDownMenu, place our content in a SilicaFlickable
     SilicaFlickable {
         anchors.fill: parent
-
-        // Tell SilicaFlickable the height of its content.
         contentHeight: column.height
 
-        // Place our content in a Column.  The PageHeader is always placed at the top
-        // of the page, followed by our content.
+        PullDownMenu {
+            MenuItem {
+                text: qsTr("About")
+                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+            }
+        }
+
         Column {
             id: column
 
@@ -60,7 +62,9 @@ Page {
                 width: column.width
                 id: formula
                 text: ""
+                focus: true
                 placeholderText: qsTr("Enter math expression")
+                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 // onAccepted: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
             }
             Row {
@@ -69,7 +73,6 @@ Page {
                 Button {
                     id: clear_button
                     text: qsTr("Clear")
-                    //anchors.horizontalCenter: parent.horizontalCenter
                     onClicked: {formula.text = "" }
                 }
                 Button {

@@ -41,7 +41,8 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-babbage-de.ts
 
 DISTFILES += \
-    qml/pages/MainPage.qml
+    qml/pages/MainPage.qml \
+    qml/pages/About.qml
 
 images.files = images/*.png
 images.path = /usr/share/harbour-babbage/images
