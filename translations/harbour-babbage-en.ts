@@ -21,28 +21,20 @@ https://github.com/rabauke/harbour-babbage</translation>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Calculate</source>
-        <translation>Calculate</translation>
+        <source>About</source>
+        <translation>About</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Copy</translation>
     </message>
     <message>
         <source>Scientific calculator</source>
         <translation>Scientific calculator</translation>
     </message>
     <message>
-        <source>Clear</source>
-        <translation>Clear</translation>
-    </message>
-    <message>
-        <source>About</source>
-        <translation>About</translation>
-    </message>
-    <message>
         <source>Enter mathematical expression</source>
         <translation>Enter mathematical expression</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation>Copy</translation>
     </message>
 </context>
 </TS>

@@ -4,5 +4,5 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-babbage
 Exec=harbour-babbage
 Name=Babbage
-Name[en]=Babbage calculator
-Name[de]=Babbage Rechner
+Name[en]=Calculator
+Name[de]=Rechner

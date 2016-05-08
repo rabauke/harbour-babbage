@@ -55,44 +55,56 @@ Page {
             id: column
 
             width: page.width
-            spacing: Theme.paddingLarge
+            spacing: Theme.paddingMedium
             PageHeader {
+                id: header
                 title: qsTr("Scientific calculator")
             }
             Calculator {
                 id: calculator
             }
-            TextField {
-                width: column.width
-                id: formula
-                text: ""
-                focus: true
-                placeholderText: qsTr("Enter mathematical expression")
-                inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-                EnterKey.enabled: text.length>0
-                EnterKey.onClicked: { results.lastformula = calculator.calculate(formula.text);
-                                      results.text = "•  "+results.lastformula+"\n"+results.text; }
-            }
             Row {
-                spacing: Theme.paddingMedium
-                anchors.horizontalCenter: parent.horizontalCenter
-                Button {
-                    id: clear_button
-                    text: qsTr("Clear")
-                    onClicked: {formula.text = "" }
+                TextField {
+                    id: formula
+                    width: column.width-clearButton.width
+                    text: ""
+                    focus: true
+                    placeholderText: qsTr("Enter mathematical expression")
+                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+                    EnterKey.enabled: text.length>0
+                    EnterKey.onClicked: { results.lastformula = calculator.calculate(formula.text);
+                        results.text = "•  "+results.lastformula+"\n"+results.text; }
                 }
-                Button {
-                    id: calc_button
-                    text: qsTr("Calculate")
-                    onClicked: { results.lastformula = calculator.calculate(formula.text);
-                                 results.text = "•  "+results.lastformula+"\n"+results.text; }
+                IconButton {
+                    id: clearButton
+                    anchors {
+                        verticalCenter: formula.top
+                        verticalCenterOffset: formula.textVerticalCenterOffset
+                    }
+                    icon.source: "image://theme/icon-m-backspace?" + (pressed
+                                                                      ? Theme.highlightColor
+                                                                      : Theme.primaryColor)
+                    onClicked: formula.text = ""
                 }
             }
+//            Row {
+//                spacing: Theme.paddingMedium
+//                Button {
+//                    id: clear_button
+//                    text: qsTr("Clear")
+//                    onClicked: { formula.text = "";  formula.forceActiveFocus(); formula.forceActiveFocus(); }
+//                }
+//                Button {
+//                    id: calc_button
+//                    text: qsTr("Calculate")
+//                    onClicked: { results.lastformula = calculator.calculate(formula.text);
+//                                 results.text = "•  "+results.lastformula+"\n"+results.text; formula.forceActiveFocus(); formula.forceActiveFocus(); }
+//                }
+//            }
             TextArea {
                 id: results
                 property string lastformula: ""
                 width: column.width
-                anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.primaryColor
                 readOnly: true
                 wrapMode: TextEdit.Wrap
