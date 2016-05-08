@@ -25,7 +25,7 @@ https://github.com/rabauke/harbour-babbage</translation>
         <translation>Calculate</translation>
     </message>
     <message>
-        <source></source>
+        <source>Scientific calculator</source>
         <translation>Scientific calculator</translation>
     </message>
     <message>
@@ -33,23 +33,12 @@ https://github.com/rabauke/harbour-babbage</translation>
         <translation>Clear</translation>
     </message>
     <message>
-        <source></source>
+        <source>About</source>
         <translation>About</translation>
     </message>
     <message>
         <source>Enter mathematical expression</source>
         <translation>Enter mathematical expression</translation>
-    </message>
-</context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation>Nested Page</translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation>Item</translation>
     </message>
 </context>
 </TS>

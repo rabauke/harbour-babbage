@@ -15,7 +15,7 @@
         <source>Fork me on github!
 https://github.com/rabauke/harbour-babbage</source>
         <translation>Fork mich auf Github!
-        https://github.com/rabauke/harbour-babbage</translation>
+https://github.com/rabauke/harbour-babbage</translation>
     </message>
 </context>
 <context>
@@ -39,17 +39,6 @@ https://github.com/rabauke/harbour-babbage</source>
     <message>
         <source>Enter mathematical expression</source>
         <translation>Mathematischen Ausdruck eingeben</translation>
-    </message>
-</context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation>Unterseite</translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation>Element</translation>
     </message>
 </context>
 </TS>
