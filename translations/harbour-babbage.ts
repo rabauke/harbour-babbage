@@ -5,50 +5,51 @@
     <name>About</name>
     <message>
         <source>Scientific calculator</source>
-        <translation type="unfinished"></translation>
+        <translation>Scientific calculator</translation>
     </message>
     <message>
         <source>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/) and exponentiation (^) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf and erfc.  Enter pi for π.</source>
-        <translation type="unfinished"></translation>
+        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/) and exponentiation (^) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf and erfc.  Enter pi for π.</translation>
     </message>
     <message>
         <source>Fork me on github!
 https://github.com/rabauke/harbour-babbage</source>
-        <translation type="unfinished"></translation>
+        <translation>Fork me on github!
+https://github.com/rabauke/harbour-babbage</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>Calculate</source>
-        <translation type="unfinished"></translation>
+        <translation>Calculate</translation>
     </message>
     <message>
-        <source>Scientific calculator</source>
-        <translation type="unfinished"></translation>
+        <source></source>
+        <translation>Scientific calculator</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Clear</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation type="unfinished"></translation>
+        <source></source>
+        <translation>About</translation>
     </message>
     <message>
         <source>Enter mathematical expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Enter mathematical expression</translation>
     </message>
 </context>
 <context>
     <name>SecondPage</name>
     <message>
         <source>Nested Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Nested Page</translation>
     </message>
     <message>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Item</translation>
     </message>
 </context>
 </TS>
