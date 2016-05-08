@@ -15,8 +15,7 @@ QString calculator::calculate(QString formula) {
     catch (...) {
     }
     QString res_str=formula+"=";
-    res_str="•  " +
-            res_str.replace(" ", "").
+    res_str=res_str.replace(" ", "").
             replace("+"," + ").
             replace("-"," − ").
             replace("*", " · ").

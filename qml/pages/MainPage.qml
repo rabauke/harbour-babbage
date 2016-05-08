@@ -45,6 +45,10 @@ Page {
                 text: qsTr("About")
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
+            MenuItem {
+                text: qsTr("Copy")
+                onClicked: Clipboard.text = results.lastformula
+            }
         }
 
         Column {
@@ -66,8 +70,7 @@ Page {
                 placeholderText: qsTr("Enter mathematical expression")
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 EnterKey.enabled: text.length>0
-                EnterKey.onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
-                // onAccepted: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
+                EnterKey.onClicked: {results.text = "•  "+calculator.calculate(formula.text)+"\n"+results.text;  results.lastformula = calculator.calculate(formula.text) }
             }
             Row {
                 spacing: Theme.paddingMedium
@@ -80,11 +83,12 @@ Page {
                 Button {
                     id: calc_button
                     text: qsTr("Calculate")
-                    onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
+                    onClicked: {results.text = "•  "+calculator.calculate(formula.text)+"\n"+results.text;  results.lastformula = calculator.calculate(formula.text)  }
                 }
             }
             TextArea {
                 id: results
+                property string lastformula: ""
                 width: column.width
                 anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.primaryColor
