@@ -63,7 +63,7 @@ Page {
                 id: formula
                 text: ""
                 focus: true
-                placeholderText: qsTr("Enter math expression")
+                placeholderText: qsTr("Enter mathematical expression")
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 EnterKey.enabled: text.length>0
                 EnterKey.onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
@@ -83,15 +83,16 @@ Page {
                     onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
                 }
             }
-            TextEdit {
-                width: column.width-2*Theme.horizontalPageMargin
-                anchors.horizontalCenter: parent.horizontalCenter
+            TextArea {
                 id: results
-                text: ""
+                width: column.width
+                anchors.horizontalCenter: parent.horizontalCenter
                 color: Theme.primaryColor
                 readOnly: true
                 wrapMode: TextEdit.Wrap
                 font.pixelSize: Theme.fontSizeMedium
+                horizontalAlignment: TextEdit.AlignLeft
+                text: ""
             }
         }
     }

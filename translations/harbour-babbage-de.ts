@@ -21,10 +21,6 @@ https://github.com/rabauke/harbour-babbage</source>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Enter math expression</source>
-        <translation>Mathematischen Ausdruck eingeben</translation>
-    </message>
-    <message>
         <source>Calculate</source>
         <translation>Berechne</translation>
     </message>
@@ -39,6 +35,10 @@ https://github.com/rabauke/harbour-babbage</source>
     <message>
         <source>About</source>
         <translation>Über</translation>
+    </message>
+    <message>
+        <source>Enter mathematical expression</source>
+        <translation>Mathematischen Ausdruck eingeben</translation>
     </message>
 </context>
 <context>

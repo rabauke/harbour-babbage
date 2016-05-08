@@ -20,10 +20,6 @@ https://github.com/rabauke/harbour-babbage</source>
 <context>
     <name>MainPage</name>
     <message>
-        <source>Enter math expression</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Calculate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -37,6 +33,10 @@ https://github.com/rabauke/harbour-babbage</source>
     </message>
     <message>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter mathematical expression</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
