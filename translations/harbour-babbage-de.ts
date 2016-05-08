@@ -45,15 +45,4 @@ https://github.com/rabauke/harbour-babbage</translation>
         <translation>Kopiere</translation>
     </message>
 </context>
-<context>
-    <name>SecondPage</name>
-    <message>
-        <source>Nested Page</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Item</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
 </TS>

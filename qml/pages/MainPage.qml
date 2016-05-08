@@ -70,7 +70,8 @@ Page {
                 placeholderText: qsTr("Enter mathematical expression")
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                 EnterKey.enabled: text.length>0
-                EnterKey.onClicked: {results.text = "•  "+calculator.calculate(formula.text)+"\n"+results.text;  results.lastformula = calculator.calculate(formula.text) }
+                EnterKey.onClicked: { results.lastformula = calculator.calculate(formula.text);
+                                      results.text = "•  "+results.lastformula+"\n"+results.text; }
             }
             Row {
                 spacing: Theme.paddingMedium
@@ -83,7 +84,8 @@ Page {
                 Button {
                     id: calc_button
                     text: qsTr("Calculate")
-                    onClicked: {results.text = "•  "+calculator.calculate(formula.text)+"\n"+results.text;  results.lastformula = calculator.calculate(formula.text)  }
+                    onClicked: { results.lastformula = calculator.calculate(formula.text);
+                                 results.text = "•  "+results.lastformula+"\n"+results.text; }
                 }
             }
             TextArea {
