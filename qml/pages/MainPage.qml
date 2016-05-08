@@ -65,6 +65,8 @@ Page {
                 focus: true
                 placeholderText: qsTr("Enter math expression")
                 inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+                EnterKey.enabled: text.length>0
+                EnterKey.onClicked: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
                 // onAccepted: {results.text = calculator.calculate(formula.text)+"\n"+results.text }
             }
             Row {
