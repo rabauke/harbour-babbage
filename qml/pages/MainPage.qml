@@ -34,7 +34,7 @@ import harbour.babbage.qmlcomponents 1.0
 
 
 Page {
-    id: page
+    id: main_page
 
     SilicaFlickable {
         anchors.fill: parent
@@ -42,19 +42,19 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTr("About")
+                text: qsTr("About Babbage")
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
             MenuItem {
                 text: qsTr("Copy")
-                onClicked: Clipboard.text = results.lastformula
+                onClicked: Clipboard.text = app_window.lastformula
             }
         }
 
         Column {
             id: column
 
-            width: page.width
+            width: parent.width
             spacing: Theme.paddingMedium
             PageHeader {
                 id: header
@@ -72,8 +72,8 @@ Page {
                     placeholderText: qsTr("Enter mathematical expression")
                     inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                     EnterKey.enabled: text.length>0
-                    EnterKey.onClicked: { results.lastformula = calculator.calculate(formula.text);
-                        results.text = "•  "+results.lastformula+"\n"+results.text; }
+                    EnterKey.onClicked: { app_window.lastformula = calculator.calculate(formula.text);
+                        results.text = "•  "+app_window.lastformula+"\n"+results.text; }
                 }
                 IconButton {
                     id: clearButton
@@ -87,23 +87,8 @@ Page {
                     onClicked: formula.text = ""
                 }
             }
-//            Row {
-//                spacing: Theme.paddingMedium
-//                Button {
-//                    id: clear_button
-//                    text: qsTr("Clear")
-//                    onClicked: { formula.text = "";  formula.forceActiveFocus(); formula.forceActiveFocus(); }
-//                }
-//                Button {
-//                    id: calc_button
-//                    text: qsTr("Calculate")
-//                    onClicked: { results.lastformula = calculator.calculate(formula.text);
-//                                 results.text = "•  "+results.lastformula+"\n"+results.text; formula.forceActiveFocus(); formula.forceActiveFocus(); }
-//                }
-//            }
             TextArea {
                 id: results
-                property string lastformula: ""
                 width: column.width
                 color: Theme.primaryColor
                 readOnly: true
@@ -112,8 +97,9 @@ Page {
                 horizontalAlignment: TextEdit.AlignLeft
                 text: ""
             }
+
         }
+
     }
+
 }
-
-

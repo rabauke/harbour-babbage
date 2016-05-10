@@ -9,24 +9,14 @@
     </message>
     <message>
         <source>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma and round.  Enter pi for π.</source>
-        <translation>Dieser wissenschaftlicher Rechner wertet mathematische Ausdrücke in Standardnotation aus.  Mathematische Operatoren für Addition (+), Subtraktion (-), Multiplikation (*), Division (/), Exponentiation (^) und Fakultät (!) werden unterstützt.  Folgende mathematische Funktionen können verwendet werden: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma und round.  Die Kreiszahl π kann als pi eingegeben werden.</translation>
-    </message>
-    <message>
-        <source>© Heiko Bauke, 2016
-
-Fork me on github!
-https://github.com/rabauke/harbour-babbage</source>
-        <translation>© Heiko Bauke, 2016
-
-Fork mich auf Github!
-https://github.com/rabauke/harbour-babbage</translation>
+        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Folgende mathe­­matische Funk­tionen können verwendet werden: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma und round.  Die Kreiszahl π kann als pi eingegeben werden.</translation>
     </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
-        <source>About</source>
-        <translation>Über</translation>
+        <source>About Babbage</source>
+        <translation>Über Babbage</translation>
     </message>
     <message>
         <source>Copy</source>
