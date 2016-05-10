@@ -2,6 +2,7 @@
 #include "math_parser.hpp"
 #include <limits>
 #include <cmath>
+#include <QtDebug>
 
 calculator::calculator(QObject *parent) : QObject(parent) {
     V.insert("pi", std::atan(1.)*4);
@@ -12,7 +13,8 @@ QString calculator::calculate(QString formula) {
     try {
         res=P.value(formula, V);
     }
-    catch (...) {
+    catch (std::exception &e) {
+        qDebug() << e.what();
     }
     QString res_str=formula+"=";
     res_str=res_str.replace(" ", "").

@@ -118,7 +118,8 @@ private:
       {"*", associativity::left},
       {"/", associativity::left},
       {"^", associativity::right},
-      {"_", associativity::left} };
+      {"_", associativity::left},
+      {"!", associativity::right} };
 
     const std::map<QString, int> precedence_map=
     { {"+", 1},
@@ -126,7 +127,8 @@ private:
       {"*", 2},
       {"/", 2},
       {"^", 4},
-      {"_", 3} };
+      {"_", 3},
+      {"!", 5} };
 
     double abs  (double x) const { return std::abs(x); }
     double sin  (double x) const { return std::sin(x); }
@@ -147,6 +149,8 @@ private:
     double log  (double x) const { return std::log10(x); }
     double erf  (double x) const { return std::erf(x); }
     double erfc (double x) const { return std::erfc(x); }
+    double Gamma(double x) const { return std::tgamma(x); }
+    double round(double x) const { return std::round(x); }
 
     typedef double (arithmetic_parser::*f_pointer)(double) const;
 
@@ -168,7 +172,9 @@ private:
       {"exp",   &arithmetic_parser::exp},
       {"ln",    &arithmetic_parser::ln},
       {"erf",   &arithmetic_parser::erf},
-      {"erfc",  &arithmetic_parser::erfc} };
+      {"erfc",  &arithmetic_parser::erfc},
+      {"Gamma", &arithmetic_parser::Gamma},
+      {"round", &arithmetic_parser::round} };
 
 public:
     // split string into a list of tokens and determine token category
@@ -185,8 +191,8 @@ public:
         //   - a variable name
         //   - something else, which is a syntax error
         // - ends with zero or more spaces
-        static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^])|([(])|([)])|([[:alpha:]]\w*(?=\())|([[:alpha:]]\w*)|(\S+))\s*)");
-        //static std::regex words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^])|([(])|([)])|([[:alpha:]]\w*(?=\())|([[:alpha:]]\w*)|(\S+))\s*)",
+        static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^!])|([(])|([)])|([[:alpha:]]\w*(?=\())|([[:alpha:]]\w*)|(\S+))\s*)");
+        //static std::regex words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^!])|([(])|([)])|([[:alpha:]]\w*(?=\())|([[:alpha:]]\w*)|(\S+))\s*)",
         //                              std::regex::optimize);
         token_list_t token_list;
         //auto words_end=std::sregex_iterator();
@@ -229,10 +235,12 @@ public:
                 stack.push(t);
             else if (t==token_kind::op) {
                 // check if operator is unary + or -
-                if ((t=="+" or t=="-") and
-                        (last_token==token_kind::op or
-                         last_token==token_kind::brace_open or
-                         last_token==token_kind::invalid) ) {
+                if (t=="!")
+                    stack.push(t);
+                else if ((t=="+" or t=="-") and
+                         (last_token==token_kind::op or
+                          last_token==token_kind::brace_open or
+                          last_token==token_kind::invalid) ) {
                     // suppress unary + or introduce unary - as operator "_"
                     if (t=="-")
                         stack.push(token_t("_", token_kind::op));
@@ -290,7 +298,7 @@ public:
             return 0;
         std::stack<double> stack;
         for (const auto &t: token_list) {
-            if (t==token_kind::number)
+           if (t==token_kind::number)
                 stack.push(t.str().toDouble());
             else if(t==token_kind::var) {
                 auto v=vars.find(t.str());
@@ -322,6 +330,9 @@ public:
                     double op2=get(stack);
                     double op1=get(stack);
                     stack.push(std::pow(op1, op2));
+                } else if (t=="!") {  // factorial
+                    double op1=get(stack);
+                    stack.push(std::tgamma(op1+1));
                 } else
                     throw syntax_error();  // this point should never be reached
             } else if (t==token_kind::func) {

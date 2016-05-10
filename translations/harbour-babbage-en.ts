@@ -8,13 +8,17 @@
         <translation>Scientific calculator</translation>
     </message>
     <message>
-        <source>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/) and exponentiation (^) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf and erfc.  Enter pi for π.</source>
-        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/) and exponentiation (^) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf and erfc.  Enter pi for π.</translation>
+        <source>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma and round.  Enter pi for π.</source>
+        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma and round.  Enter pi for π.</translation>
     </message>
     <message>
-        <source>Fork me on github!
+        <source>© Heiko Bauke, 2016
+
+Fork me on github!
 https://github.com/rabauke/harbour-babbage</source>
-        <translation>Fork me on github!
+        <translation>© Heiko Bauke, 2016
+
+Fork me on github!
 https://github.com/rabauke/harbour-babbage</translation>
     </message>
 </context>
