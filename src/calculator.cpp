@@ -21,10 +21,14 @@ QString calculator::calculate(QString formula) {
     res=P.value(formula_plain, V);
   }
   catch (std::exception &e) {
-    qDebug() << e.what();
     err=e.what();
   }
-  QString formula_tt=formula;
+  QString res_str=QString::number(res, 'g', 12);
+  res_str.replace(QRegularExpression("e[+](\\d+)"), " · 10^\\1").
+      replace(QRegularExpression("e[-](\\d+)"), " · 10^(−\\1)").
+      replace("-","−").
+      replace("inf", "∞");
+  QString formula_tt=formula+" = "+res_str;
   formula_tt.replace(" ", "").
       replace("+"," + ").
       replace("−"," − ").
@@ -33,16 +37,14 @@ QString calculator::calculate(QString formula) {
       replace("*", " · ").
       replace("/", " / ").
       replace("=", " = ").
+      replace(",", ", ").
       replace("pi", "π").
       replace("sqrt", "√").
-      replace("Gamma", "Γ");
-  QString res_str=QString::number(res, 'g', 12);
-  res_str.replace(QRegularExpression("e[+](\\d+)"), " · 10^\\1").
-      replace(QRegularExpression("e[-](\\d+)"), " · 10^(−\\1)").
-      replace("-","−").
-      replace("inf", "∞");
+      replace("Gamma", "Γ").
+      replace("  ", " ").
+      replace(QRegularExpression("^\\s*"), "");
   if (err.isEmpty())
-    return formula_tt+" = "+res_str;
+    return formula_tt;
   else
-    return formula_tt+" = "+res_str+" ("+err+")";
+    return formula_tt+" ("+err+")";
 }

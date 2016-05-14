@@ -64,9 +64,10 @@ Page {
                 id: calculator
             }
             Row {
+                spacing: Theme.paddingSmall
                 TextField {
                     id: formula
-                    width: column.width-clearButton.width
+                    width: column.width-clearButton.width-2*Theme.paddingSmall
                     text: ""
                     focus: true
                     placeholderText: qsTr("Enter mathematical expression")
