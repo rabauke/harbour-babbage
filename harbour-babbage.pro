@@ -35,8 +35,8 @@ SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += translations/harbour-babbage.ts \
-  translations/harbour-babbage-en.ts \
-  translations/harbour-babbage-de.ts
+  translations/harbour-babbage.en.ts \
+  translations/harbour-babbage.de.ts
 
 DISTFILES += \
     qml/pages/MainPage.qml \

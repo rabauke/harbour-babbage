@@ -23,7 +23,7 @@ Page {
                 wrapMode: TextEdit.Wrap
                 font.pixelSize: Theme.fontSizeMedium
                 horizontalAlignment: TextEdit.AlignJustify
-                text: qsTr("This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  The following mathematical functions may be used: abs, sin, cos, tan, asin, acos, atan, sinh, cosh, tanh, asinh, acosh, atanh, sqrt, exp, ln, erf, erfc, Gamma and round.  Enter pi for π.")
+                text: qsTr("_discription_")
             }
             Label {
                 text: "© Heiko Bauke, 2016<br><br>Fork me on github!<br><a href=\"https://github.com/rabauke/harbour-babbage\">https://github.com/rabauke/harbour-babbage</a>"

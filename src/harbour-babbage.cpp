@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
   QGuiApplication *app=SailfishApp::application(argc, argv);
   QString locale=QLocale::system().name();
   QTranslator *translator=new QTranslator;
-  if ((translator->load("harbour-babbage-"+locale, "/usr/share/harbour-babbage/translations")))
+  if ((translator->load("harbour-babbage."+locale, "/usr/share/harbour-babbage/translations")))
     app->installTranslator(translator);
   qmlRegisterType<calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
   QQuickView *view=SailfishApp::createView();
