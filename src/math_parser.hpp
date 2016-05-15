@@ -9,6 +9,7 @@
 #include <stack>
 #include <stdexcept>
 #include <cmath>
+#include <limits>
 #include <algorithm>
 #include <QString>
 #include <QRegularExpressionMatchIterator>
@@ -172,52 +173,57 @@ namespace math_parser {
       {"_", 3},
       {"!", 5} };
 
-    double abs  (const arg_list &x) const {
+    double abs(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::abs(x[0]);
     }
-    double sin  (const arg_list &x) const {
+    double round(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::round(x[0]);
+    }
+    double sin(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::sin(x[0]);
     }
-    double cos  (const arg_list &x) const {
+    double cos(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::cos(x[0]);
     }
-    double tan  (const arg_list &x) const {
+    double tan(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::tan(x[0]);
     }
-    double asin (const arg_list &x) const {
+    double asin(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::asin(x[0]);
     }
-    double acos (const arg_list &x) const {
+    double acos(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::acos(x[0]);
     }
-    double atan (const arg_list &x) const {
+    double atan(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::atan(x[0]);
     }
-    double sinh (const arg_list &x) const {
+    double sinh(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::sinh(x[0]);
     }
-    double cosh (const arg_list &x) const {
+    double cosh(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::cosh(x[0]);
     }
-    double tanh (const arg_list &x) const {
+    double tanh(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::tanh(x[0]);
@@ -237,35 +243,54 @@ namespace math_parser {
         throw argument_error();
       return std::atanh(x[0]);
     }
-    double sqrt (const arg_list &x) const {
+    double sqrt(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::sqrt(x[0]);
     }
-    double exp  (const arg_list &x) const {
+    double exp(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::exp(x[0]);
     }
-    double ln   (const arg_list &x) const {
+    double ln(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::log(x[0]);
     }
-    double log  (const arg_list &x) const {
+    double log(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::log10(x[0]);
     }
-    double erf  (const arg_list &x) const {
+    double erf(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::erf(x[0]);
     }
-    double erfc (const arg_list &x) const {
+    double erfc(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
       return std::erfc(x[0]);
+    }
+    double normal(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return 0.5+0.5*std::erf(0.70710678118654752440*x[0]);
+    }
+    double invnormal(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      double res=0;
+      for (int i=0; i<128; ++i) {
+        double f =0.5+0.5*std::erf(0.70710678118654752440*res)-x[0];
+        double f1=0.39894228040143267794*std::exp(-0.5*res*res);
+        double f2=-f1*res;
+        res-=f/f1*(1-f*f2/(2*f1*f1));
+        if (std::abs(f/f1)<std::numeric_limits<double>::epsilon())
+          break;
+      }
+      return res;
     }
     double Gamma(const arg_list &x) const {
       if (x.size()!=1)
@@ -282,50 +307,70 @@ namespace math_parser {
         throw argument_error();
       return std::exp(std::lgamma(x[0]+1)-std::lgamma(x[1]+1)-std::lgamma(x[0]-x[1]+1));
     }
-    double round(const arg_list &x) const {
-      if (x.size()!=1)
-        throw argument_error();
-      return std::round(x[0]);
-    }
-    double min  (const arg_list &x) const {
+    double min(const arg_list &x) const {
       if (x.size()==0)
         throw argument_error();
       return *std::min_element(x.begin(), x.end());
     }
-    double max  (const arg_list &x) const {
+    double max(const arg_list &x) const {
       if (x.size()==0)
         throw argument_error();
       return *std::max_element(x.begin(), x.end());
     }
+    double mean(const arg_list &x) const {
+      if (x.size()==0)
+        throw argument_error();
+      double res=0;
+      for (auto v: x)
+        res+=v;
+      return res/x.size();
+    }
+    double var(const arg_list &x) const {
+      if (x.size()<2)
+        throw argument_error();
+      double mu=mean(x);
+      double res=0;
+      for (auto v: x)
+        res+=(v-mu)*(v-mu);
+      return res/(x.size()-1);
+    }
+    double std(const arg_list &x) const {
+      return std::sqrt(var(x));
+    }
 
-    typedef double (arithmetic_parser::*f_pointer)(const arg_list &) const;
+    typedef double(arithmetic_parser::*f_pointer)(const arg_list &) const;
 
     const std::map<QString, f_pointer> func_map=
-      { {"abs",      &arithmetic_parser::abs     },
-        {"round",    &arithmetic_parser::round   },
-        {"sin",      &arithmetic_parser::sin     },
-        {"cos",      &arithmetic_parser::cos     },
-        {"tan",      &arithmetic_parser::tan     },
-        {"asin",     &arithmetic_parser::asin    },
-        {"acos",     &arithmetic_parser::acos    },
-        {"atan",     &arithmetic_parser::atan    },
-        {"sinh",     &arithmetic_parser::sinh    },
-        {"cosh",     &arithmetic_parser::cosh    },
-        {"tanh",     &arithmetic_parser::tanh    },
-        {"asinh",    &arithmetic_parser::asinh   },
-        {"acosh",    &arithmetic_parser::acosh   },
-        {"atanh",    &arithmetic_parser::atanh   },
-        {"sqrt",     &arithmetic_parser::sqrt    },
-        {"exp",      &arithmetic_parser::exp     },
-        {"ln",       &arithmetic_parser::ln      },
-        {"log",      &arithmetic_parser::log     },
-        {"erf",      &arithmetic_parser::erf     },
-        {"erfc",     &arithmetic_parser::erfc    },
-        {"Gamma",    &arithmetic_parser::Gamma   },
-        {"Beta",     &arithmetic_parser::Beta    },
-        {"binomial", &arithmetic_parser::binomial},
-        {"min",      &arithmetic_parser::min     },
-        {"max",      &arithmetic_parser::max     } };
+      { {"abs",       &arithmetic_parser::abs       },
+        {"round",     &arithmetic_parser::round     },
+        {"sin",       &arithmetic_parser::sin       },
+        {"cos",       &arithmetic_parser::cos       },
+        {"tan",       &arithmetic_parser::tan       },
+        {"asin",      &arithmetic_parser::asin      },
+        {"acos",      &arithmetic_parser::acos      },
+        {"atan",      &arithmetic_parser::atan      },
+        {"sinh",      &arithmetic_parser::sinh      },
+        {"cosh",      &arithmetic_parser::cosh      },
+        {"tanh",      &arithmetic_parser::tanh      },
+        {"asinh",     &arithmetic_parser::asinh     },
+        {"acosh",     &arithmetic_parser::acosh     },
+        {"atanh",     &arithmetic_parser::atanh     },
+        {"sqrt",      &arithmetic_parser::sqrt      },
+        {"exp",       &arithmetic_parser::exp       },
+        {"ln",        &arithmetic_parser::ln        },
+        {"log",       &arithmetic_parser::log       },
+        {"erf",       &arithmetic_parser::erf       },
+        {"erfc",      &arithmetic_parser::erfc      },
+        {"normal",    &arithmetic_parser::normal    },
+        {"invnormal", &arithmetic_parser::invnormal },
+        {"Gamma",     &arithmetic_parser::Gamma     },
+        {"Beta",      &arithmetic_parser::Beta      },
+        {"binomial",  &arithmetic_parser::binomial  },
+        {"min",       &arithmetic_parser::min       },
+        {"max",       &arithmetic_parser::max       },
+        {"mean",      &arithmetic_parser::mean      },
+        {"var",       &arithmetic_parser::var       },
+        {"std",       &arithmetic_parser::std       } };
 
   public:
     // split string into a list of tokens and determine token category
