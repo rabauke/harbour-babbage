@@ -282,6 +282,12 @@ namespace math_parser {
       if (x.size()!=1)
         throw argument_error();
       double res=0;
+      if (x[0]<0 or x[0]>1)
+        return std::numeric_limits<double>::quiet_NaN();
+      if (x[0]==0)
+        return -std::numeric_limits<double>::infinity();
+      if (x[0]==1)
+        return -std::numeric_limits<double>::infinity();
       for (int i=0; i<128; ++i) {
         double f =0.5+0.5*std::erf(0.70710678118654752440*res)-x[0];
         double f1=0.39894228040143267794*std::exp(-0.5*res*res);
@@ -305,7 +311,10 @@ namespace math_parser {
     double binomial(const arg_list &x) const {
       if (x.size()!=2)
         throw argument_error();
-      return std::exp(std::lgamma(x[0]+1)-std::lgamma(x[1]+1)-std::lgamma(x[0]-x[1]+1));
+      double res=std::exp(std::lgamma(x[0]+1)-std::lgamma(x[1]+1)-std::lgamma(x[0]-x[1]+1));
+      if (std::round(x[0])==x[0] and std::round(x[1])==x[1])
+        res=std::round(res);
+      return res;
     }
     double min(const arg_list &x) const {
       if (x.size()==0)
@@ -557,7 +566,10 @@ namespace math_parser {
             stack.push(std::pow(op1, op2));
           } else if (t=="!") {  // factorial
             double op1=get(stack);
-            stack.push(std::tgamma(op1+1));
+            double res=std::tgamma(op1+1);
+            if (std::round(op1)==op1)
+              res=std::round(res);
+            stack.push(res);
           } else
             throw syntax_error();  // this point should never be reached
         } else if (t==token_kind::func) {
