@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Enter pi for π.</translation>
+        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Results may be assigned to variables.  Variable names consist of alphanumeric symbols and start with a letter.  Enter pi for π.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -160,6 +160,10 @@
     <message>
         <source>Enter mathematical expression</source>
         <translation>Enter mathematical expression</translation>
+    </message>
+    <message>
+        <source>Clear variables</source>
+        <translation>Clear variables</translation>
     </message>
 </context>
 </TS>

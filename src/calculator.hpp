@@ -12,6 +12,7 @@ class calculator : public QObject {
 public:
   explicit calculator(QObject *parent = 0);
   Q_INVOKABLE QString calculate(QString formula);
+  Q_INVOKABLE void clear();
   virtual ~calculator() {}
 
 signals:

@@ -45,7 +45,7 @@ DISTFILES += \
     qml/pages/functiondoc.qml \
     qml/components/FunctionDoc.qml
 
-images.files = images/*.png
+images.files = images/cover_background.png
 images.path = /usr/share/harbour-babbage/images
 INSTALLS += images
 

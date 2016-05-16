@@ -15,17 +15,27 @@ QString calculator::calculate(QString formula) {
       replace("π", "pi").
       replace("√", "sqrt").
       replace("Γ", "Gamma");
+  QRegularExpression assignment_regex(R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))");
+  QRegularExpression formula_regex(R"(^\s*\S.*)");
+
   double res=std::numeric_limits<double>::quiet_NaN();
   QString err;
   try {
-    res=P.value(formula_plain, V);
+    auto match=assignment_regex.match(formula_plain);
+    if (match.hasMatch()) {
+      QString var_name=match.capturedRef(1).toString();
+      V[var_name]=res;
+      res=P.value(match.capturedRef(2).toString(), V);
+      V[var_name]=res;
+    } else
+      res=P.value(formula_plain, V);
   }
   catch (std::exception &e) {
     err=e.what();
   }
   QString res_str=QString::number(res, 'g', 12);
-  res_str.replace(QRegularExpression("e[+](\\d+)"), " · 10^\\1").
-      replace(QRegularExpression("e[-](\\d+)"), " · 10^(−\\1)").
+  res_str.replace(QRegularExpression(R"(e[+](\d+))"), R"( · 10^\1)").
+      replace(QRegularExpression(R"(e[-](\d+))"), R"( · 10^(−\1))").
       replace("-","−").
       replace("inf", "∞");
   QString formula_tt=formula+" = "+res_str;
@@ -38,13 +48,19 @@ QString calculator::calculate(QString formula) {
       replace("/", " / ").
       replace("=", " = ").
       replace(",", ", ").
-      replace("pi", "π").
-      replace("sqrt", "√").
-      replace("Gamma", "Γ").
+      replace(QRegularExpression(R"(\bpi\b)"), "π").
+      replace(QRegularExpression(R"(\bsqrt\b)"), "√").
+      replace(QRegularExpression(R"(\bGamma\b)"), "Γ").
       replace("  ", " ").
-      replace(QRegularExpression("^\\s*"), "");
+      replace(QRegularExpression(R"(^\s*)"), "");
   if (err.isEmpty())
     return formula_tt;
   else
     return formula_tt+" ("+err+")";
+}
+
+
+void calculator::clear() {
+  V.clear();
+  V.insert("pi", std::atan(1.)*4);
 }

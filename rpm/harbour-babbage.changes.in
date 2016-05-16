@@ -15,3 +15,7 @@
 
 * Sat May 10 2016 Heiko Bauker <heiko.bauke@mail.de> 0.6-1
 - additional functions and factorial
+
+* Sat May 16 2016 Heiko Bauker <heiko.bauke@mail.de> 0.7-1
+- additional functions
+- resuls may be assigned to variables

@@ -46,6 +46,10 @@ Page {
                 onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
             }
             MenuItem {
+                text: qsTr("Clear variables")
+                onClicked: Clipboard.text = calculator.clear()
+            }
+            MenuItem {
                 text: qsTr("Copy")
                 onClicked: Clipboard.text = app_window.lastformula
             }

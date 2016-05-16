@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Vielzahl mathe­­matischer Funk­tionen kann verwendet werden.  Gib die Kreiszahl π als pi ein.</translation>
+        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Vielzahl mathe­­matischer Funk­tionen kann verwendet werden.  Gib die Kreiszahl π als pi ein.  Resultate können Variablen zugewiesen werden.  Variablennamen bestehen aus alphanumerischen Zeichen und beginnen mit einem Buchstaben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -160,6 +160,10 @@
     <message>
         <source>Enter mathematical expression</source>
         <translation>Mathematischen Ausdruck eingeben</translation>
+    </message>
+    <message>
+        <source>Clear variables</source>
+        <translation>Lösche Variablen</translation>
     </message>
 </context>
 </TS>
