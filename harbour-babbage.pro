@@ -40,7 +40,10 @@ TRANSLATIONS += translations/harbour-babbage.ts \
 
 DISTFILES += \
     qml/pages/MainPage.qml \
-    qml/pages/About.qml
+    qml/pages/About.qml \
+    qml/pages/Functions.qml \
+    qml/pages/functiondoc.qml \
+    qml/components/FunctionDoc.qml
 
 images.files = images/*.png
 images.path = /usr/share/harbour-babbage/images
