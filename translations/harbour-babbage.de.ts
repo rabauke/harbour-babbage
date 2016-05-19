@@ -96,7 +96,7 @@
     </message>
     <message>
         <source>erf_description</source>
-        <translation>Fehlerfunction.</translation>
+        <translation>Fehlerfunktion.</translation>
     </message>
     <message>
         <source>erfc_description</source>
