@@ -1,4 +1,5 @@
 #ifndef CALCULATOR_H
+
 #define CALCULATOR_H
 
 #include <QObject>
@@ -13,7 +14,7 @@ public:
   explicit calculator(QObject *parent = 0);
   Q_INVOKABLE QString calculate(QString formula);
   Q_INVOKABLE void clear();
-  virtual ~calculator() {}
+  virtual ~calculator() { }
 
 signals:
 

@@ -1,4 +1,4 @@
-#if !(defined MATH_PARSER_HPP)
+#ifndef MATH_PARSER_HPP
 
 #define MATH_PARSER_HPP
 
