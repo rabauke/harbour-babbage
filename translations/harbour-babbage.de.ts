@@ -31,6 +31,14 @@
         <translation>Ganzzahlig gerundeter Wert von x.</translation>
     </message>
     <message>
+        <source>ceil_description</source>
+        <translation>Zur nächst größeren Ganzzahl gerundeter Wert von x.</translation>
+    </message>
+    <message>
+        <source>mod_description</source>
+        <translation>Fließkommarest der Division x/y.</translation>
+    </message>
+    <message>
         <source>sin_description</source>
         <translation>Sinus von x.</translation>
     </message>
@@ -132,7 +140,7 @@
     </message>
     <message>
         <source>mean_description</source>
-        <translation>Mittlwert aller Argumente.</translation>
+        <translation>Mittelwert aller Argumente.</translation>
     </message>
     <message>
         <source>var_description</source>
@@ -141,6 +149,10 @@
     <message>
         <source>std_description</source>
         <translation>Empirische Stich­proben­standard­ab­weichung aller Argumente.</translation>
+    </message>
+    <message>
+        <source>foor_description</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -158,12 +170,12 @@
         <translation>Wissenschaftlicher Rechner</translation>
     </message>
     <message>
-        <source>Enter mathematical expression</source>
-        <translation>Mathematischen Ausdruck eingeben</translation>
-    </message>
-    <message>
         <source>Clear variables</source>
         <translation>Lösche Variablen</translation>
+    </message>
+    <message>
+        <source>Mathematical expression</source>
+        <translation>Mathematischer Ausdruck</translation>
     </message>
 </context>
 </TS>

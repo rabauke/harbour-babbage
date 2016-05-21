@@ -74,7 +74,7 @@ Page {
                     width: column.width-clearButton.width-2*Theme.paddingSmall
                     text: ""
                     focus: true
-                    placeholderText: qsTr("Enter mathematical expression")
+                    placeholderText: qsTr("Mathematical expression")
                     inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
                     EnterKey.enabled: text.length>0
                     EnterKey.onClicked: { app_window.lastformula = calculator.calculate(formula.text);

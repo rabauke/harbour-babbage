@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Results may be assigned to variables.  Variable names consist of alphanumeric symbols and start with a letter.  Enter pi for π.</translation>
+        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Results may be assigned to variables.  Variable names consist of alphanumeric symbols and start with a letter. Enter pi for π.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -29,6 +29,14 @@
     <message>
         <source>round_description</source>
         <translation>Value of x rounded to the nearest integer.</translation>
+    </message>
+    <message>
+        <source>ceil_description</source>
+        <translation>Value of x rounded to the next larger integer.</translation>
+    </message>
+    <message>
+        <source>mod_description</source>
+        <translation>Floating-point remainder of the division operation x/y.</translation>
     </message>
     <message>
         <source>sin_description</source>
@@ -142,6 +150,10 @@
         <source>std_description</source>
         <translation>Sample standard variantion of the given arguments.</translation>
     </message>
+    <message>
+        <source>foor_description</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
@@ -158,12 +170,12 @@
         <translation>Scientific calculator</translation>
     </message>
     <message>
-        <source>Enter mathematical expression</source>
-        <translation>Enter mathematical expression</translation>
-    </message>
-    <message>
         <source>Clear variables</source>
         <translation>Clear variables</translation>
+    </message>
+    <message>
+        <source>Mathematical expression</source>
+        <translation>Mathematical expression</translation>
     </message>
 </context>
 </TS>

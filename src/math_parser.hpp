@@ -184,6 +184,21 @@ namespace math_parser {
         throw argument_error();
       return std::round(x[0]);
     }
+    double floor(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::floor(x[0]);
+    }
+    double ceil(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::ceil(x[0]);
+    }
+    double mod(const arg_list &x) const {
+      if (x.size()!=2)
+        throw argument_error();
+      return std::fmod(x[0], x[1]);
+    }
     double sin(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
@@ -353,6 +368,9 @@ namespace math_parser {
     const std::map<QString, f_pointer> func_map=
       { {"abs",       &arithmetic_parser::abs       },
         {"round",     &arithmetic_parser::round     },
+        {"floor",     &arithmetic_parser::floor     },
+        {"ceil",      &arithmetic_parser::ceil      },
+        {"mod",       &arithmetic_parser::mod       },
         {"sin",       &arithmetic_parser::sin       },
         {"cos",       &arithmetic_parser::cos       },
         {"tan",       &arithmetic_parser::tan       },

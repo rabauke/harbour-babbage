@@ -13,11 +13,11 @@ Name:       harbour-babbage
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Scientific calculator
-Version:    0.7
+Version:    0.8
 Release:    1
 Group:      Qt/Qt
 License:    BSD
-URL:        https://github.com/rabauke/harbour-babbage
+URL:        http://example.org/
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  harbour-babbage.yaml
 Requires:   sailfishsilica-qt5 >= 0.10.9
@@ -28,7 +28,7 @@ BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
 
 %description
-A scientific calculator for SailfishOS
+Short description of my SailfishOS Application
 
 
 %prep

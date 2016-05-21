@@ -26,6 +26,18 @@ Page {
                 descriptionText: qsTr("round_description")
             }
             FunctionDoc {
+                functionText: "floor(x)"
+                descriptionText: qsTr("foor_description")
+            }
+            FunctionDoc {
+                functionText: "ceil(x)"
+                descriptionText: qsTr("ceil_description")
+            }
+            FunctionDoc {
+                functionText: "mod(x, y)"
+                descriptionText: qsTr("mod_description")
+            }
+            FunctionDoc {
                 functionText: "sin(x)"
                 descriptionText: qsTr("sin_description")
             }
