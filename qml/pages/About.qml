@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 
 Page {
@@ -37,7 +37,6 @@ Page {
                 width: column.width
                 color: Theme.primaryColor
                 linkColor: Theme.highlightColor
-                //readOnly: true
                 wrapMode: TextEdit.Wrap
                 font.pixelSize: Theme.fontSizeSmall
                 horizontalAlignment: TextEdit.AlignHCenter

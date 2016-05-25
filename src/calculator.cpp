@@ -63,4 +63,5 @@ QString calculator::calculate(QString formula) {
 void calculator::clear() {
   V.clear();
   V.insert("pi", std::atan(1.)*4);
+  V.insert("e", std::exp(1.));
 }

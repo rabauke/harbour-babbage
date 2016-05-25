@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Vielzahl mathe­­matischer Funk­tionen kann verwendet werden.  Gib die Kreiszahl π als pi ein.  Resultate können Variablen zugewiesen werden.  Variablennamen bestehen aus alphanumerischen Zeichen und beginnen mit einem Buchstaben.</translation>
+        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Vielzahl mathe­­matischer Funk­tionen kann verwendet werden.  Gib die Kreiszahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zugewiesen werden.  Variablennamen bestehen aus alphanumerischen Zeichen und beginnen mit einem Buchstaben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>log_description</source>
-        <translation>Logarithmus zur Basis 10.</translation>
+        <translation>Logarithmus zur Basis 10 bzw. zur Basis b.</translation>
     </message>
     <message>
         <source>erf_description</source>

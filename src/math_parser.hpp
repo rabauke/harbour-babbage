@@ -275,9 +275,11 @@ namespace math_parser {
       return std::log(x[0]);
     }
     double log(const arg_list &x) const {
-      if (x.size()!=1)
+      if (x.size()!=1 and x.size()!=2)
         throw argument_error();
-      return std::log10(x[0]);
+      if (x.size()==1)
+        return std::log10(x[0]);
+      return std::log(x[0])/std::log(x[1]);
     }
     double erf(const arg_list &x) const {
       if (x.size()!=1)

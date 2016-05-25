@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Results may be assigned to variables.  Variable names consist of alphanumeric symbols and start with a letter. Enter pi for π.</translation>
+        <translation>This scientific calculator evaluates mathematical expressions in standard mathematical notation.  Mathematical operators for addition (+), subtraction (-), multiplication (*), division (/), exponentiation (^) and factorial (!) are supported.  Various mathematical functions may be used.  Results may be assigned to variables.  Variable names consist of alphanumeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -100,7 +100,7 @@
     </message>
     <message>
         <source>log_description</source>
-        <translation>Base-10 logarithm of x.</translation>
+        <translation>Base-10 logarithm of x or logarithm to the base b, respactively.</translation>
     </message>
     <message>
         <source>erf_description</source>
