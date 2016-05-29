@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import "../components"
 
@@ -27,7 +27,7 @@ Page {
       }
       FunctionDoc {
         functionText: "floor(x)"
-        descriptionText: qsTr("foor_description")
+        descriptionText: qsTr("floor_description")
       }
       FunctionDoc {
         functionText: "ceil(x)"

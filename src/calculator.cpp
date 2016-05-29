@@ -24,7 +24,6 @@ QString calculator::calculate(QString formula) {
     auto match=assignment_regex.match(formula_plain);
     if (match.hasMatch()) {
       QString var_name=match.capturedRef(1).toString();
-      V[var_name]=res;
       res=P.value(match.capturedRef(2).toString(), V);
       V[var_name]=res;
     } else

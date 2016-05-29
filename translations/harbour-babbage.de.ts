@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="de_DE">
 <context>
     <name>About</name>
     <message>
@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftlicher Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Vielzahl mathe­­matischer Funk­tionen kann verwendet werden.  Gib die Kreiszahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zugewiesen werden.  Variablennamen bestehen aus alphanumerischen Zeichen und beginnen mit einem Buchstaben.</translation>
+        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Viel­zahl mathe­­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -33,6 +33,10 @@
     <message>
         <source>ceil_description</source>
         <translation>Zur nächst größeren Ganzzahl gerundeter Wert von x.</translation>
+    </message>
+    <message>
+        <source>floor_description</source>
+        <translation>Zur nächst kleineren Ganzzahl gerundeter Wert von x.</translation>
     </message>
     <message>
         <source>mod_description</source>
@@ -150,10 +154,6 @@
         <source>std_description</source>
         <translation>Empirische Stich­proben­standard­ab­weichung aller Argumente.</translation>
     </message>
-    <message>
-        <source>foor_description</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MainPage</name>
@@ -162,20 +162,36 @@
         <translation>Über Babbage</translation>
     </message>
     <message>
+        <source>Clear variables</source>
+        <translation>Lösche Variablen</translation>
+    </message>
+    <message>
         <source>Copy</source>
-        <translation>Kopieren</translation>
+        <translation>Kopiere</translation>
     </message>
     <message>
         <source>Scientific calculator</source>
         <translation>Wissenschaftlicher Rechner</translation>
     </message>
     <message>
-        <source>Clear variables</source>
-        <translation>Lösche Variablen</translation>
-    </message>
-    <message>
         <source>Mathematical expression</source>
         <translation>Mathematischer Ausdruck</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Lösche</translation>
+    </message>
+    <message>
+        <source>Clear output</source>
+        <translation>Lösche Ausgabe</translation>
+    </message>
+    <message>
+        <source>Clearing output</source>
+        <translation>Lösche Ausgaben</translation>
+    </message>
+    <message>
+        <source>Clearing variables</source>
+        <translation>Lösche Variablen</translation>
     </message>
 </context>
 </TS>

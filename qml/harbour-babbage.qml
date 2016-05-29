@@ -36,15 +36,19 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import "pages"
 
 ApplicationWindow {
-    id: app_window
-    property string lastformula: ""
-    initialPage: Component { MainPage { } }
-    cover: Qt.resolvedUrl("cover/CoverPage.qml")
-    allowedOrientations: Orientation.All
-    _defaultPageOrientations: Orientation.All
+  id: app_window
+
+  ListModel {
+    id: listModel
+  }
+
+  initialPage: Component { MainPage { } }
+  cover: Qt.resolvedUrl("cover/CoverPage.qml")
+  allowedOrientations: Orientation.All
+  _defaultPageOrientations: Orientation.All
 }

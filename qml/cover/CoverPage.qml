@@ -28,40 +28,40 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 
 CoverBackground {
 
-    Image {
-        source: "/usr/share/harbour-babbage/images/cover_background.png"
-        x: 0; y: parent.height-parent.width; z: -1
-        opacity: 0.125
-        width: parent.width
-        height: parent.width
+  Image {
+    source: "/usr/share/harbour-babbage/images/cover_background.png"
+    x: 0; y: parent.height-parent.width; z: -1
+    opacity: 0.125
+    width: parent.width
+    height: parent.width
+  }
+
+  Column {
+    id: countColumn
+    anchors { top: parent.top;
+      left: parent.left;
+      right: parent.right;
+      topMargin: Theme.paddingLarge;
+      leftMargin: Theme.paddingLarge;
+      rightMargin: Theme.paddingLarge; }
+
+    Label {
+      text: "Babbage"
     }
 
-    Column {
-        id: countColumn
-        anchors { top: parent.top;
-                  left: parent.left;
-                  right: parent.right;
-                  topMargin: Theme.paddingLarge;
-                  leftMargin: Theme.paddingLarge;
-                  rightMargin: Theme.paddingLarge; }
-
-        Label {
-            text: "Babbage"
-        }
-
-        Label {
-            text: app_window.lastformula
-            font.pixelSize : Theme.fontSizeSmall
-            color: Theme.secondaryColor
-            width: parent.width
-            wrapMode: Text.Wrap
-        }
-
+    Label {
+      text: listModel.count>0 ? listModel.get(0).res : ""
+      font.pixelSize : Theme.fontSizeSmall
+      color: Theme.secondaryColor
+      width: parent.width
+      wrapMode: Text.Wrap
     }
+
+  }
 
 }

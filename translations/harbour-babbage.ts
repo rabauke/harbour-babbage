@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="en_US">
 <context>
     <name>About</name>
     <message>
@@ -33,6 +33,10 @@
     <message>
         <source>ceil_description</source>
         <translation>Value of x rounded to the next larger integer.</translation>
+    </message>
+    <message>
+        <source>floor_description</source>
+        <translation>Value of x rounded to the next smaller integer.</translation>
     </message>
     <message>
         <source>mod_description</source>
@@ -150,16 +154,16 @@
         <source>std_description</source>
         <translation>Sample standard variantion of the given arguments.</translation>
     </message>
-    <message>
-        <source>foor_description</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MainPage</name>
     <message>
         <source>About Babbage</source>
         <translation>About Babbage</translation>
+    </message>
+    <message>
+        <source>Clear variables</source>
+        <translation>Clear variables</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -170,12 +174,24 @@
         <translation>Scientific calculator</translation>
     </message>
     <message>
-        <source>Clear variables</source>
-        <translation>Clear variables</translation>
-    </message>
-    <message>
         <source>Mathematical expression</source>
         <translation>Mathematical expression</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Remove</translation>
+    </message>
+    <message>
+        <source>Clear output</source>
+        <translation>Clear output</translation>
+    </message>
+    <message>
+        <source>Clearing output</source>
+        <translation>Clearing output</translation>
+    </message>
+    <message>
+        <source>Clearing variables</source>
+        <translation>Clearing variables</translation>
     </message>
 </context>
 </TS>

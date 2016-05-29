@@ -28,83 +28,120 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-import QtQuick 2.0
+import QtQuick 2.2
 import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
 
 
 Page {
-    id: main_page
+  id: main_page
 
-    SilicaFlickable {
-        anchors.fill: parent
-        contentHeight: column.height
+  Calculator {
+    id: calculator
+  }
 
-        PullDownMenu {
-            MenuItem {
-                text: qsTr("About Babbage")
-                onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
-            }
-            MenuItem {
-                text: qsTr("Clear variables")
-                onClicked: Clipboard.text = calculator.clear()
-            }
-            MenuItem {
-                text: qsTr("Copy")
-                onClicked: Clipboard.text = app_window.lastformula
-            }
+  SilicaListView {
+    anchors.fill: parent
+    id: listView
+
+    VerticalScrollDecorator { flickable: listView }
+
+    PullDownMenu {
+      RemorsePopup { id: remorse_variables }
+      RemorsePopup { id: remorse_output }
+      MenuItem {
+        text: qsTr("About Babbage")
+        onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+      }
+      MenuItem {
+        text: qsTr("Clear variables")
+        onClicked: remorse_variables.execute(qsTr("Clearing variables"),
+                                             function() {
+                                               calculator.clear()
+                                             } )
+      }
+      MenuItem {
+        text: qsTr("Clear output")
+        onClicked: remorse_output.execute(qsTr("Clearing output"),
+                                          function() {
+                                            listModel.clear()
+                                          } )
+      }
+    }
+
+    header: Item {
+      anchors.horizontalCenter: main_page.Center
+      anchors.top: parent.Top
+      height: pageHeader.height+formula_row.height
+      width: main_page.width
+      PageHeader {
+        id: pageHeader
+        title: qsTr("Scientific calculator")
+      }
+      Row {
+        id: formula_row
+        anchors.top: pageHeader.bottom
+        spacing: Theme.paddingSmall
+        TextField {
+          id: formula
+          width: listView.width-clearButton.width-2*Theme.paddingSmall
+          text: ""
+          focus: true
+          placeholderText: qsTr("Mathematical expression")
+          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+          EnterKey.enabled: text.length>0
+          EnterKey.onClicked: listModel.insert(0, { res: calculator.calculate(formula.text) } )
         }
-
-        Column {
-            id: column
-
-            width: parent.width
-            spacing: Theme.paddingMedium
-            PageHeader {
-                id: header
-                title: qsTr("Scientific calculator")
-            }
-            Calculator {
-                id: calculator
-            }
-            Row {
-                spacing: Theme.paddingSmall
-                TextField {
-                    id: formula
-                    width: column.width-clearButton.width-2*Theme.paddingSmall
-                    text: ""
-                    focus: true
-                    placeholderText: qsTr("Mathematical expression")
-                    inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-                    EnterKey.enabled: text.length>0
-                    EnterKey.onClicked: { app_window.lastformula = calculator.calculate(formula.text);
-                        results.text = "•  "+app_window.lastformula+"\n"+results.text; }
-                }
-                IconButton {
-                    id: clearButton
-                    anchors {
-                        verticalCenter: formula.top
-                        verticalCenterOffset: formula.textVerticalCenterOffset
-                    }
-                    icon.source: "image://theme/icon-m-backspace?" + (pressed
-                                                                      ? Theme.highlightColor
-                                                                      : Theme.primaryColor)
-                    onClicked: formula.text = ""
-                }
-            }
-            TextArea {
-                id: results
-                width: column.width
-                color: Theme.primaryColor
-                readOnly: true
-                wrapMode: TextEdit.Wrap
-                font.pixelSize: Theme.fontSizeMedium
-                horizontalAlignment: TextEdit.AlignLeft
-                text: ""
-            }
-
+        IconButton {
+          id: clearButton
+          anchors {
+            verticalCenter: formula.top
+            verticalCenterOffset: formula.textVerticalCenterOffset
+          }
+          icon.source: "image://theme/icon-m-backspace?" + (pressed
+                                                            ? Theme.highlightColor
+                                                            : Theme.primaryColor)
+          onClicked: formula.text=""
         }
+      }
+    }
+
+    model: listModel
+
+    delegate: ListItem {
+      width: parent.width
+      contentWidth: parent.width
+      contentHeight: result.height+Theme.paddingLarge
+      menu: contextMenu
+      Text {
+        id: result
+        x: Theme.horizontalPageMargin
+        y: 0.5*Theme.paddingLarge
+        width: parent.width-2*Theme.horizontalPageMargin
+        color: Theme.primaryColor
+        wrapMode: TextEdit.Wrap
+        font.pixelSize: Theme.fontSizeMedium
+        horizontalAlignment: TextEdit.AlignLeft
+        text: res
+      }
+      Component {
+        id: contextMenu
+        ContextMenu {
+          MenuItem {
+            text: qsTr("Copy")
+            onClicked: Clipboard.text=listModel.get(model.index)
+          }
+          MenuItem {
+            text: qsTr("Remove")
+            onClicked: {
+              listModel.remove(model.index)
+            }
+          }
+        }
+      }
 
     }
+
+  }
 
 }
