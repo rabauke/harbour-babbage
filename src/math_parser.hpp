@@ -27,15 +27,15 @@ namespace math_parser {
     }
   };
 
-  class unknow_function : public error {
+  class unknown_function : public error {
   public:
-    unknow_function() : error("unknown function") {
+    unknown_function() : error("unknown function") {
     }
   };
 
-  class unknow_variable : public error {
+  class unknown_variable : public error {
   public:
-    unknow_variable(const std::string &var) : error("unknown variable "+var) {
+    unknown_variable(const std::string &var) : error("unknown variable "+var) {
     }
   };
 
@@ -435,7 +435,7 @@ namespace math_parser {
           if (func_map.count(match.captured(6))>0)
             token_list.push_back(token_t(match.captured(6), token_kind::func));
           else
-            throw unknow_function();
+            throw unknown_function();
         } else if (match.capturedRef(7).length()>0)
           token_list.push_back(token_t(match.captured(7), token_kind::arg_sep));
         else if (match.capturedRef(8).length()>0)
@@ -560,7 +560,7 @@ namespace math_parser {
           if (v!=vars.end())
             stack.push(v->second);
           else
-            throw unknow_variable(t.str().toStdString());
+            throw unknown_variable(t.str().toStdString());
         } else if (t==token_kind::op) {
           if (t=="_") {  // unary minus
             double op1=get(stack);
@@ -596,7 +596,7 @@ namespace math_parser {
         } else if (t==token_kind::func) {
           auto func=func_map.find(t.str());
           if (func==func_map.end())
-            throw unknow_function();  // this point should never be reached
+            throw unknown_function();  // this point should never be reached
           arg_list x;
           int num_arguments(get(stack));
           for (int i=0; i<num_arguments; ++i)
