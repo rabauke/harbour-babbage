@@ -129,7 +129,7 @@ Page {
         ContextMenu {
           MenuItem {
             text: qsTr("Copy")
-            onClicked: Clipboard.text=listModel.get(model.index)
+            onClicked: Clipboard.text=listModel.get(model.index).res
           }
           MenuItem {
             text: qsTr("Remove")
