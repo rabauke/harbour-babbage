@@ -166,10 +166,6 @@
         <translation>Clear variables</translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation>Copy</translation>
-    </message>
-    <message>
         <source>Scientific calculator</source>
         <translation>Scientific calculator</translation>
     </message>
@@ -192,6 +188,14 @@
     <message>
         <source>Clearing variables</source>
         <translation>Clearing variables</translation>
+    </message>
+    <message>
+        <source>Copy result</source>
+        <translation>Copy result</translation>
+    </message>
+    <message>
+        <source>Copy formula</source>
+        <translation>Copy formula</translation>
     </message>
 </context>
 </TS>

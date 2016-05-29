@@ -55,7 +55,7 @@ CoverBackground {
     }
 
     Label {
-      text: listModel.count>0 ? listModel.get(0).res : ""
+      text: listModel.count>0 ? listModel.get(0).formula+" = "+listModel.get(0).result : ""
       font.pixelSize : Theme.fontSizeSmall
       color: Theme.secondaryColor
       width: parent.width

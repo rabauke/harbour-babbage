@@ -4,6 +4,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QStringList>
 #include "math_parser.hpp"
 
 class calculator : public QObject {
@@ -12,7 +13,7 @@ class calculator : public QObject {
   math_parser::arithmetic_parser::var_map_t V;
 public:
   explicit calculator(QObject *parent = 0);
-  Q_INVOKABLE QString calculate(QString formula);
+  Q_INVOKABLE QStringList calculate(QString formula);
   Q_INVOKABLE void clear();
   virtual ~calculator() { }
 

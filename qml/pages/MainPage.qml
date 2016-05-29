@@ -90,7 +90,10 @@ Page {
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length>0
-          EnterKey.onClicked: listModel.insert(0, { res: calculator.calculate(formula.text) } )
+          EnterKey.onClicked: {
+            var t=calculator.calculate(formula.text)
+            listModel.insert(0, { formula: t[0], result: t[1] } )
+          }
         }
         IconButton {
           id: clearButton
@@ -111,10 +114,10 @@ Page {
     delegate: ListItem {
       width: parent.width
       contentWidth: parent.width
-      contentHeight: result.height+Theme.paddingLarge
+      contentHeight: result_text.height+Theme.paddingLarge
       menu: contextMenu
       Text {
-        id: result
+        id: result_text
         x: Theme.horizontalPageMargin
         y: 0.5*Theme.paddingLarge
         width: parent.width-2*Theme.horizontalPageMargin
@@ -122,14 +125,18 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: res
+        text: formula+" = "+result
       }
       Component {
         id: contextMenu
         ContextMenu {
           MenuItem {
-            text: qsTr("Copy")
-            onClicked: Clipboard.text=listModel.get(model.index).res
+            text: qsTr("Copy result")
+            onClicked: Clipboard.text=listModel.get(model.index).result
+          }
+          MenuItem {
+            text: qsTr("Copy formula")
+            onClicked: Clipboard.text=listModel.get(model.index).formula
           }
           MenuItem {
             text: qsTr("Remove")

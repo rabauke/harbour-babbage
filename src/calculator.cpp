@@ -3,12 +3,13 @@
 #include <limits>
 #include <cmath>
 #include <QtDebug>
+#include <QStringList>
 
 calculator::calculator(QObject *parent) : QObject(parent) {
   V.insert("pi", std::atan(1.)*4);
 }
 
-QString calculator::calculate(QString formula) {
+QStringList calculator::calculate(QString formula) {
   QString formula_plain=formula;
   formula_plain.replace("−", "-").
       replace("·", "*").
@@ -37,8 +38,7 @@ QString calculator::calculate(QString formula) {
       replace(QRegularExpression(R"(e[-](\d+))"), R"( · 10^(−\1))").
       replace("-","−").
       replace("inf", "∞");
-  QString formula_tt=formula+" = "+res_str;
-  formula_tt.replace(" ", "").
+  formula.replace(" ", "").
       replace("+"," + ").
       replace("−"," − ").
       replace("-"," − ").
@@ -52,10 +52,13 @@ QString calculator::calculate(QString formula) {
       replace(QRegularExpression(R"(\bGamma\b)"), "Γ").
       replace("  ", " ").
       replace(QRegularExpression(R"(^\s*)"), "");
+  QStringList res_list;
+  res_list.append(formula);
   if (err.isEmpty())
-    return formula_tt;
+    res_list.append(res_str);
   else
-    return formula_tt+" ("+err+")";
+    res_list.append(res_str+" ("+err+")");
+  return res_list;
 }
 
 

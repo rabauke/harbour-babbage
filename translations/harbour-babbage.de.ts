@@ -166,10 +166,6 @@
         <translation>Lösche Variablen</translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation>Kopiere</translation>
-    </message>
-    <message>
         <source>Scientific calculator</source>
         <translation>Wissenschaftlicher Rechner</translation>
     </message>
@@ -192,6 +188,14 @@
     <message>
         <source>Clearing variables</source>
         <translation>Lösche Variablen</translation>
+    </message>
+    <message>
+        <source>Copy result</source>
+        <translation>Kopiere Ergebnis</translation>
+    </message>
+    <message>
+        <source>Copy formula</source>
+        <translation>Kopiere Ausdruck</translation>
     </message>
 </context>
 </TS>
