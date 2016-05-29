@@ -29,13 +29,13 @@ namespace math_parser {
 
   class unknow_function : public error {
   public:
-    unknow_function() : error("unknow function") {
+    unknow_function() : error("unknown function") {
     }
   };
 
   class unknow_variable : public error {
   public:
-    unknow_variable(const std::string &var) : error("unknow variable "+var) {
+    unknow_variable(const std::string &var) : error("unknown variable "+var) {
     }
   };
 
