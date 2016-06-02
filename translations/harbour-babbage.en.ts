@@ -162,10 +162,6 @@
         <translation>About Babbage</translation>
     </message>
     <message>
-        <source>Clear variables</source>
-        <translation>Clear variables</translation>
-    </message>
-    <message>
         <source>Scientific calculator</source>
         <translation>Scientific calculator</translation>
     </message>
@@ -186,16 +182,43 @@
         <translation>Clearing output</translation>
     </message>
     <message>
-        <source>Clearing variables</source>
-        <translation>Clearing variables</translation>
-    </message>
-    <message>
         <source>Copy result</source>
         <translation>Copy result</translation>
     </message>
     <message>
         <source>Copy formula</source>
         <translation>Copy formula</translation>
+    </message>
+    <message>
+        <source>Show variables</source>
+        <translation>Show variables</translation>
+    </message>
+</context>
+<context>
+    <name>Variables</name>
+    <message>
+        <source>Variables</source>
+        <translation>Variables</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Remove</translation>
+    </message>
+    <message>
+        <source>Clear variables</source>
+        <translation>Clear variables</translation>
+    </message>
+    <message>
+        <source>Clearing variables</source>
+        <translation>Clearing variables</translation>
+    </message>
+    <message>
+        <source>Copy variable</source>
+        <translation>Copy variable</translation>
+    </message>
+    <message>
+        <source>Copy value</source>
+        <translation>Copy value</translation>
     </message>
 </context>
 </TS>

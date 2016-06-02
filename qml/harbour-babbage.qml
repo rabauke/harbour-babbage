@@ -38,13 +38,22 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.2
 import Sailfish.Silica 1.0
+import harbour.babbage.qmlcomponents 1.0
 import "pages"
 
 ApplicationWindow {
   id: app_window
 
+  Calculator {
+    id: calculator
+  }
+
   ListModel {
-    id: listModel
+    id: resultsListModel
+  }
+
+  ListModel {
+    id: variablesListModel
   }
 
   initialPage: Component { MainPage { } }

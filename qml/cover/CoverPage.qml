@@ -35,7 +35,9 @@ CoverBackground {
 
   Image {
     source: "/usr/share/harbour-babbage/images/cover_background.png"
-    x: 0; y: parent.height-parent.width; z: -1
+    x: 0
+    y: parent.height-parent.width
+    z: -1
     opacity: 0.125
     width: parent.width
     height: parent.width
@@ -43,19 +45,21 @@ CoverBackground {
 
   Column {
     id: countColumn
-    anchors { top: parent.top;
-      left: parent.left;
-      right: parent.right;
-      topMargin: Theme.paddingLarge;
-      leftMargin: Theme.paddingLarge;
-      rightMargin: Theme.paddingLarge; }
-
-    Label {
-      text: "Babbage"
+    anchors { top: parent.top
+      left: parent.left
+      right: parent.right
+      topMargin: Theme.paddingLarge
+      leftMargin: Theme.paddingLarge
+      rightMargin: Theme.paddingLarge
     }
 
     Label {
-      text: listModel.count>0 ? listModel.get(0).formula+" = "+listModel.get(0).result : ""
+      text: "Babbage"
+      color: Theme.highlightColor
+    }
+
+    Label {
+      text: resultsListModel.count>0 ? resultsListModel.get(0).formula+" = "+resultsListModel.get(0).result : ""
       font.pixelSize : Theme.fontSizeSmall
       color: Theme.secondaryColor
       width: parent.width

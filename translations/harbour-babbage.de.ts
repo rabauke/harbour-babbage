@@ -162,10 +162,6 @@
         <translation>Über Babbage</translation>
     </message>
     <message>
-        <source>Clear variables</source>
-        <translation>Lösche Variablen</translation>
-    </message>
-    <message>
         <source>Scientific calculator</source>
         <translation>Wissenschaftlicher Rechner</translation>
     </message>
@@ -179,15 +175,11 @@
     </message>
     <message>
         <source>Clear output</source>
-        <translation>Lösche Ausgabe</translation>
+        <translation>Lösche Ausgaben</translation>
     </message>
     <message>
         <source>Clearing output</source>
         <translation>Lösche Ausgaben</translation>
-    </message>
-    <message>
-        <source>Clearing variables</source>
-        <translation>Lösche Variablen</translation>
     </message>
     <message>
         <source>Copy result</source>
@@ -196,6 +188,37 @@
     <message>
         <source>Copy formula</source>
         <translation>Kopiere Ausdruck</translation>
+    </message>
+    <message>
+        <source>Show variables</source>
+        <translation>Zeige Variablen</translation>
+    </message>
+</context>
+<context>
+    <name>Variables</name>
+    <message>
+        <source>Variables</source>
+        <translation>Variablen</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>Lösche</translation>
+    </message>
+    <message>
+        <source>Clear variables</source>
+        <translation>Lösche Variablen</translation>
+    </message>
+    <message>
+        <source>Clearing variables</source>
+        <translation>Lösche Variablen</translation>
+    </message>
+    <message>
+        <source>Copy variable</source>
+        <translation>Kopiere Variable</translation>
+    </message>
+    <message>
+        <source>Copy value</source>
+        <translation>Kopiere Wert</translation>
     </message>
 </context>
 </TS>

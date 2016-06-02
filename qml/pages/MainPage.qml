@@ -36,10 +36,6 @@ import harbour.babbage.qmlcomponents 1.0
 Page {
   id: main_page
 
-  Calculator {
-    id: calculator
-  }
-
   SilicaListView {
     anchors.fill: parent
     id: listView
@@ -47,25 +43,27 @@ Page {
     VerticalScrollDecorator { flickable: listView }
 
     PullDownMenu {
-      RemorsePopup { id: remorse_variables }
       RemorsePopup { id: remorse_output }
       MenuItem {
         text: qsTr("About Babbage")
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
       }
       MenuItem {
-        text: qsTr("Clear variables")
-        onClicked: remorse_variables.execute(qsTr("Clearing variables"),
-                                             function() {
-                                               calculator.clear()
-                                             } )
-      }
-      MenuItem {
         text: qsTr("Clear output")
         onClicked: remorse_output.execute(qsTr("Clearing output"),
                                           function() {
-                                            listModel.clear()
+                                            resultsListModel.clear()
                                           } )
+      }
+      MenuItem {
+        text: qsTr("Show variables")
+        onClicked: {
+          variablesListModel.clear()
+          var variables=calculator.getVariables()
+          for (var i in variables)
+            variablesListModel.append({variable: variables[i]})
+          pageStack.push(Qt.resolvedUrl("Variables.qml"))
+        }
       }
     }
 
@@ -90,10 +88,7 @@ Page {
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length>0
-          EnterKey.onClicked: {
-            var t=calculator.calculate(formula.text)
-            listModel.insert(0, { formula: t[0], result: t[1] } )
-          }
+          EnterKey.onClicked: resultsListModel.insert(0, calculator.calculate(formula.text))
         }
         IconButton {
           id: clearButton
@@ -109,7 +104,7 @@ Page {
       }
     }
 
-    model: listModel
+    model: resultsListModel
 
     delegate: ListItem {
       width: parent.width
@@ -140,13 +135,10 @@ Page {
           }
           MenuItem {
             text: qsTr("Remove")
-            onClicked: {
-              listModel.remove(model.index)
-            }
+            onClicked: listModel.remove(model.index)
           }
         }
       }
-
     }
 
   }

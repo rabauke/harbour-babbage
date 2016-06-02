@@ -43,7 +43,8 @@ DISTFILES += \
     qml/pages/About.qml \
     qml/pages/Functions.qml \
     qml/pages/functiondoc.qml \
-    qml/components/FunctionDoc.qml
+    qml/components/FunctionDoc.qml \
+    qml/pages/Variables.qml
 
 images.files = images/cover_background.png
 images.path = /usr/share/harbour-babbage/images

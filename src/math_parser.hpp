@@ -150,6 +150,7 @@ namespace math_parser {
       using base::at;
       using base::operator[];
       using base::clear;
+      using base::erase;
       std::pair<iterator, bool> insert(const QString &var, double val) {
         return base::insert(std::make_pair(var, val));
       }

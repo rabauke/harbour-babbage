@@ -5,11 +5,27 @@
 #include <QtDebug>
 #include <QStringList>
 
-calculator::calculator(QObject *parent) : QObject(parent) {
-  V.insert("pi", std::atan(1.)*4);
+
+QString typeset(double x) {
+  return QString::number(x, 'g', 12).
+      replace(QRegularExpression(R"(e[+](\d+))"), R"( · 10^\1)").
+      replace(QRegularExpression(R"(e[-](\d+))"), R"( · 10^(−\1))").
+      replace("-","−").
+      replace("inf", "∞");
 }
 
-QStringList calculator::calculate(QString formula) {
+//---------------------------------------------------------------------
+
+void calculator::init_variables() {
+  V.insert("pi", std::atan(1.)*4);
+  V.insert("e", std::exp(1.));
+}
+
+calculator::calculator(QObject *parent) : QObject(parent) {
+  init_variables();
+}
+
+QVariantMap calculator::calculate(QString formula) {
   QString formula_plain=formula;
   formula_plain.replace("−", "-").
       replace("·", "*").
@@ -25,6 +41,8 @@ QStringList calculator::calculate(QString formula) {
     auto match=assignment_regex.match(formula_plain);
     if (match.hasMatch()) {
       QString var_name=match.capturedRef(1).toString();
+      if (var_name=="pi" or var_name=="e")
+        throw std::runtime_error("protected variable");
       res=P.value(match.capturedRef(2).toString(), V);
       V[var_name]=res;
     } else
@@ -33,11 +51,7 @@ QStringList calculator::calculate(QString formula) {
   catch (std::exception &e) {
     err=e.what();
   }
-  QString res_str=QString::number(res, 'g', 12);
-  res_str.replace(QRegularExpression(R"(e[+](\d+))"), R"( · 10^\1)").
-      replace(QRegularExpression(R"(e[-](\d+))"), R"( · 10^(−\1))").
-      replace("-","−").
-      replace("inf", "∞");
+  QString res_str=typeset(res);
   formula.replace(" ", "").
       replace("+"," + ").
       replace("−"," − ").
@@ -52,18 +66,36 @@ QStringList calculator::calculate(QString formula) {
       replace(QRegularExpression(R"(\bGamma\b)"), "Γ").
       replace("  ", " ").
       replace(QRegularExpression(R"(^\s*)"), "");
-  QStringList res_list;
-  res_list.append(formula);
+  QVariantMap res_map;
+  res_map.insert("formula", formula);
   if (err.isEmpty())
-    res_list.append(res_str);
+    res_map.insert("result", res_str);
   else
-    res_list.append(res_str+" ("+err+")");
-  return res_list;
+    res_map.insert("result", res_str+" ("+err+")");
+  return res_map;
 }
 
+void calculator::removeVariable(int i) {
+  auto j=V.begin();
+  std::advance(j, i);
+  auto j_end=j;
+  j_end++;
+  V.erase(j, j_end);
+}
 
 void calculator::clear() {
   V.clear();
-  V.insert("pi", std::atan(1.)*4);
-  V.insert("e", std::exp(1.));
+  init_variables();
+}
+
+QVariantList calculator::getVariables() const {
+  QVariantList list;
+  for (const auto &x: V) {
+    QString value_str=typeset(x.second);
+    QString name_str=x.first;
+    if (name_str=="pi")
+      name_str="π";
+    list.append(name_str+" = "+value_str);
+  }
+  return list;
 }
