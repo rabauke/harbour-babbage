@@ -50,6 +50,10 @@ Page {
         descriptionText: qsTr("tan_description")
       }
       FunctionDoc {
+        functionText: "cot(x)"
+        descriptionText: qsTr("cot_description")
+      }
+      FunctionDoc {
         functionText: "asin(x)"
         descriptionText: qsTr("asin_description")
       }
@@ -58,8 +62,12 @@ Page {
         descriptionText: qsTr("acos_description")
       }
       FunctionDoc {
-        functionText: "atan(x)"
+        functionText: "atan(x), atan(y, x)"
         descriptionText: qsTr("atan_description")
+      }
+      FunctionDoc {
+        functionText: "acot(x)"
+        descriptionText: qsTr("acot_description")
       }
       FunctionDoc {
         functionText: "sinh(x)"
@@ -74,6 +82,10 @@ Page {
         descriptionText: qsTr("tanh_description")
       }
       FunctionDoc {
+        functionText: "coth(x)"
+        descriptionText: qsTr("coth_description")
+      }
+      FunctionDoc {
         functionText: "asinh(x)"
         descriptionText: qsTr("asinh_description")
       }
@@ -84,6 +96,10 @@ Page {
       FunctionDoc {
         functionText: "atanh(x)"
         descriptionText: qsTr("atanh_description")
+      }
+      FunctionDoc {
+        functionText: "acoth(x)"
+        descriptionText: qsTr("acoth_description")
       }
       FunctionDoc {
         functionText: "sqrt(x)"

@@ -215,6 +215,11 @@ namespace math_parser {
         throw argument_error();
       return std::tan(x[0]);
     }
+    double cot(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::cos(x[0])/std::sin(x[0]);
+    }
     double asin(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
@@ -226,9 +231,16 @@ namespace math_parser {
       return std::acos(x[0]);
     }
     double atan(const arg_list &x) const {
+      if (x.size()==1)
+        return std::atan(x[0]);
+      if (x.size()==2)
+        return std::atan2(x[0], x[1]);
+      throw argument_error();
+    }
+    double acot(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
-      return std::atan(x[0]);
+      return 1.5707963267948966192-std::atan(x[0]);
     }
     double sinh(const arg_list &x) const {
       if (x.size()!=1)
@@ -245,6 +257,11 @@ namespace math_parser {
         throw argument_error();
       return std::tanh(x[0]);
     }
+    double coth(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::cosh(x[0])/std::sinh(x[0]);
+    }
     double asinh(const arg_list &x) const {
       if (x.size()!=1)
         throw argument_error();
@@ -259,6 +276,11 @@ namespace math_parser {
       if (x.size()!=1)
         throw argument_error();
       return std::atanh(x[0]);
+    }
+    double acoth(const arg_list &x) const {
+      if (x.size()!=1)
+        throw argument_error();
+      return std::atanh(1/x[0]);
     }
     double sqrt(const arg_list &x) const {
       if (x.size()!=1)
@@ -377,15 +399,19 @@ namespace math_parser {
         {"sin",       &arithmetic_parser::sin       },
         {"cos",       &arithmetic_parser::cos       },
         {"tan",       &arithmetic_parser::tan       },
+        {"cot",       &arithmetic_parser::cot       },
         {"asin",      &arithmetic_parser::asin      },
         {"acos",      &arithmetic_parser::acos      },
         {"atan",      &arithmetic_parser::atan      },
+        {"acot",      &arithmetic_parser::acot      },
         {"sinh",      &arithmetic_parser::sinh      },
         {"cosh",      &arithmetic_parser::cosh      },
         {"tanh",      &arithmetic_parser::tanh      },
+        {"coth",      &arithmetic_parser::coth      },
         {"asinh",     &arithmetic_parser::asinh     },
         {"acosh",     &arithmetic_parser::acosh     },
         {"atanh",     &arithmetic_parser::atanh     },
+        {"acoth",     &arithmetic_parser::acoth     },
         {"sqrt",      &arithmetic_parser::sqrt      },
         {"exp",       &arithmetic_parser::exp       },
         {"ln",        &arithmetic_parser::ln        },

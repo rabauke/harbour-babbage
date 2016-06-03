@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Viel­zahl mathe­­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
+        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -52,7 +52,11 @@
     </message>
     <message>
         <source>tan_description</source>
-        <translation>Tangens von x</translation>
+        <translation>Tangens von x.</translation>
+    </message>
+    <message>
+        <source>cot_description</source>
+        <translation>Kotangens von x.</translation>
     </message>
     <message>
         <source>asin_description</source>
@@ -64,7 +68,11 @@
     </message>
     <message>
         <source>atan_description</source>
-        <translation>Arkustangens von x.</translation>
+        <translation>Arkustangens von x bzw. Arkustangens von y/x unter Berücksichtigung der Vorzeichen von x und y.</translation>
+    </message>
+    <message>
+        <source>acot_description</source>
+        <translation>Arkuskostangens von x.</translation>
     </message>
     <message>
         <source>sinh_description</source>
@@ -79,6 +87,10 @@
         <translation>Tangens Hyperbolicus von x.</translation>
     </message>
     <message>
+        <source>coth_description</source>
+        <translation>Kotangens Hyperbolicus von x.</translation>
+    </message>
+    <message>
         <source>asinh_description</source>
         <translation>Area Sinus Hyperbolicus von x.</translation>
     </message>
@@ -89,6 +101,10 @@
     <message>
         <source>atanh_description</source>
         <translation>Area Tangens Hyperbolicus von x.</translation>
+    </message>
+    <message>
+        <source>acoth_description</source>
+        <translation>Area Kotangens Hyperbolicus von x.</translation>
     </message>
     <message>
         <source>sqrt_description</source>
