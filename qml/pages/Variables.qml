@@ -14,8 +14,8 @@ Page {
     PullDownMenu {
       RemorsePopup { id: remorse_variables }
       MenuItem {
-        text: qsTr("Clear variables")
-        onClicked: remorse_variables.execute(qsTr("Clearing variables"),
+        text: qsTr("Clear all variables")
+        onClicked: remorse_variables.execute(qsTr("Clearing all variables"),
                                              function() {
                                                calculator.clear()
                                                variablesListModel.clear()
@@ -59,7 +59,7 @@ Page {
         id: contextMenu
         ContextMenu {
           MenuItem {
-            text: qsTr("Remove")
+            text: qsTr("Clear variable")
             onClicked: {
               calculator.removeVariable(model.index)
               variablesListModel.remove(model.index)

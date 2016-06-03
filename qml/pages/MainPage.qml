@@ -49,8 +49,8 @@ Page {
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
       }
       MenuItem {
-        text: qsTr("Clear output")
-        onClicked: remorse_output.execute(qsTr("Clearing output"),
+        text: qsTr("Remove all output")
+        onClicked: remorse_output.execute(qsTr("Removing all output"),
                                           function() {
                                             resultsListModel.clear()
                                           } )
@@ -88,7 +88,11 @@ Page {
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length>0
-          EnterKey.onClicked: resultsListModel.insert(0, calculator.calculate(formula.text))
+          EnterKey.onClicked: {
+            var res=calculator.calculate(formula.text)
+            resultsListModel.insert(0, res)
+            formula.text=res.formula
+          }
         }
         IconButton {
           id: clearButton
@@ -127,15 +131,15 @@ Page {
         ContextMenu {
           MenuItem {
             text: qsTr("Copy result")
-            onClicked: Clipboard.text=listModel.get(model.index).result
+            onClicked: Clipboard.text=resultsListModel.get(model.index).result
           }
           MenuItem {
             text: qsTr("Copy formula")
-            onClicked: Clipboard.text=listModel.get(model.index).formula
+            onClicked: Clipboard.text=resultsListModel.get(model.index).formula
           }
           MenuItem {
-            text: qsTr("Remove")
-            onClicked: listModel.remove(model.index)
+            text: qsTr("Remove output")
+            onClicked: resultsListModel.remove(model.index)
           }
         }
       }

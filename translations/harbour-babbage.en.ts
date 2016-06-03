@@ -170,18 +170,6 @@
         <translation>Mathematical expression</translation>
     </message>
     <message>
-        <source>Remove</source>
-        <translation>Remove</translation>
-    </message>
-    <message>
-        <source>Clear output</source>
-        <translation>Clear output</translation>
-    </message>
-    <message>
-        <source>Clearing output</source>
-        <translation>Clearing output</translation>
-    </message>
-    <message>
         <source>Copy result</source>
         <translation>Copy result</translation>
     </message>
@@ -193,6 +181,18 @@
         <source>Show variables</source>
         <translation>Show variables</translation>
     </message>
+    <message>
+        <source>Remove all output</source>
+        <translation>Remove all output</translation>
+    </message>
+    <message>
+        <source>Removing all output</source>
+        <translation>Removing all output</translation>
+    </message>
+    <message>
+        <source>Remove output</source>
+        <translation>Remove output</translation>
+    </message>
 </context>
 <context>
     <name>Variables</name>
@@ -201,24 +201,24 @@
         <translation>Variables</translation>
     </message>
     <message>
-        <source>Remove</source>
-        <translation>Remove</translation>
-    </message>
-    <message>
-        <source>Clear variables</source>
-        <translation>Clear variables</translation>
-    </message>
-    <message>
-        <source>Clearing variables</source>
-        <translation>Clearing variables</translation>
-    </message>
-    <message>
         <source>Copy variable</source>
         <translation>Copy variable</translation>
     </message>
     <message>
         <source>Copy value</source>
         <translation>Copy value</translation>
+    </message>
+    <message>
+        <source>Clear all variables</source>
+        <translation>Clear all variables</translation>
+    </message>
+    <message>
+        <source>Clearing all variables</source>
+        <translation>Clearing all variables</translation>
+    </message>
+    <message>
+        <source>Clear variable</source>
+        <translation>Clear variable</translation>
     </message>
 </context>
 </TS>

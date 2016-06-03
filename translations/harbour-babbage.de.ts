@@ -170,18 +170,6 @@
         <translation>Mathematischer Ausdruck</translation>
     </message>
     <message>
-        <source>Remove</source>
-        <translation>Lösche</translation>
-    </message>
-    <message>
-        <source>Clear output</source>
-        <translation>Lösche Ausgaben</translation>
-    </message>
-    <message>
-        <source>Clearing output</source>
-        <translation>Lösche Ausgaben</translation>
-    </message>
-    <message>
         <source>Copy result</source>
         <translation>Kopiere Ergebnis</translation>
     </message>
@@ -193,6 +181,18 @@
         <source>Show variables</source>
         <translation>Zeige Variablen</translation>
     </message>
+    <message>
+        <source>Remove all output</source>
+        <translation>Entferne alle Ausgaben</translation>
+    </message>
+    <message>
+        <source>Removing all output</source>
+        <translation>Entferne alle Ausgaben</translation>
+    </message>
+    <message>
+        <source>Remove output</source>
+        <translation>Entferne Ausgabe</translation>
+    </message>
 </context>
 <context>
     <name>Variables</name>
@@ -201,24 +201,24 @@
         <translation>Variablen</translation>
     </message>
     <message>
-        <source>Remove</source>
-        <translation>Lösche</translation>
-    </message>
-    <message>
-        <source>Clear variables</source>
-        <translation>Lösche Variablen</translation>
-    </message>
-    <message>
-        <source>Clearing variables</source>
-        <translation>Lösche Variablen</translation>
-    </message>
-    <message>
         <source>Copy variable</source>
         <translation>Kopiere Variable</translation>
     </message>
     <message>
         <source>Copy value</source>
         <translation>Kopiere Wert</translation>
+    </message>
+    <message>
+        <source>Clear all variables</source>
+        <translation>Lösche alle Variablen</translation>
+    </message>
+    <message>
+        <source>Clearing all variables</source>
+        <translation>Lösche alle Variablen</translation>
+    </message>
+    <message>
+        <source>Clear variable</source>
+        <translation>Lösche Variable</translation>
     </message>
 </context>
 </TS>
