@@ -23,8 +23,24 @@
         <translation>List of functions</translation>
     </message>
     <message>
+        <source>Basic functions</source>
+        <translation>Basic functions</translation>
+    </message>
+    <message>
         <source>abs_description</source>
         <translation>Absolute value of x.</translation>
+    </message>
+    <message>
+        <source>mod_description</source>
+        <translation>Floating-point remainder of the division operation x/y.</translation>
+    </message>
+    <message>
+        <source>sqrt_description</source>
+        <translation>Square root of x.</translation>
+    </message>
+    <message>
+        <source>Rounding functions</source>
+        <translation>Rounding functions</translation>
     </message>
     <message>
         <source>round_description</source>
@@ -39,8 +55,8 @@
         <translation>Value of x rounded to the next smaller integer.</translation>
     </message>
     <message>
-        <source>mod_description</source>
-        <translation>Floating-point remainder of the division operation x/y.</translation>
+        <source>Trigonometric functions</source>
+        <translation>Trigonometric functions</translation>
     </message>
     <message>
         <source>sin_description</source>
@@ -59,6 +75,10 @@
         <translation>Cotangent of x</translation>
     </message>
     <message>
+        <source>Inverse trigonometric functions</source>
+        <translation>Inverse trigonometric functions</translation>
+    </message>
+    <message>
         <source>asin_description</source>
         <translation>Arcsine of x.</translation>
     </message>
@@ -68,11 +88,15 @@
     </message>
     <message>
         <source>atan_description</source>
-        <translation>Arctangent of x and arctangent of y/x respecting the signs of x and y.</translation>
+        <translation>Arctangent of x or arctangent of y/x respecting the signs of x and y, respectively.</translation>
     </message>
     <message>
         <source>acot_description</source>
         <translation>Arcuscotangent of x.</translation>
+    </message>
+    <message>
+        <source>Hyperbolic trigonometric functions</source>
+        <translation>Hyperbolic trigonometric functions</translation>
     </message>
     <message>
         <source>sinh_description</source>
@@ -91,6 +115,10 @@
         <translation>Hyperbolic cotangent of x.</translation>
     </message>
     <message>
+        <source>Inverse hyperbolic trigonometric functions</source>
+        <translation>Inverse hyperbolic trigonometric functions</translation>
+    </message>
+    <message>
         <source>asinh_description</source>
         <translation>Hyperbolic arcsine of x.</translation>
     </message>
@@ -107,8 +135,8 @@
         <translation>Hyperbolic arcuscotangent of x.</translation>
     </message>
     <message>
-        <source>sqrt_description</source>
-        <translation>Square root of x.</translation>
+        <source>Exponential and related functions</source>
+        <translation>Exponential and related functions</translation>
     </message>
     <message>
         <source>exp_description</source>
@@ -120,7 +148,11 @@
     </message>
     <message>
         <source>log_description</source>
-        <translation>Base-10 logarithm of x or logarithm to the base b, respactively.</translation>
+        <translation>Base-10 logarithm of x or logarithm to the base b, respectively.</translation>
+    </message>
+    <message>
+        <source>Error functions and related functions</source>
+        <translation>Error functions and related functions</translation>
     </message>
     <message>
         <source>erf_description</source>
@@ -136,7 +168,11 @@
     </message>
     <message>
         <source>invnormal_description</source>
-        <translation>The inverse of the normal distribution cummulative probability function.</translation>
+        <translation>The inverse of the normal distribution cumulative probability function.</translation>
+    </message>
+    <message>
+        <source>Gamma function and related functions</source>
+        <translation>Gamma function and related functions</translation>
     </message>
     <message>
         <source>Gamma_description</source>
@@ -149,6 +185,10 @@
     <message>
         <source>binomial_description</source>
         <translation>Binomial coefficient.</translation>
+    </message>
+    <message>
+        <source>Statistical functions</source>
+        <translation>Statistical functions</translation>
     </message>
     <message>
         <source>min_description</source>
@@ -168,7 +208,7 @@
     </message>
     <message>
         <source>std_description</source>
-        <translation>Sample standard variantion of the given arguments.</translation>
+        <translation>Sample standard variation of the given arguments.</translation>
     </message>
 </context>
 <context>

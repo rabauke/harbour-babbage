@@ -23,8 +23,24 @@
         <translation>Funktionsübersicht</translation>
     </message>
     <message>
+        <source>Basic functions</source>
+        <translation>Grundlegende Funktionen</translation>
+    </message>
+    <message>
         <source>abs_description</source>
         <translation>Absolutsbetrag von x.</translation>
+    </message>
+    <message>
+        <source>mod_description</source>
+        <translation>Fließkommarest der Division x/y.</translation>
+    </message>
+    <message>
+        <source>sqrt_description</source>
+        <translation>Quadratwurzel von x.</translation>
+    </message>
+    <message>
+        <source>Rounding functions</source>
+        <translation>Rundungsfunktionen</translation>
     </message>
     <message>
         <source>round_description</source>
@@ -39,8 +55,8 @@
         <translation>Zur nächst kleineren Ganzzahl gerundeter Wert von x.</translation>
     </message>
     <message>
-        <source>mod_description</source>
-        <translation>Fließkommarest der Division x/y.</translation>
+        <source>Trigonometric functions</source>
+        <translation>Trigonometrische Funktionen</translation>
     </message>
     <message>
         <source>sin_description</source>
@@ -59,6 +75,10 @@
         <translation>Kotangens von x.</translation>
     </message>
     <message>
+        <source>Inverse trigonometric functions</source>
+        <translation>Inverse trigonometrische Funktionen</translation>
+    </message>
+    <message>
         <source>asin_description</source>
         <translation>Arkussinus von x.</translation>
     </message>
@@ -68,11 +88,15 @@
     </message>
     <message>
         <source>atan_description</source>
-        <translation>Arkustangens von x bzw. Arkustangens von y/x unter Berücksichtigung der Vorzeichen von x und y.</translation>
+        <translation>Arkustangens von x bzw. Arkus­tangens von y/x unter Be­rück­sichtigung der Vor­zeichen von x und y.</translation>
     </message>
     <message>
         <source>acot_description</source>
         <translation>Arkuskostangens von x.</translation>
+    </message>
+    <message>
+        <source>Hyperbolic trigonometric functions</source>
+        <translation>Hyperbolische trigonometrische Funktionen</translation>
     </message>
     <message>
         <source>sinh_description</source>
@@ -91,6 +115,10 @@
         <translation>Kotangens Hyperbolicus von x.</translation>
     </message>
     <message>
+        <source>Inverse hyperbolic trigonometric functions</source>
+        <translation>Inverse hyperbolische trigonometrische Funktionen</translation>
+    </message>
+    <message>
         <source>asinh_description</source>
         <translation>Area Sinus Hyperbolicus von x.</translation>
     </message>
@@ -107,8 +135,8 @@
         <translation>Area Kotangens Hyperbolicus von x.</translation>
     </message>
     <message>
-        <source>sqrt_description</source>
-        <translation>Quadratwurzel von x.</translation>
+        <source>Exponential and related functions</source>
+        <translation>Exponentia- und verwandte Funktionen</translation>
     </message>
     <message>
         <source>exp_description</source>
@@ -121,6 +149,10 @@
     <message>
         <source>log_description</source>
         <translation>Logarithmus zur Basis 10 bzw. zur Basis b.</translation>
+    </message>
+    <message>
+        <source>Error functions and related functions</source>
+        <translation>Fehlerfunktionen und verwandte Funktionen</translation>
     </message>
     <message>
         <source>erf_description</source>
@@ -139,6 +171,10 @@
         <translation>Inverse der kumulativen Ver­teilungs­funktion der Normal­ver­teilung.</translation>
     </message>
     <message>
+        <source>Gamma function and related functions</source>
+        <translation>Gamma- und verwandte Funktionen</translation>
+    </message>
+    <message>
         <source>Gamma_description</source>
         <translation>Gamma-Funktion.</translation>
     </message>
@@ -149,6 +185,10 @@
     <message>
         <source>binomial_description</source>
         <translation>Binomialkoeffizient.</translation>
+    </message>
+    <message>
+        <source>Statistical functions</source>
+        <translation>Statistische Funktionen</translation>
     </message>
     <message>
         <source>min_description</source>

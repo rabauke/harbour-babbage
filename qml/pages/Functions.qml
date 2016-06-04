@@ -17,10 +17,20 @@ Page {
       PageHeader {
         title: qsTr("List of functions")
       }
+      SectionHeader { text: qsTr("Basic functions") }
       FunctionDoc {
         functionText: "abs(x)"
         descriptionText: qsTr("abs_description")
       }
+      FunctionDoc {
+        functionText: "mod(x, y)"
+        descriptionText: qsTr("mod_description")
+      }
+      FunctionDoc {
+        functionText: "sqrt(x)"
+        descriptionText: qsTr("sqrt_description")
+      }
+      SectionHeader { text: qsTr("Rounding functions") }
       FunctionDoc {
         functionText: "round(x)"
         descriptionText: qsTr("round_description")
@@ -33,10 +43,7 @@ Page {
         functionText: "ceil(x)"
         descriptionText: qsTr("ceil_description")
       }
-      FunctionDoc {
-        functionText: "mod(x, y)"
-        descriptionText: qsTr("mod_description")
-      }
+      SectionHeader { text: qsTr("Trigonometric functions") }
       FunctionDoc {
         functionText: "sin(x)"
         descriptionText: qsTr("sin_description")
@@ -53,6 +60,7 @@ Page {
         functionText: "cot(x)"
         descriptionText: qsTr("cot_description")
       }
+      SectionHeader { text: qsTr("Inverse trigonometric functions") }
       FunctionDoc {
         functionText: "asin(x)"
         descriptionText: qsTr("asin_description")
@@ -69,6 +77,7 @@ Page {
         functionText: "acot(x)"
         descriptionText: qsTr("acot_description")
       }
+      SectionHeader { text: qsTr("Hyperbolic trigonometric functions") }
       FunctionDoc {
         functionText: "sinh(x)"
         descriptionText: qsTr("sinh_description")
@@ -85,6 +94,7 @@ Page {
         functionText: "coth(x)"
         descriptionText: qsTr("coth_description")
       }
+      SectionHeader { text: qsTr("Inverse hyperbolic trigonometric functions") }
       FunctionDoc {
         functionText: "asinh(x)"
         descriptionText: qsTr("asinh_description")
@@ -101,10 +111,7 @@ Page {
         functionText: "acoth(x)"
         descriptionText: qsTr("acoth_description")
       }
-      FunctionDoc {
-        functionText: "sqrt(x)"
-        descriptionText: qsTr("sqrt_description")
-      }
+      SectionHeader { text: qsTr("Exponential and related functions") }
       FunctionDoc {
         functionText: "exp(x)"
         descriptionText: qsTr("exp_description")
@@ -117,6 +124,7 @@ Page {
         functionText: "log(x), log(x, b)"
         descriptionText: qsTr("log_description")
       }
+      SectionHeader { text: qsTr("Error functions and related functions") }
       FunctionDoc {
         functionText: "erf(x)"
         descriptionText: qsTr("erf_description")
@@ -133,6 +141,7 @@ Page {
         functionText: "invnormal(x)"
         descriptionText: qsTr("invnormal_description")
       }
+      SectionHeader { text: qsTr("Gamma function and related functions") }
       FunctionDoc {
         functionText: "Gamma(x)"
         descriptionText: qsTr("Gamma_description")
@@ -145,6 +154,7 @@ Page {
         functionText: "binomial(x, y)"
         descriptionText: qsTr("binomial_description")
       }
+      SectionHeader { text: qsTr("Statistical functions") }      
       FunctionDoc {
         functionText: "min(x1, x2, ...)"
         descriptionText: qsTr("min_description")
