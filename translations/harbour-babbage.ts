@@ -234,10 +234,6 @@
         <translation>Copy formula</translation>
     </message>
     <message>
-        <source>Show variables</source>
-        <translation>Show variables</translation>
-    </message>
-    <message>
         <source>Remove all output</source>
         <translation>Remove all output</translation>
     </message>

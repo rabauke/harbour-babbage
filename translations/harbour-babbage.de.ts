@@ -234,10 +234,6 @@
         <translation>Kopiere Ausdruck</translation>
     </message>
     <message>
-        <source>Show variables</source>
-        <translation>Zeige Variablen</translation>
-    </message>
-    <message>
         <source>Remove all output</source>
         <translation>Entferne alle Ausgaben</translation>
     </message>

@@ -55,16 +55,6 @@ Page {
                                             resultsListModel.clear()
                                           } )
       }
-      MenuItem {
-        text: qsTr("Show variables")
-        onClicked: {
-          variablesListModel.clear()
-          var variables=calculator.getVariables()
-          for (var i in variables)
-            variablesListModel.append({variable: variables[i]})
-          pageStack.push(Qt.resolvedUrl("Variables.qml"))
-        }
-      }
     }
 
     header: Item {
@@ -92,6 +82,10 @@ Page {
             var res=calculator.calculate(formula.text)
             resultsListModel.insert(0, res)
             formula.text=res.formula
+            variablesListModel.clear()
+            var variables=calculator.getVariables()
+            for (var i in variables)
+              variablesListModel.append({variable: variables[i]})
           }
         }
         IconButton {
@@ -145,6 +139,16 @@ Page {
       }
     }
 
+  }
+
+  onStatusChanged: {
+    if (status==PageStatus.Active) {
+      variablesListModel.clear()
+      var variables=calculator.getVariables()
+      for (var i in variables)
+        variablesListModel.append({variable: variables[i]})
+      pageStack.pushAttached(Qt.resolvedUrl("Variables.qml"))
+    }
   }
 
 }
