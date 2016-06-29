@@ -164,7 +164,8 @@ namespace math_parser {
       {"/", associativity::left},
       {"^", associativity::right},
       {"_", associativity::left},
-      {"!", associativity::right} };
+      {"!", associativity::right},
+      {"°", associativity::right} };
 
     const std::map<QString, int> precedence_map=
     { {"+", 1},
@@ -173,7 +174,8 @@ namespace math_parser {
       {"/", 2},
       {"^", 4},
       {"_", 3},
-      {"!", 5} };
+      {"!", 5},
+      {"°", 5} };
 
     double abs(const arg_list &x) const {
       if (x.size()!=1)
@@ -445,7 +447,7 @@ namespace math_parser {
       //   - a variable name
       //   - something else, which is a syntax error
       // - ends with zero or more spaces
-      static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^!])|([(])|([)])|([[:alpha:]]\w*(?=\())|(,)|([[:alpha:]]\w*)|(\S+))\s*)");
+      static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^!°])|([(])|([)])|([[:alpha:]]\w*(?=\())|(,)|([[:alpha:]]\w*)|(\S+))\s*)");
       token_list_t token_list;
       QRegularExpressionMatchIterator i=words_regex.globalMatch(str);
       while (i.hasNext()) {
@@ -505,7 +507,7 @@ namespace math_parser {
             throw brace_error();
         } else if (t==token_kind::op) {
           // check if operator is unary !
-          if (t=="!")
+          if (t=="!" or t=="°")
             stack.push(t);
           // check if operator is unary + or -
           else if ((t=="+" or t=="-") and
@@ -617,6 +619,10 @@ namespace math_parser {
             double res=std::tgamma(op1+1);
             if (std::round(op1)==op1)
               res=std::round(res);
+            stack.push(res);
+          } else if (t=="°") {  // degree
+            double op1=get(stack);
+            double res=op1*3.1415926535897932385/180.;
             stack.push(res);
           } else
             throw syntax_error();  // this point should never be reached

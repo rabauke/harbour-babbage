@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^) und Fakultät (!) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
+        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^), Fakultät (!) sowie Winkelgrad (°) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -95,10 +95,6 @@
         <translation>Arkuskostangens von x.</translation>
     </message>
     <message>
-        <source>Hyperbolic trigonometric functions</source>
-        <translation>Hyperbolische trigonometrische Funktionen</translation>
-    </message>
-    <message>
         <source>sinh_description</source>
         <translation>Sinus Hyperbolicus von x.</translation>
     </message>
@@ -113,10 +109,6 @@
     <message>
         <source>coth_description</source>
         <translation>Kotangens Hyperbolicus von x.</translation>
-    </message>
-    <message>
-        <source>Inverse hyperbolic trigonometric functions</source>
-        <translation>Inverse hyperbolische trigonometrische Funktionen</translation>
     </message>
     <message>
         <source>asinh_description</source>
@@ -209,6 +201,14 @@
     <message>
         <source>std_description</source>
         <translation>Empirische Stich­proben­standard­ab­weichung aller Argumente.</translation>
+    </message>
+    <message>
+        <source>Hyperbolic functions</source>
+        <translation>Hyperbelfunktionen</translation>
+    </message>
+    <message>
+        <source>Inverse hyperbolic functions</source>
+        <translation>Inverse Hyperbelfunktionen</translation>
     </message>
 </context>
 <context>

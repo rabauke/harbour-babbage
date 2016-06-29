@@ -31,3 +31,7 @@
 - user interface enhancements
 - minor fixes
 - new or extended functions: tan, cot, acot, coth, and acoth
+
+* Sat July 2 2016 Heiko Bauke <heiko.bauke@mail.de> 0.11-1
+- new operator »°« for arc degree
+- minor fixes

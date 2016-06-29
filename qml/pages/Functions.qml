@@ -77,7 +77,7 @@ Page {
         functionText: "acot(x)"
         descriptionText: qsTr("acot_description")
       }
-      SectionHeader { text: qsTr("Hyperbolic trigonometric functions") }
+      SectionHeader { text: qsTr("Hyperbolic functions") }
       FunctionDoc {
         functionText: "sinh(x)"
         descriptionText: qsTr("sinh_description")
@@ -94,7 +94,7 @@ Page {
         functionText: "coth(x)"
         descriptionText: qsTr("coth_description")
       }
-      SectionHeader { text: qsTr("Inverse hyperbolic trigonometric functions") }
+      SectionHeader { text: qsTr("Inverse hyperbolic functions") }
       FunctionDoc {
         functionText: "asinh(x)"
         descriptionText: qsTr("asinh_description")

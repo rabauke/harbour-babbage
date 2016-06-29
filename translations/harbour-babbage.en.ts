@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>This scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^) and factorial (!) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.</translation>
+        <translation>This scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^), factorial (!), and arc degee (°) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -95,10 +95,6 @@
         <translation>Arcuscotangent of x.</translation>
     </message>
     <message>
-        <source>Hyperbolic trigonometric functions</source>
-        <translation>Hyperbolic trigonometric functions</translation>
-    </message>
-    <message>
         <source>sinh_description</source>
         <translation>Hyperbolic sine of x.</translation>
     </message>
@@ -113,10 +109,6 @@
     <message>
         <source>coth_description</source>
         <translation>Hyperbolic cotangent of x.</translation>
-    </message>
-    <message>
-        <source>Inverse hyperbolic trigonometric functions</source>
-        <translation>Inverse hyperbolic trigonometric functions</translation>
     </message>
     <message>
         <source>asinh_description</source>
@@ -209,6 +201,14 @@
     <message>
         <source>std_description</source>
         <translation>Sample standard variation of the given arguments.</translation>
+    </message>
+    <message>
+        <source>Hyperbolic functions</source>
+        <translation>Hyperbolic functions</translation>
+    </message>
+    <message>
+        <source>Inverse hyperbolic functions</source>
+        <translation>Inverse hyperbolic functions</translation>
     </message>
 </context>
 <context>
