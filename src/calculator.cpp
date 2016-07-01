@@ -31,7 +31,8 @@ QVariantMap calculator::calculate(QString formula) {
       replace("·", "*").
       replace("π", "pi").
       replace("√", "sqrt").
-      replace("Γ", "Gamma");
+      replace("Γ", "Gamma").
+      replace(QRegularExpression(R"( deg(?!\w))"), "°");
   QRegularExpression assignment_regex(R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))");
   QRegularExpression formula_regex(R"(^\s*\S.*)");
 
@@ -52,7 +53,8 @@ QVariantMap calculator::calculate(QString formula) {
     err=e.what();
   }
   QString res_str=typeset(res);
-  formula.replace(" ", "").
+  formula.replace(QRegularExpression(R"( deg(?!\w))"), "°").
+      replace(" ", "").
       replace("+"," + ").
       replace("−"," − ").
       replace("-"," − ").
