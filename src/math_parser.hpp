@@ -14,6 +14,7 @@
 #include <QString>
 #include <QRegularExpressionMatchIterator>
 #include <QDebug>
+#include "special_functions.hpp"
 
 namespace math_parser {
 
@@ -132,6 +133,7 @@ namespace math_parser {
 
   class arithmetic_parser {
     typedef std::deque<double> arg_list;
+    typedef std::deque<double>::size_type size_type;
   public:
 
     typedef token_t::token_kind token_kind;
@@ -342,14 +344,23 @@ namespace math_parser {
       return res;
     }
     double Gamma(const arg_list &x) const {
-      if (x.size()!=1)
+      if (x.size()==1)
+        return math::Gamma(x[0]);
+      else if (x.size()==2)
+        return math::cinc_gamma(x[0], x[1]);
+      else
         throw argument_error();
-      return std::tgamma(x[0]);
+    }
+    double gamma(const arg_list &x) const {
+      if (x.size()==2)
+        return math::inc_gamma(x[0], x[1]);
+      else
+        throw argument_error();
     }
     double Beta(const arg_list &x) const {
       if (x.size()!=2)
         throw argument_error();
-      return std::exp(std::lgamma(x[0])+std::lgamma(x[1])-std::lgamma(x[0]+x[1]));
+      return math::Beta(x[0],x[1]);
     }
     double binomial(const arg_list &x) const {
       if (x.size()!=2)
@@ -389,6 +400,19 @@ namespace math_parser {
     double std(const arg_list &x) const {
       return std::sqrt(var(x));
     }
+    double median(const arg_list &X) const {
+      arg_list x(X);
+      size_type n=x.size()/2;
+      std::nth_element(x.begin(), x.begin()+n, x.end());
+      if (x.size()%2==1)
+        // odd sized vector
+        return x[n];
+      else {
+        // even sized vector -> average the two middle values
+        auto max_it=std::max_element(x.begin(), x.begin()+n);
+        return (*max_it+x[n])/2.0;
+      }
+    }
 
     typedef double(arithmetic_parser::*f_pointer)(const arg_list &) const;
 
@@ -423,13 +447,15 @@ namespace math_parser {
         {"normal",    &arithmetic_parser::normal    },
         {"invnormal", &arithmetic_parser::invnormal },
         {"Gamma",     &arithmetic_parser::Gamma     },
+        {"gamma",     &arithmetic_parser::gamma     },
         {"Beta",      &arithmetic_parser::Beta      },
         {"binomial",  &arithmetic_parser::binomial  },
         {"min",       &arithmetic_parser::min       },
         {"max",       &arithmetic_parser::max       },
         {"mean",      &arithmetic_parser::mean      },
         {"var",       &arithmetic_parser::var       },
-        {"std",       &arithmetic_parser::std       } };
+        {"std",       &arithmetic_parser::std       },
+        {"median",    &arithmetic_parser::median    } };
 
   public:
     // split string into a list of tokens and determine token category

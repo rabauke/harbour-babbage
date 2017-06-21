@@ -143,8 +143,12 @@ Page {
       }
       SectionHeader { text: qsTr("Gamma function and related functions") }
       FunctionDoc {
-        functionText: "Gamma(x)"
+        functionText: "Gamma(x), Gamma(a, x)"
         descriptionText: qsTr("Gamma_description")
+      }
+      FunctionDoc {
+        functionText: "gamma(a, x)"
+        descriptionText: qsTr("gamma_description")
       }
       FunctionDoc {
         functionText: "Beta(x, y)"
@@ -174,6 +178,10 @@ Page {
       FunctionDoc {
         functionText: "std(x1, x2, ...)"
         descriptionText: qsTr("std_description")
+      }
+      FunctionDoc {
+        functionText: "median(x1, x2, ...)"
+        descriptionText: qsTr("median_description")
       }
     }
 

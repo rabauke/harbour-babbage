@@ -35,3 +35,10 @@
 * Sat July 2 2016 Heiko Bauke <heiko.bauke@mail.de> 0.11-1
 - new operator »°« for arc degree
 - minor fixes
+
+* Wen September 19 2016 Heiko Bauke <heiko.bauke@mail.de> 0.12-1
+- new incomplete Gamma functions
+- new median function
+
+* Wen September 21 2017 Heiko Bauke <heiko.bauke@mail.de> 0.13-1
+- user interface enhancements

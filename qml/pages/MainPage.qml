@@ -31,7 +31,7 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
-
+import "../components"
 
 Page {
   id: main_page
@@ -39,6 +39,7 @@ Page {
   SilicaListView {
     anchors.fill: parent
     id: listView
+    focus: false
 
     VerticalScrollDecorator { flickable: listView }
 
@@ -48,6 +49,10 @@ Page {
         text: qsTr("About Babbage")
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
       }
+//      MenuItem {
+//        text: qsTr("Pocket calculator")
+//        onClicked: pageStack.push(Qt.resolvedUrl("SimpleCalculator.qml"))
+//      }
       MenuItem {
         text: qsTr("Remove all output")
         onClicked: remorse_output.execute(qsTr("Removing all output"),
@@ -57,26 +62,25 @@ Page {
       }
     }
 
-    header: Item {
-      anchors.horizontalCenter: main_page.Center
-      anchors.top: parent.Top
-      height: pageHeader.height+formula_row.height
-      width: main_page.width
-      PageHeader {
-        id: pageHeader
-        title: qsTr("Scientific calculator")
-      }
-      Row {
-        id: formula_row
-        anchors.top: pageHeader.bottom
-        spacing: Theme.paddingSmall
-        TextField {
+    Component {
+      id: headerComponent
+      Item {
+        id: headerComponentItem
+        anchors.horizontalCenter: main_page.Center
+        anchors.top: parent.Top
+        height: pageHeader.height+formula.height
+        width: main_page.width
+        PageHeader {
+          id: pageHeader
+          title: qsTr("Scientific calculator")
+        }
+        QueryField {
           id: formula
-          width: listView.width-clearButton.width-2*Theme.paddingSmall
+          anchors.top: pageHeader.bottom
+          width: listView.width
           text: ""
-          focus: true
           placeholderText: qsTr("Mathematical expression")
-          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
           EnterKey.enabled: text.length>0
           EnterKey.onClicked: {
             var res=calculator.calculate(formula.text)
@@ -88,19 +92,10 @@ Page {
               variablesListModel.append({variable: variables[i]})
           }
         }
-        IconButton {
-          id: clearButton
-          anchors {
-            verticalCenter: formula.top
-            verticalCenterOffset: formula.textVerticalCenterOffset
-          }
-          icon.source: "image://theme/icon-m-backspace?" + (pressed
-                                                            ? Theme.highlightColor
-                                                            : Theme.primaryColor)
-          onClicked: formula.text=""
-        }
       }
     }
+
+    header: headerComponent
 
     model: resultsListModel
 
@@ -111,6 +106,7 @@ Page {
       menu: contextMenu
       Text {
         id: result_text
+        focus: false
         x: Theme.horizontalPageMargin
         y: 0.5*Theme.paddingLarge
         width: parent.width-2*Theme.horizontalPageMargin

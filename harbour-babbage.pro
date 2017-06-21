@@ -44,7 +44,9 @@ DISTFILES += \
     qml/pages/Functions.qml \
     qml/pages/functiondoc.qml \
     qml/components/FunctionDoc.qml \
-    qml/pages/Variables.qml
+    qml/pages/Variables.qml \
+    qml/pages/SimpleCalculator.qml \
+    qml/components/QueryField.qml
 
 images.files = images/cover_background.png
 images.path = /usr/share/harbour-babbage/images
@@ -52,5 +54,6 @@ INSTALLS += images
 
 HEADERS += \
     src/math_parser.hpp \
-    src/calculator.hpp
+    src/calculator.hpp \
+    src/special_functions.hpp
 

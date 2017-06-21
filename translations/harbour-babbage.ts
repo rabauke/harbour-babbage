@@ -210,6 +210,14 @@
         <source>Inverse hyperbolic functions</source>
         <translation>Inverse hyperbolic functions</translation>
     </message>
+    <message>
+        <source>gamma_description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>median_description</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>
