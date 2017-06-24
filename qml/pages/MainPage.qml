@@ -49,10 +49,10 @@ Page {
         text: qsTr("About Babbage")
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
       }
-//      MenuItem {
-//        text: qsTr("Pocket calculator")
-//        onClicked: pageStack.push(Qt.resolvedUrl("SimpleCalculator.qml"))
-//      }
+      MenuItem {
+        text: qsTr("Pocket calculator")
+        onClicked: pageStack.push(Qt.resolvedUrl("SimpleCalculator.qml"))
+      }
       MenuItem {
         text: qsTr("Remove all output")
         onClicked: remorse_output.execute(qsTr("Removing all output"),

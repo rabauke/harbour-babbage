@@ -40,5 +40,8 @@
 - new incomplete Gamma functions
 - new median function
 
-* Wen September 21 2017 Heiko Bauke <heiko.bauke@mail.de> 0.13-1
+* Wen June 21 2017 Heiko Bauke <heiko.bauke@mail.de> 0.13-1
 - user interface enhancements
+
+* Sun June 25 2017 Heiko Bauke <heiko.bauke@mail.de> 0.14-1
+- simplified pocket calculater mode added

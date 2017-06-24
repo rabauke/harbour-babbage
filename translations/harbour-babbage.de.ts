@@ -168,7 +168,7 @@
     </message>
     <message>
         <source>Gamma_description</source>
-        <translation>Gamma-Funktion.</translation>
+        <translation>Gamma-Funktion und unvollständige Gammafunktion der unteren Grenze.</translation>
     </message>
     <message>
         <source>Beta_description</source>
@@ -212,11 +212,11 @@
     </message>
     <message>
         <source>gamma_description</source>
-        <translation type="unfinished"></translation>
+        <translation>unvollständige Gammafunktion der oberen Grenze</translation>
     </message>
     <message>
         <source>median_description</source>
-        <translation type="unfinished"></translation>
+        <translation>Median aller Argumente.</translation>
     </message>
 </context>
 <context>
@@ -252,6 +252,25 @@
     <message>
         <source>Remove output</source>
         <translation>Entferne Ausgabe</translation>
+    </message>
+    <message>
+        <source>Pocket calculator</source>
+        <translation>Taschenrechner</translation>
+    </message>
+</context>
+<context>
+    <name>SimpleCalculator</name>
+    <message>
+        <source>Pocket calculator</source>
+        <translation>Taschenrechner</translation>
+    </message>
+    <message>
+        <source>Get memory</source>
+        <translation>Lese Speicher</translation>
+    </message>
+    <message>
+        <source>Save result</source>
+        <translation>Speichere Resultat</translation>
     </message>
 </context>
 <context>

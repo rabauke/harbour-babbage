@@ -41,7 +41,7 @@ TextField {
 
       enabled: queryField.enabled
 
-      opacity: queryField.text.length > 0 ? 1 : 0
+      opacity: queryField.text.length > 0 && enabled ? 1 : 0
       Behavior on opacity {
         FadeAnimation {}
       }

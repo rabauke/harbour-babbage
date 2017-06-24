@@ -168,7 +168,7 @@
     </message>
     <message>
         <source>Gamma_description</source>
-        <translation>Gamma function.</translation>
+        <translation>Gamma function and upper incomplete gamma function.</translation>
     </message>
     <message>
         <source>Beta_description</source>
@@ -212,11 +212,11 @@
     </message>
     <message>
         <source>gamma_description</source>
-        <translation type="unfinished"></translation>
+        <translation>Lower incomplete gamma function.</translation>
     </message>
     <message>
         <source>median_description</source>
-        <translation type="unfinished"></translation>
+        <translation>Mean of the given arguments.</translation>
     </message>
 </context>
 <context>
@@ -252,6 +252,25 @@
     <message>
         <source>Remove output</source>
         <translation>Remove output</translation>
+    </message>
+    <message>
+        <source>Pocket calculator</source>
+        <translation>Pocket calculator</translation>
+    </message>
+</context>
+<context>
+    <name>SimpleCalculator</name>
+    <message>
+        <source>Pocket calculator</source>
+        <translation>Pocket calculator</translation>
+    </message>
+    <message>
+        <source>Get memory</source>
+        <translation>Get memory</translation>
+    </message>
+    <message>
+        <source>Save result</source>
+        <translation>Save result</translation>
     </message>
 </context>
 <context>

@@ -46,7 +46,8 @@ DISTFILES += \
     qml/components/FunctionDoc.qml \
     qml/pages/Variables.qml \
     qml/pages/SimpleCalculator.qml \
-    qml/components/QueryField.qml
+    qml/components/QueryField.qml \
+    qml/components/PCButton.qml
 
 images.files = images/cover_background.png
 images.path = /usr/share/harbour-babbage/images

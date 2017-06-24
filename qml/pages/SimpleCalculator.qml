@@ -1,5 +1,5 @@
 /*
-  Copyright (C) 2016 Heiko Bauke
+  Copyright (C) 2016-2017 Heiko Bauke
   Contact: Heiko Bauke <heiko.bauke@mail.de>
   All rights reserved.
 
@@ -30,105 +30,248 @@
 
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
 import Sailfish.Silica 1.0
+import "../components"
 
 Page {
-    id: page
-    property bool loggingIn: false;
+  id: simpleCalculator
+  allowedOrientations: Orientation.Portrait
 
-    Column {
-        id: fields
-        spacing: 20
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.leftMargin: 10
-        anchors.rightMargin: 10
-        anchors.top: logo.bottom
-        anchors.topMargin: 100
 
-        TextField {
-            id: username
-            placeholderText: "Username"
-            width: parent.width
-            inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-            Keys.onReturnPressed: {
-                if (username.text.length > 0 && password.text.length > 0) {
-                    login()
-                } else {
-                    password.forceActiveFocus()
-                }
-            }
+  property string memory
+
+  SilicaFlickable {
+    anchors.fill: parent
+
+    PullDownMenu {
+      MenuItem {
+        text: qsTr("Get memory")
+        onClicked: formula.text=formula.text+simpleCalculator.memory
+      }
+      MenuItem {
+        text: qsTr("Save result")
+        onClicked: {
+          Clipboard.text=result.text.substr(2)
+          simpleCalculator.memory=result.text.substr(2)
         }
-        TextField {
-            id: password
-            placeholderText: "Password"
-            echoMode: TextInput.Password
-            width: parent.width
-            inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
-            Keys.onReturnPressed: {
-                if (username.text.length > 0 && password.text.length > 0) {
-                    login()
-                } else {
-                    username.forceActiveFocus()
-                }
-            }
-        }
-
-        Item {
-            height: 10
-            width: 1
-        }
-
-        Button {
-            id: button
-            text: "Log in"
-
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.leftMargin: 10
-            anchors.rightMargin: 10
-            enabled: username.text.length > 0 && password.text.length > 0
-            onClicked: {
-                login()
-            }
-        }
-
-        Item {
-            height: 20
-            width: 1
-        }
-
-        Label {
-            width: parent.width
-            wrapMode: Text.WordWrap
-            font.pixelSize: 20
-            onLinkActivated: Qt.openUrlExternally(link)
-            horizontalAlignment: Text.AlignHCenter
-            textFormat: Text.RichText
-            text: "<style>a:link { color: " + Theme.highlightColor
-                  + "; }</style>Don't have a Libre.fm account?<br><a href='http://libre.fm'>Register for free</a>."
-        }
+      }
     }
 
-
-    function login() {
+    PageHeader {
+      id: pageHeader
+      title: qsTr("Pocket calculator")
     }
 
-    Column {
-        anchors.centerIn: parent
-        anchors.verticalCenterOffset: 20
-        visible: loggingIn
-        spacing: 20
+    Text {
+      id: formula
 
-        Label {
-            id: loggingText
-            anchors.horizontalCenter: parent.horizontalCenter
-            text: "Logging in"
-        }
+      anchors {
+        left: parent.left
+        right: parent.right
+        top: pageHeader.bottom
+        topMargin: Theme.paddingLarge
+        leftMargin: 2*Theme.paddingMedium
+        rightMargin: 2*Theme.paddingMedium
+      }
 
-        BusyIndicator {
-            anchors.horizontalCenter: parent.horizontalCenter
-            running: parent.visible
-        }
+      text: ""
+      horizontalAlignment: {
+        contentWidth<width ? Text.AlignLeft :  Text.AlignRight;
+      }
+      font.pointSize: Screen.sizeCategory >= Screen.Large ? Theme.fontSizeMedium : Theme.fontSizeSmall
+      color: Theme.primaryColor
+      elide: Text.ElideLeft
     }
+
+    Text {
+      id: result
+
+      anchors {
+        left: parent.left
+        right: parent.right
+        top: formula.bottom
+        topMargin: Theme.paddingLarge
+        leftMargin: 2*Theme.paddingMedium
+        rightMargin: 2*Theme.paddingMedium
+      }
+
+      text: "= "
+      horizontalAlignment: Text.AlignLeft
+      font.pointSize: Screen.sizeCategory >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
+      color: Theme.highlightColor
+    }
+
+    Text {
+      id: memoryText
+
+      anchors {
+        left: parent.left
+        right: parent.right
+        top: result.bottom
+        topMargin: Theme.paddingLarge
+        leftMargin: 2*Theme.paddingMedium
+        rightMargin: 2*Theme.paddingMedium
+      }
+
+      text: "M: "+simpleCalculator.memory
+      horizontalAlignment: Text.AlignLeft
+      font.pointSize: Screen.sizeCategory >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
+      color: Theme.highlightColor
+    }
+
+    GridLayout {
+      id : grid
+      anchors.horizontalCenter: parent.horizontalCenter
+      anchors {
+        bottom: parent.bottom
+        bottomMargin: Screen.sizeCategory >= Screen.Large ? 4*Theme.paddingLarge : 2*Theme.paddingLarge
+      }
+      rows: 6
+      columns: 4
+      rowSpacing: Theme.paddingMedium
+      columnSpacing: Theme.paddingMedium
+
+
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "√"
+        onClicked: formula.text=formula.text+"√("
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "^"
+        onClicked: formula.text=formula.text+"^"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "C"
+        onClicked: {
+          if (formula.text.length>0) {
+            if (formula.text.slice(-1)==" ")
+              formula.text=formula.text.slice(0, -1)
+          }
+          if (formula.text.length>0) {
+            formula.text=formula.text.slice(0, -1)
+          }
+          if (formula.text.length>0) {
+            if (formula.text.slice(-1)==" ")
+              formula.text=formula.text.slice(0, -1)
+          }
+          if (formula.text.length>0) {
+            if (formula.text.slice(-1)=="√")
+              formula.text=formula.text.slice(0, -1)
+          }
+        }
+
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "AC"
+        onClicked: {
+          formula.text=""
+          result.text="= "
+        }
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "1"
+        onClicked: formula.text=formula.text+"1"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "2"
+        onClicked: formula.text=formula.text+"2"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "3"
+        onClicked: formula.text=formula.text+"3"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "+"
+        onClicked: formula.text=formula.text+" + "
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "4"
+        onClicked: formula.text=formula.text+"4"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "5"
+        onClicked: formula.text=formula.text+"5"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "6"
+        onClicked: formula.text=formula.text+"6"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "−"
+        onClicked: formula.text=formula.text+" − "
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "7"
+        onClicked: formula.text=formula.text+"7"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "8"
+        onClicked: formula.text=formula.text+"8"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "9"
+        onClicked: formula.text=formula.text+"9"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "×"
+        onClicked: formula.text=formula.text+" · "
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "0"
+        onClicked: formula.text=formula.text+"0"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "."
+        onClicked: formula.text=formula.text+"."
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "π"
+        onClicked: formula.text=formula.text+"π"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "/"
+        onClicked: formula.text=formula.text+" / "
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "("
+        onClicked: formula.text=formula.text+"("
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: ")"
+        onClicked: formula.text=formula.text+")"
+      }
+      PCButton {
+        Layout.preferredWidth: 2*Theme.buttonWidthSmall/2.125+Theme.paddingMedium
+        Layout.columnSpan: 2
+        text: "="
+        onClicked: result.text="= "+calculator.calculate(formula.text).result
+      }
+
+    }
+
+  }
+
 }
