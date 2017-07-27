@@ -56,7 +56,8 @@ ApplicationWindow {
     id: variablesListModel
   }
 
-  initialPage: Component { MainPage { } }
+  // initialPage: Component { MainPage { } }
+  initialPage: Qt.resolvedUrl("pages/SimpleCalculator.qml")
   cover: Qt.resolvedUrl("cover/CoverPage.qml")
   allowedOrientations: Orientation.All
   _defaultPageOrientations: Orientation.All

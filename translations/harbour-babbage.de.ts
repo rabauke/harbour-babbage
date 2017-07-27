@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Dieser wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^), Fakultät (!) sowie Winkelgrad (°) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
+        <translation>Babbage ist eine einfacher Taschenrechner und wissenschaftlicher Rechner.  Der wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^), Fakultät (!) sowie Winkelgrad (°) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -271,6 +271,14 @@
     <message>
         <source>Save result</source>
         <translation>Speichere Resultat</translation>
+    </message>
+    <message>
+        <source>About Babbage</source>
+        <translation>Über Babbage</translation>
+    </message>
+    <message>
+        <source>Scientific calculator</source>
+        <translation>Wissenschaftlicher Rechner</translation>
     </message>
 </context>
 <context>

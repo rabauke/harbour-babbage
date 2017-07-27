@@ -51,7 +51,7 @@ Page {
       }
       MenuItem {
         text: qsTr("Pocket calculator")
-        onClicked: pageStack.push(Qt.resolvedUrl("SimpleCalculator.qml"))
+        onClicked: pageStack.replace(Qt.resolvedUrl("SimpleCalculator.qml"))
       }
       MenuItem {
         text: qsTr("Remove all output")
@@ -145,6 +145,10 @@ Page {
         variablesListModel.append({variable: variables[i]})
       pageStack.pushAttached(Qt.resolvedUrl("Variables.qml"))
     }
+  }
+
+  Component.onDestruction: {
+    console.log("MainPage off")
   }
 
 }

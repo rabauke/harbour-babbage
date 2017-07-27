@@ -46,6 +46,14 @@ Page {
 
     PullDownMenu {
       MenuItem {
+        text: qsTr("About Babbage")
+        onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
+      }
+      MenuItem {
+        text: qsTr("Scientific calculator")
+        onClicked: pageStack.replace(Qt.resolvedUrl("MainPage.qml"))
+      }
+      MenuItem {
         text: qsTr("Get memory")
         onClicked: formula.text=formula.text+simpleCalculator.memory
       }
@@ -145,6 +153,14 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "AC"
+        onClicked: {
+          formula.text=""
+          result.text="= "
+        }
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
         text: "C"
         onClicked: {
           if (formula.text.length>0) {
@@ -167,11 +183,23 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "AC"
-        onClicked: {
-          formula.text=""
-          result.text="= "
-        }
+        text: "("
+        onClicked: formula.text=formula.text+"("
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: ")"
+        onClicked: formula.text=formula.text+")"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "π"
+        onClicked: formula.text=formula.text+"π"
+      }
+      PCButton {
+        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
+        text: "+"
+        onClicked: formula.text=formula.text+" + "
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
@@ -190,8 +218,8 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "+"
-        onClicked: formula.text=formula.text+" + "
+        text: "−"
+        onClicked: formula.text=formula.text+" − "
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
@@ -210,8 +238,8 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "−"
-        onClicked: formula.text=formula.text+" − "
+        text: "×"
+        onClicked: formula.text=formula.text+" · "
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
@@ -230,8 +258,8 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "×"
-        onClicked: formula.text=formula.text+" · "
+        text: "/"
+        onClicked: formula.text=formula.text+" / "
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
@@ -242,26 +270,6 @@ Page {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
         text: "."
         onClicked: formula.text=formula.text+"."
-      }
-      PCButton {
-        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "π"
-        onClicked: formula.text=formula.text+"π"
-      }
-      PCButton {
-        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "/"
-        onClicked: formula.text=formula.text+" / "
-      }
-      PCButton {
-        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "("
-        onClicked: formula.text=formula.text+"("
-      }
-      PCButton {
-        Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: ")"
-        onClicked: formula.text=formula.text+")"
       }
       PCButton {
         Layout.preferredWidth: 2*Theme.buttonWidthSmall/2.125+Theme.paddingMedium
