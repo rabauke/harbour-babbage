@@ -5,6 +5,7 @@
 #include <limits>
 #include <cmath>
 #include <algorithm>
+#include <utility>
 
 namespace math {
 
@@ -271,6 +272,78 @@ namespace math {
 
   inline long double inv_GammaP(long double a, long double p) {
     return detail::inv_GammaP(a, p);
+  }
+
+  // see Applied Statistics (1973), vol.22, no.3, pp.409--411
+  // algorithm AS 63
+  namespace detail {
+
+    template<typename T>
+    T Beta_I(T x, T p, T q, T norm) {
+      using std::swap;
+      if (p<=0 or q<=0 or x<0 or x>1) {
+        errno=EDOM;
+        return numeric_limits<T>::quiet_NaN();
+      }
+      const T eps=4*numeric_limits<T>::epsilon();
+      T psq=p+q, cx=1-x;
+      bool flag=(p<psq*x);
+      if (flag) {
+        // use  I(x, p, q) = 1-I(1-x, q, p)
+        swap(x, cx);
+        swap(p, q);
+      }
+      T term=1, i=1, y=1, rx=x/cx, temp=q-i;
+      int s=static_cast<int>(q+cx*psq);
+      if (s==0)
+        rx=x;
+      while (true) {
+        term*=temp*rx/(p+i);
+        y+=term;
+        temp=abs(term);
+        if (temp<=eps and temp<=eps*y)
+          break;
+        i++;
+        s--;
+        if (s>=0) {
+          temp=q-i;
+          if (s==0)
+            rx=x;
+        } else {
+          temp=psq;
+          psq++;
+        }
+      }
+      y*=exp(p*ln(x)+(q-1)*ln(cx))/p/norm;
+      if (flag)
+        y=1-y;
+      return y;
+    }
+
+  }
+
+  inline float Beta_I(float x, float p, float q, float norm) {
+    return detail::Beta_I(x, p, q, norm);
+  }
+
+  inline float Beta_I(float x, float p, float q) {
+    return detail::Beta_I(x, p, q, Beta(p, q));
+  }
+
+  inline double Beta_I(double x, double p, double q, double norm) {
+    return detail::Beta_I(x, p, q, norm);
+  }
+
+  inline double Beta_I(double x, double p, double q) {
+    return detail::Beta_I(x, p, q, Beta(p, q));
+  }
+
+  inline long double Beta_I(long double x, long double p, long double q, long double norm) {
+    return detail::Beta_I(x, p, q, norm);
+  }
+
+  inline long double Beta_I(long double x, long double p, long double q) {
+    return detail::Beta_I(x, p, q, Beta(p, q));
   }
 
 }

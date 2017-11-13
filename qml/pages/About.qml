@@ -15,7 +15,7 @@ Page {
       spacing: Theme.paddingMedium
 
       PageHeader {
-        title: qsTr("Scientific calculator")
+        title: qsTr("About Babbage")
       }
       TextArea {
         width: column.width

@@ -141,6 +141,14 @@ Page {
         functionText: "invnormal(x)"
         descriptionText: qsTr("invnormal_description")
       }
+      FunctionDoc {
+        functionText: "Studentt(n, x)"
+        descriptionText: qsTr("Studentt_description")
+      }
+      FunctionDoc {
+        functionText: "invStudentt(n, x)"
+        descriptionText: qsTr("invStudentt_description")
+      }
       SectionHeader { text: qsTr("Gamma function and related functions") }
       FunctionDoc {
         functionText: "Gamma(x), Gamma(a, x)"

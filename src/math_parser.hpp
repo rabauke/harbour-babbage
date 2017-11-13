@@ -343,6 +343,33 @@ namespace math_parser {
       }
       return res;
     }
+    double Studentt(const arg_list &x) const {
+      if (x.size()==2)
+        return 1-0.5*math::Beta_I(x[0]/(x[1]*x[1]+x[0]), x[0]/2, 0.5);
+      else
+        throw argument_error();
+    }
+    double invStudentt(const arg_list &x) const {
+      if (x.size()!=2)
+        throw argument_error();
+      double res=0;
+      if (x[0]<=0)
+        return std::numeric_limits<double>::quiet_NaN();
+      if (x[1]<0 or x[1]>1)
+        return std::numeric_limits<double>::quiet_NaN();
+      if (x[1]==0)
+        return -std::numeric_limits<double>::infinity();
+      if (x[1]==1)
+        return -std::numeric_limits<double>::infinity();
+      for (int i=0; i<128; ++i) {
+        double f =1-0.5*math::Beta_I(x[0]/(res*res+x[0]), x[0]/2, 0.5)-x[1];
+        double f1=1./math::Beta(0.5, x[0]/2)*std::pow(1+res*res/x[0], -(x[0]+1)/2);
+        res-=f/f1;
+        if (std::abs(f/f1)<std::numeric_limits<double>::epsilon())
+          break;
+      }
+      return res;
+    }
     double Gamma(const arg_list &x) const {
       if (x.size()==1)
         return math::Gamma(x[0]);
@@ -360,7 +387,7 @@ namespace math_parser {
     double Beta(const arg_list &x) const {
       if (x.size()!=2)
         throw argument_error();
-      return math::Beta(x[0],x[1]);
+      return math::Beta(x[0], x[1]);
     }
     double binomial(const arg_list &x) const {
       if (x.size()!=2)
@@ -417,45 +444,47 @@ namespace math_parser {
     typedef double(arithmetic_parser::*f_pointer)(const arg_list &) const;
 
     const std::map<QString, f_pointer> func_map=
-      { {"abs",       &arithmetic_parser::abs       },
-        {"round",     &arithmetic_parser::round     },
-        {"floor",     &arithmetic_parser::floor     },
-        {"ceil",      &arithmetic_parser::ceil      },
-        {"mod",       &arithmetic_parser::mod       },
-        {"sin",       &arithmetic_parser::sin       },
-        {"cos",       &arithmetic_parser::cos       },
-        {"tan",       &arithmetic_parser::tan       },
-        {"cot",       &arithmetic_parser::cot       },
-        {"asin",      &arithmetic_parser::asin      },
-        {"acos",      &arithmetic_parser::acos      },
-        {"atan",      &arithmetic_parser::atan      },
-        {"acot",      &arithmetic_parser::acot      },
-        {"sinh",      &arithmetic_parser::sinh      },
-        {"cosh",      &arithmetic_parser::cosh      },
-        {"tanh",      &arithmetic_parser::tanh      },
-        {"coth",      &arithmetic_parser::coth      },
-        {"asinh",     &arithmetic_parser::asinh     },
-        {"acosh",     &arithmetic_parser::acosh     },
-        {"atanh",     &arithmetic_parser::atanh     },
-        {"acoth",     &arithmetic_parser::acoth     },
-        {"sqrt",      &arithmetic_parser::sqrt      },
-        {"exp",       &arithmetic_parser::exp       },
-        {"ln",        &arithmetic_parser::ln        },
-        {"log",       &arithmetic_parser::log       },
-        {"erf",       &arithmetic_parser::erf       },
-        {"erfc",      &arithmetic_parser::erfc      },
-        {"normal",    &arithmetic_parser::normal    },
-        {"invnormal", &arithmetic_parser::invnormal },
-        {"Gamma",     &arithmetic_parser::Gamma     },
-        {"gamma",     &arithmetic_parser::gamma     },
-        {"Beta",      &arithmetic_parser::Beta      },
-        {"binomial",  &arithmetic_parser::binomial  },
-        {"min",       &arithmetic_parser::min       },
-        {"max",       &arithmetic_parser::max       },
-        {"mean",      &arithmetic_parser::mean      },
-        {"var",       &arithmetic_parser::var       },
-        {"std",       &arithmetic_parser::std       },
-        {"median",    &arithmetic_parser::median    } };
+      { {"abs",         &arithmetic_parser::abs         },
+        {"round" ,      &arithmetic_parser::round       },
+        {"floor",       &arithmetic_parser::floor       },
+        {"ceil",        &arithmetic_parser::ceil        },
+        {"mod",         &arithmetic_parser::mod         },
+        {"sin",         &arithmetic_parser::sin         },
+        {"cos",         &arithmetic_parser::cos         },
+        {"tan",         &arithmetic_parser::tan         },
+        {"cot",         &arithmetic_parser::cot         },
+        {"asin",        &arithmetic_parser::asin        },
+        {"acos",        &arithmetic_parser::acos        },
+        {"atan",        &arithmetic_parser::atan        },
+        {"acot",        &arithmetic_parser::acot        },
+        {"sinh",        &arithmetic_parser::sinh        },
+        {"cosh",        &arithmetic_parser::cosh        },
+        {"tanh",        &arithmetic_parser::tanh        },
+        {"coth",        &arithmetic_parser::coth        },
+        {"asinh",       &arithmetic_parser::asinh       },
+        {"acosh",       &arithmetic_parser::acosh       },
+        {"atanh",       &arithmetic_parser::atanh       },
+        {"acoth",       &arithmetic_parser::acoth       },
+        {"sqrt",        &arithmetic_parser::sqrt        },
+        {"exp",         &arithmetic_parser::exp         },
+        {"ln",          &arithmetic_parser::ln          },
+        {"log",         &arithmetic_parser::log         },
+        {"erf",         &arithmetic_parser::erf         },
+        {"erfc",        &arithmetic_parser::erfc        },
+        {"normal",      &arithmetic_parser::normal      },
+        {"invnormal",   &arithmetic_parser::invnormal   },
+        {"Studentt",    &arithmetic_parser::Studentt    },
+        {"invStudentt", &arithmetic_parser::invStudentt },
+        {"Gamma",       &arithmetic_parser::Gamma       },
+        {"gamma",       &arithmetic_parser::gamma       },
+        {"Beta",        &arithmetic_parser::Beta        },
+        {"binomial",    &arithmetic_parser::binomial    },
+        {"min",         &arithmetic_parser::min         },
+        {"max",         &arithmetic_parser::max         },
+        {"mean",        &arithmetic_parser::mean        },
+        {"var",         &arithmetic_parser::var         },
+        {"std",         &arithmetic_parser::std         },
+        {"median",      &arithmetic_parser::median      } };
 
   public:
     // split string into a list of tokens and determine token category

@@ -4,8 +4,8 @@
 <context>
     <name>About</name>
     <message>
-        <source>Scientific calculator</source>
-        <translation>Scientific calculator</translation>
+        <source>About Babbage</source>
+        <translation>About Babbage</translation>
     </message>
     <message>
         <source>_discription_</source>
@@ -161,6 +161,14 @@
     <message>
         <source>invnormal_description</source>
         <translation>The inverse of the normal distribution cumulative probability function.</translation>
+    </message>
+    <message>
+        <source>Studentt_description</source>
+        <translation>Student&apos;s t-distribution cumulative probability function with n degrees of freedom.</translation>
+    </message>
+    <message>
+        <source>invStudentt_description</source>
+        <translation>The inverse of the Student&apos;s t-distribution cumulative probability function with n degrees of freedom.</translation>
     </message>
     <message>
         <source>Gamma function and related functions</source>

@@ -45,3 +45,6 @@
 
 * Sun July 27 2017 Heiko Bauke <heiko.bauke@mail.de> 0.14-1
 - simplified pocket calculater mode added
+
+* Mon November 13 2017 Heiko Bauke <heiko.bauke@mail.de> 0.15-1
+- Student's t cumulative distribution function and its inverse

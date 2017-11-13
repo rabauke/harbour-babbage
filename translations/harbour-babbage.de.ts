@@ -4,12 +4,12 @@
 <context>
     <name>About</name>
     <message>
-        <source>Scientific calculator</source>
-        <translation>Wissenschaftlicher Rechner</translation>
+        <source>About Babbage</source>
+        <translation>Über Babbage</translation>
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Babbage ist eine einfacher Taschenrechner und wissenschaftlicher Rechner.  Der wissen­schaftliche Rechner wertet mathe­matische Ausdrücke in Standardnotation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^), Fakultät (!) sowie Winkelgrad (°) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Eulersche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und beginnen mit einem Buch­staben.</translation>
+        <translation>Babbage ist sowohl ein einfacher Taschen­rechner als auch wissen­schaft­licher Rechner.  Der wissen­schaftliche Rechner wertet mathe­matische Aus­drücke in Standard­notation aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­traktion (-), Multi­plikation (*), Division (/), Exponen­tiation (^), Fakultät (!) sowie Winkel­grad (°) werden unter­stützt.  Eine Viel­zahl mathe­matischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Euler­sche Zahl.  Resultate können Variablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und be­ginnen mit einem Buch­staben.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -48,11 +48,11 @@
     </message>
     <message>
         <source>ceil_description</source>
-        <translation>Zur nächst größeren Ganzzahl gerundeter Wert von x.</translation>
+        <translation>Zur nächst größeren Ganzzahl ge­rundeter Wert von x.</translation>
     </message>
     <message>
         <source>floor_description</source>
-        <translation>Zur nächst kleineren Ganzzahl gerundeter Wert von x.</translation>
+        <translation>Zur nächst kleineren Ganzzahl ge­rundeter Wert von x.</translation>
     </message>
     <message>
         <source>Trigonometric functions</source>
@@ -156,11 +156,19 @@
     </message>
     <message>
         <source>normal_description</source>
-        <translation>Kumulative Ver­teilungs­funktion der Normalverteilung.</translation>
+        <translation>Kumulative Ver­teilungs­funktion der Normal­verteilung.</translation>
     </message>
     <message>
         <source>invnormal_description</source>
         <translation>Inverse der kumulativen Ver­teilungs­funktion der Normal­ver­teilung.</translation>
+    </message>
+    <message>
+        <source>Studentt_description</source>
+        <translation>Kumulative Ver­teilungs­funktion der Student t-Verteilung mit n Freiheitsgraden.</translation>
+    </message>
+    <message>
+        <source>invStudentt_description</source>
+        <translation>Inverse der kumulativen Ver­teilungs­funktion der Student t-Verteilung mit n Freiheitsgraden.</translation>
     </message>
     <message>
         <source>Gamma function and related functions</source>
@@ -168,7 +176,7 @@
     </message>
     <message>
         <source>Gamma_description</source>
-        <translation>Gamma-Funktion und unvollständige Gammafunktion der unteren Grenze.</translation>
+        <translation>Gamma-Funktion und unvollständige Gamma-Funktion der unteren Grenze.</translation>
     </message>
     <message>
         <source>Beta_description</source>
@@ -212,7 +220,7 @@
     </message>
     <message>
         <source>gamma_description</source>
-        <translation>unvollständige Gammafunktion der oberen Grenze</translation>
+        <translation>Unvollständige Gamma-Funktion der oberen Grenze.</translation>
     </message>
     <message>
         <source>median_description</source>
