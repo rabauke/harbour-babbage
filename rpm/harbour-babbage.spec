@@ -13,7 +13,7 @@ Name:       harbour-babbage
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Scientific calculator
-Version:    0.15
+Version:    0.16
 Release:    1
 Group:      Qt/Qt
 License:    BSD

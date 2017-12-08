@@ -48,3 +48,7 @@
 
 * Mon November 13 2017 Heiko Bauke <heiko.bauke@mail.de> 0.15-1
 - Student's t cumulative distribution function and its inverse
+
+* Fri December 08 2017 Heiko Bauke <heiko.bauke@mail.de> 0.16-1
+- added translation for Spanish
+- when entering rational numbers between 0 and 1 the leading zero may be omitted now

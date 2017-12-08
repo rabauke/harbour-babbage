@@ -502,7 +502,7 @@ namespace math_parser {
       //   - a variable name
       //   - something else, which is a syntax error
       // - ends with zero or more spaces
-      static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|([-+*/^!°])|([(])|([)])|([[:alpha:]]\w*(?=\())|(,)|([[:alpha:]]\w*)|(\S+))\s*)");
+      static QRegularExpression words_regex(R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|(\.[[:digit:]]+)|([-+*/^!°])|([(])|([)])|([[:alpha:]]\w*(?=\())|(,)|([[:alpha:]]\w*)|(\S+))\s*)");
       token_list_t token_list;
       QRegularExpressionMatchIterator i=words_regex.globalMatch(str);
       while (i.hasNext()) {
@@ -510,20 +510,22 @@ namespace math_parser {
         if (match.capturedRef(2).length()>0)
           token_list.push_back(token_t(match.captured(2).toDouble()));
         else if (match.capturedRef(3).length()>0)
-          token_list.push_back(token_t(match.captured(3), token_kind::op));
+          token_list.push_back(token_t(match.captured(3).toDouble()));
         else if (match.capturedRef(4).length()>0)
-          token_list.push_back(token_t(match.captured(4), token_kind::brace_open));
+          token_list.push_back(token_t(match.captured(4), token_kind::op));
         else if (match.capturedRef(5).length()>0)
-          token_list.push_back(token_t(match.captured(5), token_kind::brace_close));
-        else if (match.capturedRef(6).length()>0) {
-          if (func_map.count(match.captured(6))>0)
-            token_list.push_back(token_t(match.captured(6), token_kind::func));
+          token_list.push_back(token_t(match.captured(5), token_kind::brace_open));
+        else if (match.capturedRef(6).length()>0)
+          token_list.push_back(token_t(match.captured(6), token_kind::brace_close));
+        else if (match.capturedRef(7).length()>0) {
+          if (func_map.count(match.captured(7))>0)
+            token_list.push_back(token_t(match.captured(7), token_kind::func));
           else
             throw unknown_function();
-        } else if (match.capturedRef(7).length()>0)
-          token_list.push_back(token_t(match.captured(7), token_kind::arg_sep));
-        else if (match.capturedRef(8).length()>0)
-          token_list.push_back(token_t(match.captured(8), token_kind::var));
+        } else if (match.capturedRef(8).length()>0)
+          token_list.push_back(token_t(match.captured(8), token_kind::arg_sep));
+        else if (match.capturedRef(9).length()>0)
+          token_list.push_back(token_t(match.captured(9), token_kind::var));
         else
           throw syntax_error();
       }

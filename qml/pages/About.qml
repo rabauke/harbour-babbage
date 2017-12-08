@@ -33,7 +33,7 @@ Page {
         onClicked: pageStack.push(Qt.resolvedUrl("Functions.qml"))
       }
       Label {
-        text: "<br>© Heiko Bauke, 2016—2017<br><br>Fork me on github!<br><a href=\"https://github.com/rabauke/harbour-babbage\">https://github.com/rabauke/harbour-babbage</a><br>"
+        text: "<br>© Heiko Bauke, 2016—2017<br>Spanish localization by Carmen F. B.<br><br>Fork me on github!<br><a href=\"https://github.com/rabauke/harbour-babbage\">https://github.com/rabauke/harbour-babbage</a><br>"
         textFormat: Text.StyledText
         width: column.width
         color: Theme.primaryColor
