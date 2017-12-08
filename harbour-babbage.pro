@@ -36,6 +36,7 @@ CONFIG += sailfishapp_i18n
 
 TRANSLATIONS += translations/harbour-babbage.ts \
   translations/harbour-babbage.en.ts \
+  translations/harbour-babbage.es.ts \
   translations/harbour-babbage.de.ts
 
 DISTFILES += \
