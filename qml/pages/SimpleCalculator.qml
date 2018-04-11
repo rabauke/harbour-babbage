@@ -140,7 +140,6 @@ Page {
       rowSpacing: Theme.paddingMedium
       columnSpacing: Theme.paddingMedium
 
-
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
         text: "√"
@@ -153,7 +152,7 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "AC"
+        text: "<b>AC</b>"
         onClicked: {
           formula.text=""
           result.text="= "
@@ -161,7 +160,7 @@ Page {
       }
       PCButton {
         Layout.preferredWidth: Theme.buttonWidthSmall/2.125
-        text: "C"
+        text: "<b>C</b>"
         onClicked: {
           if (formula.text.length>0) {
             if (formula.text.slice(-1)==" ")
@@ -274,8 +273,12 @@ Page {
       PCButton {
         Layout.preferredWidth: 2*Theme.buttonWidthSmall/2.125+Theme.paddingMedium
         Layout.columnSpan: 2
-        text: "="
-        onClicked: result.text="= "+calculator.calculate(formula.text).result
+        text: "<b>=</b>"
+        onClicked: {
+          var res=calculator.calculate(formula.text)
+          resultsListModel.insert(0, res)
+          result.text="= "+res.result
+        }
       }
 
     }
