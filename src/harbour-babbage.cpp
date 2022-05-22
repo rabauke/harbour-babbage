@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2016-2017, Heiko Bauke
+Copyright (c) 2016-2021, Heiko Bauke
 All rights reserved.
 
 You may use this file under the terms of BSD license as follows:
@@ -44,13 +44,14 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "calculator.hpp"
 
 int main(int argc, char *argv[]) {
-  QGuiApplication *app=SailfishApp::application(argc, argv);
-  QString locale=QLocale::system().name();
-  QTranslator *translator=new QTranslator;
-  if ((translator->load("harbour-babbage."+locale, "/usr/share/harbour-babbage/translations")))
+  QGuiApplication *app = SailfishApp::application(argc, argv);
+  QString locale = QLocale::system().name();
+  QTranslator *translator = new QTranslator;
+  if ((translator->load("harbour-babbage." + locale,
+                        "/usr/share/harbour-babbage/translations")))
     app->installTranslator(translator);
   qmlRegisterType<calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
-  QQuickView *view=SailfishApp::createView();
+  QQuickView *view = SailfishApp::createView();
   view->setSource(SailfishApp::pathTo("qml/harbour-babbage.qml"));
   view->show();
   return app->exec();

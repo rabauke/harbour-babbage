@@ -14,17 +14,18 @@ class calculator : public QObject {
   math_parser::arithmetic_parser P;
   math_parser::arithmetic_parser::var_map_t V;
   void init_variables();
+
 public:
   explicit calculator(QObject *parent = 0);
   Q_INVOKABLE QVariantMap calculate(QString formula);
   Q_INVOKABLE void removeVariable(int);
   Q_INVOKABLE void clear();
   Q_INVOKABLE QVariantList getVariables() const;
-  virtual ~calculator() { }
+  virtual ~calculator() {}
 
 signals:
 
 public slots:
 };
 
-#endif // CALCULATOR_H
+#endif  // CALCULATOR_H
