@@ -6,6 +6,7 @@
 #include <cmath>
 #include <algorithm>
 #include <utility>
+#include <cerrno>
 
 namespace math {
 
