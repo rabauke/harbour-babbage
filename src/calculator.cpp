@@ -14,16 +14,17 @@ QString typeset(double x) {
       .replace("inf", "∞");
 }
 
-//---------------------------------------------------------------------
 
 void calculator::init_variables() {
   V.insert("pi", std::atan(1.) * 4);
   V.insert("e", std::exp(1.));
 }
 
+
 calculator::calculator(QObject *parent) : QObject(parent) {
   init_variables();
 }
+
 
 QVariantMap calculator::calculate(QString formula) {
   QString formula_plain = formula;
@@ -37,12 +38,12 @@ QVariantMap calculator::calculate(QString formula) {
   QRegularExpression assignment_regex(R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))");
   QRegularExpression formula_regex(R"(^\s*\S.*)");
 
-  double res = std::numeric_limits<double>::quiet_NaN();
+  double res{std::numeric_limits<double>::quiet_NaN()};
   QString err;
   try {
-    auto match = assignment_regex.match(formula_plain);
+    auto match{assignment_regex.match(formula_plain)};
     if (match.hasMatch()) {
-      QString var_name = match.capturedRef(1).toString();
+      QString var_name{match.capturedRef(1).toString()};
       if (var_name == "pi" or var_name == "e")
         throw std::runtime_error("protected variable");
       res = P.value(match.capturedRef(2).toString(), V);
@@ -52,7 +53,7 @@ QVariantMap calculator::calculate(QString formula) {
   } catch (std::exception &e) {
     err = e.what();
   }
-  QString res_str = typeset(res);
+  QString res_str{typeset(res)};
   formula.replace(" ", "")
       .replace("+", " + ")
       .replace("−", " − ")
@@ -78,6 +79,7 @@ QVariantMap calculator::calculate(QString formula) {
   return res_map;
 }
 
+
 void calculator::removeVariable(int i) {
   auto j = V.begin();
   std::advance(j, i);
@@ -86,16 +88,18 @@ void calculator::removeVariable(int i) {
   V.erase(j, j_end);
 }
 
+
 void calculator::clear() {
   V.clear();
   init_variables();
 }
 
+
 QVariantList calculator::getVariables() const {
   QVariantList list;
   for (const auto &x : V) {
-    QString value_str = typeset(x.second);
-    QString name_str = x.first;
+    QString value_str{typeset(x.second)};
+    QString name_str{x.first};
     if (name_str == "pi")
       name_str = "π";
     list.append(name_str + " = " + value_str);
