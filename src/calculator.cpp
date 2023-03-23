@@ -1,3 +1,4 @@
+#include "constants.hpp"
 #include "calculator.hpp"
 #include "math_parser.hpp"
 #include <limits>
@@ -6,7 +7,7 @@
 #include <QStringList>
 
 
-QString typeset(double x) {
+static QString typeset(double x) {
   static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
   static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
 
@@ -19,8 +20,8 @@ QString typeset(double x) {
 
 
 void calculator::init_variables() {
-  V.insert("pi", std::atan(1.) * 4);
-  V.insert("e", std::exp(1.));
+  V.insert("pi", constants::pi);
+  V.insert("e", constants::e);
 }
 
 
@@ -30,7 +31,6 @@ calculator::calculator(QObject *parent) : QObject(parent) {
 
 
 QVariantMap calculator::calculate(QString formula) {
-  static const QRegularExpression degree_regex{R"(\bdeg\b)"};
   static const QRegularExpression pi_regex{R"(\bpi\b)"};
   static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
   static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
@@ -44,8 +44,7 @@ QVariantMap calculator::calculate(QString formula) {
       .replace("π", "pi")
       .replace("√", "sqrt")
       .replace("Γ", "Gamma")
-      .replace("γ", "gamma")
-      .replace(degree_regex, "°");
+      .replace("γ", "gamma");
   double res{std::numeric_limits<double>::quiet_NaN()};
   QString err;
   try {
@@ -71,7 +70,6 @@ QVariantMap calculator::calculate(QString formula) {
       .replace("/", " / ")
       .replace("=", " = ")
       .replace(",", ", ")
-      .replace(degree_regex, "°")
       .replace(pi_regex, "π")
       .replace(sqrt_regex, "√")
       .replace(Gamma_regex, "Γ")

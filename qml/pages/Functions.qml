@@ -43,6 +43,15 @@ Page {
         functionText: "ceil(x)"
         descriptionText: qsTr("ceil_description")
       }
+      SectionHeader { text: qsTr("Units of angle conversion") }
+      FunctionDoc {
+        functionText: "deg(x)"
+        descriptionText: qsTr("deg_description")
+      }
+      FunctionDoc {
+        functionText: "rad(x)"
+        descriptionText: qsTr("rad_description")
+      }
       SectionHeader { text: qsTr("Trigonometric functions") }
       FunctionDoc {
         functionText: "sin(x)"

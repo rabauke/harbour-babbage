@@ -8,9 +8,6 @@
 #include "math_parser.hpp"
 
 
-QString typeset(double x);
-
-
 class calculator : public QObject {
   Q_OBJECT
   math_parser::arithmetic_parser P;

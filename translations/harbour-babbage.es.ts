@@ -226,6 +226,18 @@
         <source>median_description</source>
         <translation>Mediana de los argumentos dados.</translation>
     </message>
+    <message>
+        <source>Units of angle conversion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg_description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rad_description</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>

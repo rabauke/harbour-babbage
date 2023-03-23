@@ -55,6 +55,18 @@
         <translation>Value of x rounded to the next smaller integer.</translation>
     </message>
     <message>
+        <source>Units of angle conversion</source>
+        <translation>Units of angle conversion</translation>
+    </message>
+    <message>
+        <source>deg_description</source>
+        <translation>Converts argument given in radian into arc degree.</translation>
+    </message>
+    <message>
+        <source>rad_description</source>
+        <translation>Converts argument given in arc degree into radian.</translation>
+    </message>
+    <message>
         <source>Trigonometric functions</source>
         <translation>Trigonometric functions</translation>
     </message>

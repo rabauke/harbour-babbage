@@ -226,6 +226,18 @@
         <source>median_description</source>
         <translation>Mean of the given arguments.</translation>
     </message>
+    <message>
+        <source>Units of angle conversion</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>deg_description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rad_description</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainPage</name>

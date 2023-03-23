@@ -14,6 +14,7 @@
 #include <QString>
 #include <QRegularExpressionMatchIterator>
 #include <QDebug>
+#include "constants.hpp"
 #include "special_functions.hpp"
 
 
@@ -203,6 +204,18 @@ namespace math_parser {
       if (x.size() != 2)
         throw argument_error{};
       return std::fmod(x[0], x[1]);
+    }
+
+    double deg(const arg_list &x) const {
+      if (x.size() != 1)
+        throw argument_error{};
+      return x[0] * 180. / constants::pi;
+    }
+
+    double rad(const arg_list &x) const {
+      if (x.size() != 1)
+        throw argument_error{};
+      return x[0] * constants::pi / 180.;
     }
 
     double sin(const arg_list &x) const {
@@ -485,6 +498,8 @@ namespace math_parser {
         {"floor", &arithmetic_parser::floor},
         {"ceil", &arithmetic_parser::ceil},
         {"mod", &arithmetic_parser::mod},
+        {"deg", &arithmetic_parser::deg},
+        {"rad", &arithmetic_parser::rad},
         {"sin", &arithmetic_parser::sin},
         {"cos", &arithmetic_parser::cos},
         {"tan", &arithmetic_parser::tan},
@@ -715,7 +730,7 @@ namespace math_parser {
             stack.push(res);
           } else if (t == "°") {  // degree
             double op1{get(stack)};
-            double res{op1 * 3.1415926535897932385 / 180.};
+            double res{op1 * constants::pi / 180.};
             stack.push(res);
           } else
             throw syntax_error{};  // this point should never be reached

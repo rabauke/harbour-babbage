@@ -12,10 +12,10 @@
 # The name of your application
 TARGET = harbour-babbage
 
-CONFIG += c++14
+CONFIG += c++17
 CONFIG += sailfishapp
 
-QMAKE_CXXFLAGS += -std=c++14
+QMAKE_CXXFLAGS += -std=c++17
 
 SOURCES += src/harbour-babbage.cpp \
     src/calculator.cpp
@@ -55,6 +55,7 @@ images.path = /usr/share/harbour-babbage/images
 INSTALLS += images
 
 HEADERS += \
+    src/constants.hpp \
     src/math_parser.hpp \
     src/calculator.hpp \
     src/special_functions.hpp
