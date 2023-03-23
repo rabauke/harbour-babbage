@@ -177,67 +177,67 @@ namespace math_parser {
 
     double abs(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::abs(x[0]);
     }
 
     double round(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::round(x[0]);
     }
 
     double floor(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::floor(x[0]);
     }
 
     double ceil(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::ceil(x[0]);
     }
 
     double mod(const arg_list &x) const {
       if (x.size() != 2)
-        throw argument_error();
+        throw argument_error{};
       return std::fmod(x[0], x[1]);
     }
 
     double sin(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::sin(x[0]);
     }
 
     double cos(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::cos(x[0]);
     }
 
     double tan(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::tan(x[0]);
     }
 
     double cot(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::cos(x[0]) / std::sin(x[0]);
     }
 
     double asin(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::asin(x[0]);
     }
 
     double acos(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::acos(x[0]);
     }
 
@@ -246,84 +246,84 @@ namespace math_parser {
         return std::atan(x[0]);
       if (x.size() == 2)
         return std::atan2(x[0], x[1]);
-      throw argument_error();
+      throw argument_error{};
     }
 
     double acot(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return 1.5707963267948966192 - std::atan(x[0]);
     }
 
     double sinh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::sinh(x[0]);
     }
 
     double cosh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::cosh(x[0]);
     }
 
     double tanh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::tanh(x[0]);
     }
 
     double coth(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::cosh(x[0]) / std::sinh(x[0]);
     }
 
     double asinh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::asinh(x[0]);
     }
 
     double acosh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::acosh(x[0]);
     }
 
     double atanh(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::atanh(x[0]);
     }
 
     double acoth(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::atanh(1 / x[0]);
     }
 
     double sqrt(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::sqrt(x[0]);
     }
 
     double exp(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::exp(x[0]);
     }
 
     double ln(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::log(x[0]);
     }
 
     double log(const arg_list &x) const {
       if (x.size() != 1 and x.size() != 2)
-        throw argument_error();
+        throw argument_error{};
       if (x.size() == 1)
         return std::log10(x[0]);
       return std::log(x[0]) / std::log(x[1]);
@@ -331,36 +331,36 @@ namespace math_parser {
 
     double erf(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::erf(x[0]);
     }
 
     double erfc(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return std::erfc(x[0]);
     }
 
     double normal(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
+        throw argument_error{};
       return 0.5 + 0.5 * std::erf(0.70710678118654752440 * x[0]);
     }
 
     double invnormal(const arg_list &x) const {
       if (x.size() != 1)
-        throw argument_error();
-      double res = 0;
+        throw argument_error{};
+      double res{0};
       if (x[0] < 0 or x[0] > 1)
         return std::numeric_limits<double>::quiet_NaN();
       if (x[0] == 0)
         return -std::numeric_limits<double>::infinity();
       if (x[0] == 1)
         return -std::numeric_limits<double>::infinity();
-      for (int i = 0; i < 128; ++i) {
-        double f = 0.5 + 0.5 * std::erf(0.70710678118654752440 * res) - x[0];
-        double f1 = 0.39894228040143267794 * std::exp(-0.5 * res * res);
-        double f2 = -f1 * res;
+      for (int i{0}; i < 128; ++i) {
+        double f{0.5 + 0.5 * std::erf(0.70710678118654752440 * res) - x[0]};
+        double f1{0.39894228040143267794 * std::exp(-0.5 * res * res)};
+        double f2{-f1 * res};
         res -= f / f1 * (1 - f * f2 / (2 * f1 * f1));
         if (std::abs(f / f1) < std::numeric_limits<double>::epsilon())
           break;
@@ -377,8 +377,8 @@ namespace math_parser {
 
     double invStudentt(const arg_list &x) const {
       if (x.size() != 2)
-        throw argument_error();
-      double res = 0;
+        throw argument_error{};
+      double res{0};
       if (x[0] <= 0)
         return std::numeric_limits<double>::quiet_NaN();
       if (x[1] < 0 or x[1] > 1)
@@ -387,10 +387,10 @@ namespace math_parser {
         return -std::numeric_limits<double>::infinity();
       if (x[1] == 1)
         return -std::numeric_limits<double>::infinity();
-      for (int i = 0; i < 128; ++i) {
-        double f = 1 - 0.5 * math::Beta_I(x[0] / (res * res + x[0]), x[0] / 2, 0.5) - x[1];
-        double f1 =
-            1. / math::Beta(0.5, x[0] / 2) * std::pow(1 + res * res / x[0], -(x[0] + 1) / 2);
+      for (int i{0}; i < 128; ++i) {
+        double f{1 - 0.5 * math::Beta_I(x[0] / (res * res + x[0]), x[0] / 2, 0.5) - x[1]};
+        double f1{1. / math::Beta(0.5, x[0] / 2) *
+                  std::pow(1 + res * res / x[0], -(x[0] + 1) / 2)};
         res -= f / f1;
         if (std::abs(f / f1) < std::numeric_limits<double>::epsilon())
           break;
@@ -404,25 +404,25 @@ namespace math_parser {
       else if (x.size() == 2)
         return math::cinc_gamma(x[0], x[1]);
       else
-        throw argument_error();
+        throw argument_error{};
     }
 
     double gamma(const arg_list &x) const {
       if (x.size() == 2)
         return math::inc_gamma(x[0], x[1]);
       else
-        throw argument_error();
+        throw argument_error{};
     }
 
     double Beta(const arg_list &x) const {
       if (x.size() != 2)
-        throw argument_error();
+        throw argument_error{};
       return math::Beta(x[0], x[1]);
     }
 
     double binomial(const arg_list &x) const {
       if (x.size() != 2)
-        throw argument_error();
+        throw argument_error{};
       double res{std::exp(std::lgamma(x[0] + 1) - std::lgamma(x[1] + 1) -
                           std::lgamma(x[0] - x[1] + 1))};
       if (std::round(x[0]) == x[0] and std::round(x[1]) == x[1])
@@ -431,20 +431,20 @@ namespace math_parser {
     }
 
     double min(const arg_list &x) const {
-      if (x.size() == 0)
-        throw argument_error();
+      if (x.empty())
+        throw argument_error{};
       return *std::min_element(x.begin(), x.end());
     }
 
     double max(const arg_list &x) const {
-      if (x.size() == 0)
-        throw argument_error();
+      if (x.empty())
+        throw argument_error{};
       return *std::max_element(x.begin(), x.end());
     }
 
     double mean(const arg_list &x) const {
-      if (x.size() == 0)
-        throw argument_error();
+      if (x.empty())
+        throw argument_error{};
       double res{0};
       for (auto v : x)
         res += v;
@@ -453,7 +453,7 @@ namespace math_parser {
 
     double var(const arg_list &x) const {
       if (x.size() < 2)
-        throw argument_error();
+        throw argument_error{};
       double mu{mean(x)};
       double res{0};
       for (auto v : x)
@@ -533,12 +533,12 @@ namespace math_parser {
       //   - an operator
       //   - an opening brace
       //   - a closing brace
-      //   - a function name (follwed by a opening brace)
+      //   - a function name (follwed by an opening brace)
       //   - a function argument separator
       //   - a variable name
       //   - something else, which is a syntax error
       // - ends with zero or more spaces
-      static QRegularExpression words_regex(
+      static const QRegularExpression words_regex(
           R"(\s*(([[:digit:]]+\.?[[:digit:]]*)|(\.[[:digit:]]+)|([-+*/^!°])|([(])|([)])|([[:alpha:]]\w*(?=\())|(,)|([[:alpha:]]\w*)|(\S+))\s*)");
       token_list_t token_list;
       QRegularExpressionMatchIterator i{words_regex.globalMatch(str)};
@@ -558,13 +558,13 @@ namespace math_parser {
           if (func_map.count(match.captured(7)) > 0)
             token_list.push_back(token_t(match.captured(7), token_kind::func));
           else
-            throw unknown_function();
+            throw unknown_function{};
         } else if (match.capturedRef(8).length() > 0)
           token_list.push_back(token_t(match.captured(8), token_kind::arg_sep));
         else if (match.capturedRef(9).length() > 0)
           token_list.push_back(token_t(match.captured(9), token_kind::var));
         else
-          throw syntax_error();
+          throw syntax_error{};
       }
       return token_list;
     }
@@ -589,7 +589,7 @@ namespace math_parser {
         } else if (t == token_kind::arg_sep) {
           // there was no corresponding function token before, throw error
           if (arg_counter.empty())
-            throw comma_error();
+            throw comma_error{};
           arg_counter.top() += 1;
           // pop all tokens from stack until opening brace is found
           while ((not stack.empty()) and stack.top() != token_kind::brace_open) {
@@ -598,7 +598,7 @@ namespace math_parser {
           }
           // throw error when no corresponding opening brace was found
           if (stack.empty())
-            throw brace_error();
+            throw brace_error{};
         } else if (t == token_kind::op) {
           // check if operator is unary !
           if (t == "!" or t == "°")
@@ -635,10 +635,10 @@ namespace math_parser {
           }
           // throw error when no corresponding opening brace was found
           if (stack.empty())
-            throw brace_error();
+            throw brace_error{};
           stack.pop();  // remove opening brace from stack
-          // if pair of braces marks function arguments put out number of
-          // function arguments as an extra arguments, remove function from
+          // if a pair of braces marks function arguments put out number of
+          // function arguments as an extra argument, remove function from
           // stack, remove argument counter from stack
           if (not stack.empty() and stack.top() == token_kind::func) {
             rpn.push_back(token_t(arg_counter.top() + 1.));  // number of function arguments
@@ -651,9 +651,9 @@ namespace math_parser {
       }
       // remove remaining items from stack
       while (not stack.empty()) {
-        // raise error, when there is a opening brace without matching closing brace
+        // raise error, when there is an opening brace without matching closing brace
         if (stack.top() == token_kind::brace_open)
-          throw brace_error();
+          throw brace_error{};
         rpn.push_back(stack.top());
         stack.pop();
       }
@@ -663,7 +663,7 @@ namespace math_parser {
   private:
     double get(std::stack<double> &stack) const {
       if (stack.empty())
-        throw argument_error();
+        throw argument_error{};
       double res{stack.top()};
       stack.pop();
       return res;
@@ -682,7 +682,7 @@ namespace math_parser {
           if (v != vars.end())
             stack.push(v->second);
           else
-            throw unknown_variable(t.str().toStdString());
+            throw unknown_variable{t.str().toStdString()};
         } else if (t == token_kind::op) {
           if (t == "_") {  // unary minus
             double op1{get(stack)};
@@ -718,11 +718,11 @@ namespace math_parser {
             double res{op1 * 3.1415926535897932385 / 180.};
             stack.push(res);
           } else
-            throw syntax_error();  // this point should never be reached
+            throw syntax_error{};  // this point should never be reached
         } else if (t == token_kind::func) {
-          auto func = func_map.find(t.str());
+          auto func{func_map.find(t.str())};
           if (func == func_map.end())
-            throw unknown_function();  // this point should never be reached
+            throw unknown_function{};  // this point should never be reached
           arg_list x;
           int num_arguments(get(stack));
           for (int i{0}; i < num_arguments; ++i)
@@ -732,11 +732,11 @@ namespace math_parser {
         }
       }
       if (stack.size() != 1)
-        throw syntax_error();  // ill-formed rpn formula
+        throw syntax_error{};  // ill-formed rpn formula
       return get(stack);
     }
 
-    double value(const QString &str, const var_map_t &vars = var_map_t()) {
+    double value(const QString &str, const var_map_t &vars = var_map_t{}) {
       return value(tokenlist_to_rpn(tokenize(str)), vars);
     }
   };

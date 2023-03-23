@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2016-2021, Heiko Bauke
+Copyright (c) 2016-2023, Heiko Bauke
 All rights reserved.
 
 You may use this file under the terms of BSD license as follows:

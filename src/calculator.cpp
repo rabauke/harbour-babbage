@@ -7,9 +7,12 @@
 
 
 QString typeset(double x) {
+  static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
+  static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
+
   return QString::number(x, 'g', 12)
-      .replace(QRegularExpression(R"(e[+](\d+))"), R"( · 10^\1)")
-      .replace(QRegularExpression(R"(e[-](\d+))"), R"( · 10^(−\1))")
+      .replace(pos_exponent_regex, R"( · 10^\1)")
+      .replace(neg_exponent_regex, R"( · 10^(−\1))")
       .replace("-", "−")
       .replace("inf", "∞");
 }
@@ -27,17 +30,22 @@ calculator::calculator(QObject *parent) : QObject(parent) {
 
 
 QVariantMap calculator::calculate(QString formula) {
-  QString formula_plain = formula;
+  static const QRegularExpression degree_regex{R"(\bdeg\b)"};
+  static const QRegularExpression pi_regex{R"(\bpi\b)"};
+  static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
+  static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
+  static const QRegularExpression gamma_regex{R"(\bgamma\b)"};
+  static const QRegularExpression leading_spaces_regex{R"(^\s*)"};
+  static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))"};
+
+  QString formula_plain{formula};
   formula_plain.replace("−", "-")
       .replace("·", "*")
       .replace("π", "pi")
       .replace("√", "sqrt")
       .replace("Γ", "Gamma")
       .replace("γ", "gamma")
-      .replace(QRegularExpression(R"(\bdeg\b)"), "°");
-  QRegularExpression assignment_regex(R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))");
-  QRegularExpression formula_regex(R"(^\s*\S.*)");
-
+      .replace(degree_regex, "°");
   double res{std::numeric_limits<double>::quiet_NaN()};
   QString err;
   try {
@@ -45,7 +53,7 @@ QVariantMap calculator::calculate(QString formula) {
     if (match.hasMatch()) {
       QString var_name{match.capturedRef(1).toString()};
       if (var_name == "pi" or var_name == "e")
-        throw std::runtime_error("protected variable");
+        throw std::runtime_error{"protected variable"};
       res = P.value(match.capturedRef(2).toString(), V);
       V[var_name] = res;
     } else
@@ -63,13 +71,13 @@ QVariantMap calculator::calculate(QString formula) {
       .replace("/", " / ")
       .replace("=", " = ")
       .replace(",", ", ")
-      .replace(QRegularExpression(R"(\bdeg\b)"), "°")
-      .replace(QRegularExpression(R"(\bpi\b)"), "π")
-      .replace(QRegularExpression(R"(\bsqrt\b)"), "√")
-      .replace(QRegularExpression(R"(\bGamma\b)"), "Γ")
-      .replace(QRegularExpression(R"(\bgamma\b)"), "γ")
+      .replace(degree_regex, "°")
+      .replace(pi_regex, "π")
+      .replace(sqrt_regex, "√")
+      .replace(Gamma_regex, "Γ")
+      .replace(gamma_regex, "γ")
       .replace("  ", " ")
-      .replace(QRegularExpression(R"(^\s*)"), "");
+      .replace(leading_spaces_regex, "");
   QVariantMap res_map;
   res_map.insert("formula", formula);
   if (err.isEmpty())
@@ -81,11 +89,11 @@ QVariantMap calculator::calculate(QString formula) {
 
 
 void calculator::removeVariable(int i) {
-  auto j = V.begin();
+  if (i < 0 or static_cast<std::size_t>(i) >= V.size())
+    return;
+  auto j{V.begin()};
   std::advance(j, i);
-  auto j_end = j;
-  j_end++;
-  V.erase(j, j_end);
+  V.erase(j);
 }
 
 
