@@ -45,14 +45,19 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 int main(int argc, char *argv[]) {
-  QGuiApplication *app{SailfishApp::application(argc, argv)};
-  QString locale{QLocale::system().name()};
-  QTranslator *translator{new QTranslator};
-  if ((translator->load("harbour-babbage." + locale,
+  QScopedPointer<QGuiApplication> app{SailfishApp::application(argc, argv)};
+  app->setApplicationName("harbour-babbage");
+  app->setOrganizationDomain("rabauke");
+
+  const QString locale{QLocale::system().name()};
+  QTranslator translator;
+  if ((translator.load("harbour-babbage." + locale,
                         "/usr/share/harbour-babbage/translations")))
-    app->installTranslator(translator);
+    app->installTranslator(&translator);
+
   qmlRegisterType<calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
-  QQuickView *view{SailfishApp::createView()};
+
+  QScopedPointer<QQuickView> view{SailfishApp::createView()};
   view->setSource(SailfishApp::pathTo("qml/harbour-babbage.qml"));
   view->show();
   return app->exec();
