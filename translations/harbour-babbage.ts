@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Babbage is a simple pocket calculator with a scientific calculator mode.  The scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^), factorial (!), and arc degee (°) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.  The degree operator ° can also be entered as deg preceded by a space.</translation>
+        <translation>Babbage is a simple pocket calculator with a scientific calculator mode.  The scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^), factorial (!), and arc degee (°) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.</translation>
     </message>
     <message>
         <source>List of functions</source>
@@ -57,6 +57,18 @@
     <message>
         <source>Trigonometric functions</source>
         <translation>Trigonometric functions</translation>
+    </message>
+    <message>
+        <source>Units of angle conversion</source>
+        <translation>Units of angle conversion</translation>
+    </message>
+    <message>
+        <source>deg_description</source>
+        <translation>Converts argument given in radian into arc degree.</translation>
+    </message>
+    <message>
+        <source>rad_description</source>
+        <translation>Converts argument given in arc degree into radian.</translation>
     </message>
     <message>
         <source>sin_description</source>

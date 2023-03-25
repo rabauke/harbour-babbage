@@ -49,12 +49,6 @@ int main(int argc, char *argv[]) {
   app->setApplicationName("harbour-babbage");
   app->setOrganizationDomain("rabauke");
 
-  const QString locale{QLocale::system().name()};
-  QTranslator translator;
-  if ((translator.load("harbour-babbage." + locale,
-                        "/usr/share/harbour-babbage/translations")))
-    app->installTranslator(&translator);
-
   qmlRegisterType<calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
 
   QScopedPointer<QQuickView> view{SailfishApp::createView()};

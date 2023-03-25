@@ -9,7 +9,7 @@
     </message>
     <message>
         <source>_discription_</source>
-        <translation>Babbage es una calculadora de bolsillo simple con opción de calculadora científica.  La calculadora científica analiza las expresiones matemáticas que usan una notación estándar.  Los operadores matemáticos de suma (+), resta (-), multiplicación (*), división (/), exponenciación (^), factorial (!) y grados de ángulo (º) son compatibles.  Es posible usar distintas funciones matemáticas.  Los resultados se pueden asignar a variables.  Los nombres de variables se componen de símbolos alfanuméricos y empiezan con letra. Se usa pi para π y e para el número de Euler. También es posible usar deg precedido de un espacio en lugar del operador de grado º.</translation>
+        <translation>Babbage es una calculadora de bolsillo simple con opción de calculadora científica.  La calculadora científica analiza las expresiones matemáticas que usan una notación estándar.  Los operadores matemáticos de suma (+), resta (-), multiplicación (*), división (/), exponenciación (^), factorial (!) y grados de ángulo (º) son compatibles.  Es posible usar distintas funciones matemáticas.  Los resultados se pueden asignar a variables.  Los nombres de variables se componen de símbolos alfanuméricos y empiezan con letra. Se usa pi para π y e para el número de Euler.</translation>
     </message>
     <message>
         <source>List of functions</source>
