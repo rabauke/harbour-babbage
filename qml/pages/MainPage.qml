@@ -36,6 +36,10 @@ import "../components"
 Page {
   id: main_page
 
+  function format(variable, formula, result, error) {
+    return variable !== "" && formula === result ? variable + " = " + result : ((variable !== "" ? variable + " = " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
+  }
+
   SilicaListView {
     anchors.fill: parent
     id: listView
@@ -68,7 +72,7 @@ Page {
         id: headerComponentItem
         anchors.horizontalCenter: main_page.Center
         anchors.top: parent.Top
-        height: pageHeader.height+formula.height
+        height: pageHeader.height + formula.height
         width: main_page.width
         PageHeader {
           id: pageHeader
@@ -81,13 +85,13 @@ Page {
           text: ""
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
-          EnterKey.enabled: text.length>0
+          EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
-            var res=calculator.calculate(formula.text)
+            var res = calculator.calculate(formula.text)
             resultsListModel.insert(0, res)
-            formula.text=res.formula
+            formula.text = res.variable !== "" ? res.variable + " = " + res.formula : res.formula
             variablesListModel.clear()
-            var variables=calculator.getVariables()
+            var variables = calculator.getVariables()
             for (var i in variables)
               variablesListModel.append({variable: variables[i]})
           }
@@ -102,30 +106,30 @@ Page {
     delegate: ListItem {
       width: parent.width
       contentWidth: parent.width
-      contentHeight: result_text.height+Theme.paddingLarge
+      contentHeight: result_text.height + Theme.paddingLarge
       menu: contextMenu
       Text {
         id: result_text
         focus: false
         x: Theme.horizontalPageMargin
-        y: 0.5*Theme.paddingLarge
-        width: parent.width-2*Theme.horizontalPageMargin
+        y: 0.5 * Theme.paddingLarge
+        width: parent.width - 2 * Theme.horizontalPageMargin
         color: Theme.primaryColor
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: formula+" = "+result
+        text: format(variable, formula, result, error)
       }
       Component {
         id: contextMenu
         ContextMenu {
           MenuItem {
             text: qsTr("Copy result")
-            onClicked: Clipboard.text=resultsListModel.get(model.index).result
+            onClicked: Clipboard.text = resultsListModel.get(model.index).result
           }
           MenuItem {
             text: qsTr("Copy formula")
-            onClicked: Clipboard.text=resultsListModel.get(model.index).formula
+            onClicked: Clipboard.text = resultsListModel.get(model.index).formula
           }
           MenuItem {
             text: qsTr("Remove output")
@@ -138,9 +142,9 @@ Page {
   }
 
   onStatusChanged: {
-    if (status==PageStatus.Active) {
+    if (status === PageStatus.Active) {
       variablesListModel.clear()
-      var variables=calculator.getVariables()
+      var variables = calculator.getVariables()
       for (var i in variables)
         variablesListModel.append({variable: variables[i]})
       pageStack.pushAttached(Qt.resolvedUrl("Variables.qml"))

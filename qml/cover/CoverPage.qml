@@ -33,10 +33,14 @@ import Sailfish.Silica 1.0
 
 CoverBackground {
 
+  function format(variable, formula, result) {
+      return (variable !== "") && (formula === result) ? variable + " = " + result : ((variable !== "" ? variable + " = " : "") + formula + " = " + result)
+  }
+
   Image {
     source: "/usr/share/harbour-babbage/images/cover_background.png"
     x: 0
-    y: parent.height-parent.width
+    y: parent.height - parent.width
     z: -1
     opacity: 0.125
     width: parent.width
@@ -59,7 +63,7 @@ CoverBackground {
     }
 
     Label {
-      text: resultsListModel.count>0 ? resultsListModel.get(0).formula+" = "+resultsListModel.get(0).result : ""
+      text: resultsListModel.count > 0 ? format(resultsListModel.get(0).variable, resultsListModel.get(0).formula, resultsListModel.get(0).result) : ""
       font.pixelSize : Theme.fontSizeSmall
       color: Theme.secondaryColor
       width: parent.width

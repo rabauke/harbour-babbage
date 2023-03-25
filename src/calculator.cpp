@@ -74,11 +74,12 @@ QVariantMap calculator::calculate(QString formula) {
       .replace("Γ", "Gamma")
       .replace("γ", "gamma");
   double res{std::numeric_limits<double>::quiet_NaN()};
-  QString err;
+  QString error;
+  QString var_name;
   try {
     auto match{assignment_regex.match(formula_plain)};
     if (match.hasMatch()) {
-      QString var_name{match.capturedRef(1).toString()};
+      var_name = match.capturedRef(1).toString();
       if (var_name == "pi" or var_name == "e")
         throw std::runtime_error{"protected variable"};
       res = P.value(match.capturedRef(2).toString(), V);
@@ -86,7 +87,7 @@ QVariantMap calculator::calculate(QString formula) {
     } else
       res = P.value(formula_plain, V);
   } catch (std::exception &e) {
-    err = e.what();
+    error = e.what();
   }
   QString res_str{typeset(res)};
   formula.replace(" ", "")
@@ -104,12 +105,13 @@ QVariantMap calculator::calculate(QString formula) {
       .replace(gamma_regex, "γ")
       .replace("  ", " ")
       .replace(leading_spaces_regex, "");
+  if (auto match{assignment_regex.match(formula)}; match.hasMatch())
+    formula = match.capturedRef(2).toString();
   QVariantMap res_map;
   res_map.insert("formula", formula);
-  if (err.isEmpty())
-    res_map.insert("result", res_str);
-  else
-    res_map.insert("result", res_str + " (" + err + ")");
+  res_map.insert("variable", var_name);
+  res_map.insert("result", res_str);
+  res_map.insert("error", error);
   return res_map;
 }
 
