@@ -5,6 +5,7 @@
 #include <cmath>
 #include <QtDebug>
 #include <QStringList>
+#include <QSettings>
 
 
 static QString typeset(double x) {
@@ -19,14 +20,41 @@ static QString typeset(double x) {
 }
 
 
-void calculator::init_variables() {
-  V.insert("pi", constants::pi);
-  V.insert("e", constants::e);
+calculator::calculator(QObject *parent) : QObject(parent) {
+  static const QRegularExpression variable_regex{R"(^[[:alpha:]]\w*$)"};
+
+  QSettings settings;
+  settings.beginGroup("variables");
+  const auto variables{settings.allKeys()};
+  for (const auto &variable : variables) {
+    if (variable_regex.match(variable).hasMatch()) {
+      auto value{settings.value(variable)};
+      bool success;
+      const auto valueAsDouble{value.toDouble(&success)};
+      if (success)
+        V.insert(variable, valueAsDouble);
+    }
+  }
+  settings.endGroup();
+
+  init_variables();
 }
 
 
-calculator::calculator(QObject *parent) : QObject(parent) {
-  init_variables();
+calculator::~calculator() {
+  QSettings settings;
+  settings.beginGroup("variables");
+  settings.remove("");
+  for (const auto &variable : V)
+    settings.setValue(variable.first, variable.second);
+  settings.endGroup();
+  settings.sync();
+}
+
+
+void calculator::init_variables() {
+  V.insert("pi", constants::pi);
+  V.insert("e", constants::e);
 }
 
 
