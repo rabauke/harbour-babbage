@@ -42,13 +42,13 @@ Page {
     delegate: ListItem {
       width: parent.width
       contentWidth: parent.width
-      contentHeight: result_text.height+Theme.paddingLarge
+      contentHeight: result_text.height + Theme.paddingLarge
       menu: contextMenu
       Text {
         id: result_text
         x: Theme.horizontalPageMargin
-        y: 0.5*Theme.paddingLarge
-        width: parent.width-2*Theme.horizontalPageMargin
+        y: 0.5 * Theme.paddingLarge
+        width: parent.width - 2 * Theme.horizontalPageMargin
         color: Theme.primaryColor
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
@@ -59,20 +59,20 @@ Page {
         id: contextMenu
         ContextMenu {
           MenuItem {
+            text: qsTr("Copy variable")
+            onClicked: Clipboard.text = variablesListModel.get(model.index).variable
+          }
+          MenuItem {
+            text: qsTr("Copy value")
+            onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[1]
+          }
+          MenuItem {
             text: qsTr("Clear variable")
             onClicked: {
               calculator.removeVariable(model.index)
               variablesListModel.remove(model.index)
             }
-            visible: variable.substr(0, 2)!="π " && variable.substr(0, 2)!="e "
-          }
-          MenuItem {
-            text: qsTr("Copy variable")
-            onClicked: Clipboard.text=variablesListModel.get(model.index).variable
-          }
-          MenuItem {
-            text: qsTr("Copy value")
-            onClicked: Clipboard.text=variablesListModel.get(model.index).variable.split(" = ")[1]
+            visible: variable.substr(0, 2) !== "π " && variable.substr(0, 2) !== "e "
           }
         }
       }

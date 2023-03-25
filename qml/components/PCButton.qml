@@ -18,19 +18,18 @@ MouseArea {
       pressTimer.start()
     }
   }
+
   onCanceled: {
-    button.DragFilter.end()
     pressTimer.stop()
   }
-  onPreventStealingChanged: if (preventStealing) button.DragFilter.end()
 
   height: Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall
-  implicitWidth: Math.max(preferredWidth, buttonText.width+Theme.paddingLarge)
+  implicitWidth: Math.max(preferredWidth, buttonText.width + Theme.paddingLarge)
 
   Rectangle {
     anchors {
       fill: parent
-      topMargin: Screen.sizeCategory >= Screen.Large ? (button.height-Theme.itemSizeMedium)/2 : (button.height-Theme.itemSizeExtraSmall)/2
+      topMargin: Screen.sizeCategory >= Screen.Large ? (button.height - Theme.itemSizeMedium) / 2 : (button.height - Theme.itemSizeExtraSmall) / 2
 
       bottomMargin: anchors.topMargin
     }
