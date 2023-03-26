@@ -327,5 +327,9 @@
         <source>Clear variable</source>
         <translation>Borrar variable</translation>
     </message>
+    <message>
+        <source>Copy variable name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

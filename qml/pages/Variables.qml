@@ -63,6 +63,10 @@ Page {
             onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[1]
           }
           MenuItem {
+            text: qsTr("Copy variable name")
+            onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[0]
+          }
+          MenuItem {
             text: qsTr("Copy variable")
             onClicked: Clipboard.text = variablesListModel.get(model.index).variable
           }
