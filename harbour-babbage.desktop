@@ -16,3 +16,8 @@ Name[pt]=Calculadora
 Name[fi]=Tietokone
 Name[se]=Dator
 Name[ru]=Калькуля́тор
+
+[X-Sailjail]
+Permissions=UserDirs
+OrganizationName=rabauke
+ApplicationName=harbour-babbage

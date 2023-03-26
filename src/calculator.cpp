@@ -6,24 +6,14 @@
 #include <QtDebug>
 #include <QStringList>
 #include <QSettings>
-
-
-static QString typeset(double x) {
-  static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
-  static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
-
-  return QString::number(x, 'g', 12)
-      .replace(pos_exponent_regex, R"( · 10^\1)")
-      .replace(neg_exponent_regex, R"( · 10^(−\1))")
-      .replace("-", "−")
-      .replace("inf", "∞");
-}
+#include <QStandardPaths>
+#include <QCoreApplication>
 
 
 calculator::calculator(QObject *parent) : QObject(parent) {
   static const QRegularExpression variable_regex{R"(^[[:alpha:]]\w*$)"};
 
-  QSettings settings;
+  QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   const auto variables{settings.allKeys()};
   for (const auto &variable : variables) {
@@ -42,7 +32,7 @@ calculator::calculator(QObject *parent) : QObject(parent) {
 
 
 calculator::~calculator() {
-  QSettings settings;
+  QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   settings.remove("");
   for (const auto &variable : V)
@@ -141,4 +131,22 @@ QVariantList calculator::getVariables() const {
     list.append(name_str + " = " + value_str);
   }
   return list;
+}
+
+
+QString calculator::typeset(double x) {
+  static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
+  static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
+
+  return QString::number(x, 'g', 12)
+      .replace(pos_exponent_regex, R"( · 10^\1)")
+      .replace(neg_exponent_regex, R"( · 10^(−\1))")
+      .replace("-", "−")
+      .replace("inf", "∞");
+}
+
+
+QString calculator::get_settings_path() {
+  return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/" +
+         QCoreApplication::applicationName() + ".conf";
 }

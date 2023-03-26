@@ -14,6 +14,9 @@ class calculator : public QObject {
   math_parser::arithmetic_parser::var_map_t V;
   void init_variables();
 
+  static QString typeset(double x);
+  static QString get_settings_path();
+
 public:
   explicit calculator(QObject *parent = nullptr);
   virtual ~calculator();
