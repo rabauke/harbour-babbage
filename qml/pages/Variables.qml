@@ -53,22 +53,22 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: variable
+        text: variable["variable"] + " = " + variable["value"]
       }
       Component {
         id: contextMenu
         ContextMenu {
           MenuItem {
             text: qsTr("Copy value")
-            onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[1]
+            onClicked: Clipboard.text = variable["value"]
           }
           MenuItem {
             text: qsTr("Copy variable name")
-            onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[0]
+            onClicked: Clipboard.text = variable["variable"]
           }
           MenuItem {
             text: qsTr("Copy variable")
-            onClicked: Clipboard.text = variablesListModel.get(model.index).variable
+            onClicked: Clipboard.text = variable["variable"] + " = " + variable["value"]
           }
           MenuItem {
             text: qsTr("Clear variable")
@@ -76,7 +76,7 @@ Page {
               calculator.removeVariable(model.index)
               variablesListModel.remove(model.index)
             }
-            visible: variable.substr(0, 2) !== "π " && variable.substr(0, 2) !== "e "
+            visible: !variable.protected
           }
         }
       }

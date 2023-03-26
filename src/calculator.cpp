@@ -128,7 +128,12 @@ QVariantList calculator::getVariables() const {
     QString name_str{x.first};
     if (name_str == "pi")
       name_str = "π";
-    list.append(name_str + " = " + value_str);
+    bool is_protected{name_str == "π" or name_str == "e"};
+    QMap<QString, QVariant> map;
+    map.insert("variable", name_str);
+    map.insert("value", value_str);
+    map.insert("protected", is_protected);
+    list.append(map);
   }
   return list;
 }
