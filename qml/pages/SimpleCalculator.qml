@@ -84,7 +84,7 @@ Page {
 
       text: ""
       horizontalAlignment: {
-        contentWidth < width ? Text.AlignLeft : Text.AlignRight;
+        text == "" || contentWidth < width ? Text.AlignLeft : Text.AlignRight;
       }
       font.pointSize: Screen.sizeCategory >= Screen.Large ? Theme.fontSizeMedium : Theme.fontSizeSmall
       color: Theme.primaryColor
