@@ -59,12 +59,12 @@ Page {
         id: contextMenu
         ContextMenu {
           MenuItem {
-            text: qsTr("Copy variable")
-            onClicked: Clipboard.text = variablesListModel.get(model.index).variable
-          }
-          MenuItem {
             text: qsTr("Copy value")
             onClicked: Clipboard.text = variablesListModel.get(model.index).variable.split(" = ")[1]
+          }
+          MenuItem {
+            text: qsTr("Copy variable")
+            onClicked: Clipboard.text = variablesListModel.get(model.index).variable
           }
           MenuItem {
             text: qsTr("Clear variable")
