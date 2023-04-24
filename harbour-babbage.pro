@@ -18,7 +18,15 @@ CONFIG += sailfishapp
 QMAKE_CXXFLAGS += -std=c++17
 
 SOURCES += src/harbour-babbage.cpp \
-    src/calculator.cpp
+        src/calculator.cpp \
+
+HEADERS += \
+    src/constants.hpp \
+    src/math_parser.hpp \
+    src/calculator.hpp \
+    src/special_functions.hpp \
+    src/extern/exprtk.hpp \
+
 
 OTHER_FILES += qml/harbour-babbage.qml \
     qml/cover/CoverPage.qml \
@@ -40,6 +48,8 @@ TRANSLATIONS += translations/harbour-babbage.ts \
   translations/harbour-babbage-de.ts
 
 DISTFILES += \
+    qml/pages/Exprtk.qml \
+    qml/pages/ExprtkFunctions.qml \
     qml/pages/MainPage.qml \
     qml/pages/About.qml \
     qml/pages/Functions.qml \
@@ -53,9 +63,3 @@ DISTFILES += \
 images.files = images/cover_background.png
 images.path = /usr/share/harbour-babbage/images
 INSTALLS += images
-
-HEADERS += \
-    src/constants.hpp \
-    src/math_parser.hpp \
-    src/calculator.hpp \
-    src/special_functions.hpp

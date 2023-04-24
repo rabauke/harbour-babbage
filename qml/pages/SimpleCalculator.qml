@@ -53,16 +53,22 @@ Page {
         onClicked: pageStack.replace(Qt.resolvedUrl("MainPage.qml"))
       }
       MenuItem {
-        text: qsTr("Get memory")
-        onClicked: formula.text = formula.text + simpleCalculator.memory
+        text: qsTr("Programmable calculator")
+        onClicked: pageStack.replace(Qt.resolvedUrl("Exprtk.qml"))
       }
-      MenuItem {
-        text: qsTr("Save result")
-        onClicked: {
-          Clipboard.text = result.text.substr(2)
-          simpleCalculator.memory = result.text.substr(2)
+    }
+    PushUpMenu {
+        MenuItem {
+          text: qsTr("Get memory")
+          onClicked: formula.text = formula.text + simpleCalculator.memory
         }
-      }
+        MenuItem {
+          text: qsTr("Save result")
+          onClicked: {
+            Clipboard.text = result.text.substr(2)
+            simpleCalculator.memory = result.text.substr(2)
+          }
+        }
     }
 
     PageHeader {

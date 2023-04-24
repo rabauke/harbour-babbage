@@ -21,6 +21,7 @@ public:
   explicit calculator(QObject *parent = nullptr);
   virtual ~calculator();
   Q_INVOKABLE QVariantMap calculate(QString formula);
+  Q_INVOKABLE QVariantMap exprtk(QString formula);
   Q_INVOKABLE void removeVariable(int);
   Q_INVOKABLE void clear();
   Q_INVOKABLE QVariantList getVariables() const;

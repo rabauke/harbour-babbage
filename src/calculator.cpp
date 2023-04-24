@@ -1,3 +1,7 @@
+//C++ Mathematical Expression Toolkit Library
+#include "extern/exprtk.hpp"
+#include <QDebug>
+
 #include "constants.hpp"
 #include "calculator.hpp"
 #include "math_parser.hpp"
@@ -103,6 +107,63 @@ QVariantMap calculator::calculate(QString formula) {
   res_map.insert("result", res_str);
   res_map.insert("error", error);
   return res_map;
+}
+
+
+//http://www.partow.net/programming/exprtk/index.html
+QVariantMap calculator::exprtk(QString formula){
+    //convert to std::String
+    QString error;
+    QString res_str;
+    QVariantMap res_map;
+
+    /*static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*\\:=\s*(.*))"};
+
+    QString var_name;
+    double res{std::numeric_limits<double>::quiet_NaN()};
+    try {
+      auto match{assignment_regex.match(formula)};
+      if (match.hasMatch()) {
+        var_name = match.capturedRef(1).toString();
+        res = P.value(match.capturedRef(2).toString(), V);
+        V[var_name] = res;
+      } else
+        res = P.value(formula, V);
+    } catch (std::exception &e) {
+      error = e.what();
+    }*/
+
+    const std::string expressionStr = formula.toStdString();
+
+    //numeric type
+    typedef double T;
+    typedef exprtk::expression<T> expression_t;
+    typedef exprtk::parser<T> parser_t;
+    // not used yet
+    //typedef exprtk::symbol_table<T> symbol_table_t;
+
+    //instantiate classes
+    expression_t expression;
+    parser_t parser;
+
+    if(!parser.compile(expressionStr, expression)){
+        //construct error Msg
+        res_str = "";
+        qDebug() << "425: " << QString::fromStdString(parser.error().c_str());
+        error.append(QString::fromStdString(parser.error().c_str()));
+    }
+    else{
+        T result = expression.value();
+        qDebug() << "425: " << double(result);
+        res_str = typeset(result);
+    }
+
+    res_map.insert("formula", formula);
+    res_map.insert("variable", "");//var_name);
+    res_map.insert("result", res_str);
+    res_map.insert("error", error);
+    return res_map;
+
 }
 
 

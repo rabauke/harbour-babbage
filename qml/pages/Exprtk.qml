@@ -37,8 +37,10 @@ Page {
   id: main_page
 
   function format(variable, formula, result, error) {
-    return variable !== "" && formula === result ? variable + " = " + result : ((variable !== "" ? variable + " = " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
+      return result + " " + error
+    //return variable !== "" && formula === result ? variable + " := " + result : ((variable !== "" ? variable + " := " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
   }
+  property var result
 
   SilicaListView {
     anchors.fill: parent
@@ -48,7 +50,7 @@ Page {
     VerticalScrollDecorator { flickable: listView }
 
     PullDownMenu {
-      RemorsePopup { id: remorse_output }
+      //RemorsePopup { id: remorse_output }
       MenuItem {
         text: qsTr("About Babbage")
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
@@ -58,8 +60,8 @@ Page {
         onClicked: pageStack.replace(Qt.resolvedUrl("SimpleCalculator.qml"))
       }
       MenuItem {
-        text: qsTr("Programmable calculator")
-        onClicked: pageStack.replace(Qt.resolvedUrl("Exprtk.qml"))
+        text: qsTr("Scientific calculator")
+        onClicked: pageStack.replace(Qt.resolvedUrl("MainPage.qml"))
       }
       MenuItem {
         text: qsTr("Remove all output")
@@ -76,28 +78,47 @@ Page {
         id: headerComponentItem
         anchors.horizontalCenter: main_page.Center
         anchors.top: parent.Top
-        height: pageHeader.height + formula.height
+        height: pageHeader.height + formula.height + vars.height
         width: main_page.width
         PageHeader {
           id: pageHeader
-          title: qsTr("Scientific calculator")
+          title: qsTr("Programmable calculator")
+        }
+        QueryField {
+          id: vars
+          anchors.top: pageHeader.bottom
+          width: listView.width
+          text: "var a:=0; var b:=2; var v[3]:={5,10,15};"
+          placeholderText: qsTr("Variables")
+          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
+          EnterKey.enabled: text.length > 0
+          EnterKey.onClicked: {
+            var res = calculator.exprtk(vars.text +" " + formula.text)
+            result = res.result
+            resultsListModel.insert(0, res)
+            //variablesListModel.clear()
+            //var variables = calculator.getVariables()
+            //for (var i in variables)
+            //  variablesListModel.append({variable: variables[i]})
+          }
         }
         QueryField {
           id: formula
-          anchors.top: pageHeader.bottom
+          anchors.top: vars.bottom
           width: listView.width
-          text: ""
+          text: "for ( a ; a < v[] ; a += 1) { b+=v[a]; }"
           placeholderText: qsTr("Mathematical expression")
-          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
+          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
-            var res = calculator.calculate(formula.text)
+            var res = calculator.exprtk(vars.text +" " + formula.text)
+            result = res.result
             resultsListModel.insert(0, res)
-            formula.text = res.variable !== "" ? res.variable + " = " + res.formula : res.formula
-            variablesListModel.clear()
-            var variables = calculator.getVariables()
-            for (var i in variables)
-              variablesListModel.append({variable: variables[i]})
+            //formula.text = res.variable !== "" ? res.variable + " := " + res.formula : res.formula
+            //variablesListModel.clear()
+            //var variables = calculator.getVariables()
+            //for (var i in variables)
+            //  variablesListModel.append({variable: variables[i]})
           }
         }
       }
@@ -123,6 +144,7 @@ Page {
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
         text: format(variable, formula, result, error)
+        //text: result
       }
       Component {
         id: contextMenu
@@ -147,16 +169,18 @@ Page {
 
   onStatusChanged: {
     if (status === PageStatus.Active) {
+        /*
       variablesListModel.clear()
       var variables = calculator.getVariables()
       for (var i in variables)
         variablesListModel.append({variable: variables[i]})
       pageStack.pushAttached(Qt.resolvedUrl("Variables.qml"))
+      */
     }
   }
 
-  //Component.onDestruction: {
-  //  console.log("MainPage off")
-  //}
+  Component.onDestruction: {
+    //console.log("MainPage off")
+  }
 
 }
