@@ -44,6 +44,11 @@ import "pages"
 ApplicationWindow {
   id: app_window
 
+  QtObject {
+      id: navigationState
+      property string name
+  }
+
   Calculator {
     id: calculator
   }

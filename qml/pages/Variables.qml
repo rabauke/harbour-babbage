@@ -68,7 +68,13 @@ Page {
           }
           MenuItem {
             text: qsTr("Copy variable")
-            onClicked: Clipboard.text = variable["variable"] + " = " + variable["value"]
+            onClicked: {
+                if (navigationState.name === "exprtk") {
+                    Clipboard.text = "var " + variable["variable"] + " := " + variable["value"] + " ;"
+                } else {
+                    Clipboard.text = variable["variable"] + " = " + variable["value"]
+                }
+            }
           }
           MenuItem {
             text: qsTr("Clear variable")
@@ -83,5 +89,7 @@ Page {
     }
 
   }
-
+  Component.onCompleted: {
+      console.log(navigationState.name)
+  }
 }

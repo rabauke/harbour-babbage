@@ -36,11 +36,39 @@ import "../components"
 Page {
   id: main_page
 
-  function format(variable, formula, result, error) {
+  property var varstxt
+  property var prefixed: "var pi := 3.141592653589793238462643383279502; var e := 2.71828182846; "
+
+  function format(result, error) {
       return result + " " + error
     //return variable !== "" && formula === result ? variable + " := " + result : ((variable !== "" ? variable + " := " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
   }
-  property var result
+
+  /* c++ precre variant
+     static const QRegularExpression assignment_regex{R"(var\s*([[:alpha:]]\w*)\s*:=\s*([[:digit:]]*);)"};
+      We shift the variable handling to javascript.
+  */
+
+  function getVariables() {
+      variablesListModel.clear()
+      // get the internal vars common to all
+      var variables = calculator.getVariables()
+      for (var i in variables)
+        variablesListModel.append({variable: variables[i]})
+
+      const regex = /var\s*(\w*)\s*:=\s*(\d*);/gm;
+      var m
+      while ((m = regex.exec(varstxt)) !== null) {
+          // This is necessary to avoid infinite loops with zero-width matches
+          if (m.index === regex.lastIndex) {
+              regex.lastIndex++;
+          }
+          // The result can be accessed through the `m`-variable.
+          // add our special cases
+          variablesListModel.append({variable: {"variable": m[1], "value": m[2] } })
+      }
+
+  }
 
   SilicaListView {
     anchors.fill: parent
@@ -63,13 +91,17 @@ Page {
         text: qsTr("Scientific calculator")
         onClicked: pageStack.replace(Qt.resolvedUrl("MainPage.qml"))
       }
-      MenuItem {
-        text: qsTr("Remove all output")
-        onClicked: remorse_output.execute(qsTr("Removing all output"),
-                                          function() {
-                                            resultsListModel.clear()
-                                          } )
-      }
+
+    }
+    PushUpMenu {
+        MenuItem {
+            RemorsePopup { id: remorse_variables }
+            text: qsTr("Remove all output")
+            onClicked: remorse_output.execute(qsTr("Removing all output"),
+                                              function() {
+                                                  resultsListModel.clear()
+                                              } )
+        }
     }
 
     Component {
@@ -93,13 +125,12 @@ Page {
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
-            var res = calculator.exprtk(vars.text +" " + formula.text)
+            varstxt = text
+            var txt = prefixed + vars.text + " " + formula.text
+            var res = calculator.exprtk(txt)
             result = res.result
             resultsListModel.insert(0, res)
-            //variablesListModel.clear()
-            //var variables = calculator.getVariables()
-            //for (var i in variables)
-            //  variablesListModel.append({variable: variables[i]})
+            getVariables()
           }
         }
         QueryField {
@@ -111,14 +142,14 @@ Page {
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
-            var res = calculator.exprtk(vars.text +" " + formula.text)
-            result = res.result
-            resultsListModel.insert(0, res)
-            //formula.text = res.variable !== "" ? res.variable + " := " + res.formula : res.formula
-            //variablesListModel.clear()
-            //var variables = calculator.getVariables()
-            //for (var i in variables)
-            //  variablesListModel.append({variable: variables[i]})
+              var txt = prefixed + vars.text + " " + formula.text
+              var res = calculator.exprtk(txt)
+              // clear our form to not polute other views
+              // but keep results
+              res.formula = ""
+              res.variable = ""
+              resultsListModel.insert(0, res)
+              getVariables()
           }
         }
       }
@@ -143,7 +174,7 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: format(variable, formula, result, error)
+        text: format(result, error)
         //text: result
       }
       Component {
@@ -169,18 +200,17 @@ Page {
 
   onStatusChanged: {
     if (status === PageStatus.Active) {
-        /*
-      variablesListModel.clear()
-      var variables = calculator.getVariables()
-      for (var i in variables)
-        variablesListModel.append({variable: variables[i]})
+      getVariables()
       pageStack.pushAttached(Qt.resolvedUrl("Variables.qml"))
-      */
     }
   }
 
   Component.onDestruction: {
     //console.log("MainPage off")
+  }
+  Component.onCompleted: {
+       navigationState.name = "exprtk"
+      //console.log(navigationState.name)
   }
 
 }
