@@ -126,11 +126,11 @@ Page {
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
             varstxt = text
-            var txt = prefixed + vars.text + " " + formula.text
-            var res = calculator.exprtk(txt)
-            result = res.result
-            resultsListModel.insert(0, res)
-            getVariables()
+            //var txt = prefixed + vars.text + " " + formula.text
+            //var res = calculator.exprtk(txt)
+            //result = res.result
+            //resultsListModel.insert(0, res)
+            //getVariables()
           }
         }
         QueryField {
@@ -142,6 +142,7 @@ Page {
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
+              varstxt = vars.text
               var txt = prefixed + vars.text + " " + formula.text
               var res = calculator.exprtk(txt)
               // clear our form to not polute other views
