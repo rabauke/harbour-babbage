@@ -100,6 +100,18 @@ Page {
               variablesListModel.append({variable: variables[i]})
           }
         }
+        IconButton {
+            id: help
+            width: icon.width
+            height: icon.height
+            icon.source: "image://theme/icon-m-question"
+            anchors {
+              top: formula.bottom
+              right: parent.right
+              rightMargin: Theme.horizontalPageMargin
+            }
+            onClicked:  pageStack.push(Qt.resolvedUrl("Functions.qml"))
+        }
       }
     }
 

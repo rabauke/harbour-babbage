@@ -48,8 +48,9 @@ TRANSLATIONS += translations/harbour-babbage.ts \
   translations/harbour-babbage-de.ts
 
 DISTFILES += \
+    qml/components/ExprtkMenu.qml \
+    qml/components/en_US-exprtk-functions.json \
     qml/pages/Exprtk.qml \
-    qml/pages/ExprtkFunctions.qml \
     qml/pages/MainPage.qml \
     qml/pages/About.qml \
     qml/pages/Functions.qml \

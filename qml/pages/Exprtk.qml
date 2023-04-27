@@ -147,11 +147,24 @@ Page {
               var res = calculator.exprtk(txt)
               // clear our form to not polute other views
               // but keep results
-              res.formula = ""
+              //res.formula = ""
               res.variable = ""
               resultsListModel.insert(0, res)
               getVariables()
           }
+
+        }
+        IconButton {
+            id: help
+            width: icon.width
+            height: icon.height
+            icon.source: "image://theme/icon-m-question"
+            anchors {
+              top: formula.bottom
+              right: parent.right
+              rightMargin: Theme.horizontalPageMargin
+            }
+            onClicked:  pageStack.push(Qt.resolvedUrl("../components/ExprtkMenu.qml"))
         }
       }
     }

@@ -62,6 +62,10 @@
         <source>Variables</source>
         <translation type="unfinished">Variables</translation>
     </message>
+    <message>
+        <source>References</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExprtkFunctions</name>
@@ -284,6 +288,17 @@
     <message>
         <source>median_description</source>
         <translation type="unfinished">Mean of the given arguments.</translation>
+    </message>
+</context>
+<context>
+    <name>ExprtkMenu</name>
+    <message>
+        <source>Operators and Functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy value</source>
+        <translation type="unfinished">Copy value</translation>
     </message>
 </context>
 <context>
