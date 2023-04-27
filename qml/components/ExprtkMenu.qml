@@ -22,8 +22,8 @@ Page {
   function fetchLocal(){
       debug = false;
       console.log(locale.name)
-      var filenmae = locale.name + "-exprtk-functions.json"
-      loadJSON("en-exprtk-functions.json", function(doc) {
+      var filename = locale.name + "-exprtk-functions.json"
+      loadJSON(filename, function(doc) {
           var response = JSON.parse(doc.responseText);
           functionsListModel.clear();
           //funcs = response;

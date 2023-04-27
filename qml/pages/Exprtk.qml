@@ -37,7 +37,7 @@ Page {
   id: main_page
 
   property var varstxt
-  property var prefixed: "var pi := 3.141592653589793238462643383279502; var e := 2.71828182846; "
+  property var prefixed: "var pi := 3.14159265358979; var e := 2.71828182846; "
 
   function format(result, error) {
       return result + " " + error
@@ -78,7 +78,7 @@ Page {
     VerticalScrollDecorator { flickable: listView }
 
     PullDownMenu {
-      //RemorsePopup { id: remorse_output }
+      RemorsePopup { id: remorse_output }
       MenuItem {
         text: qsTr("About Babbage")
         onClicked: pageStack.push(Qt.resolvedUrl("About.qml"))
@@ -110,7 +110,8 @@ Page {
         id: headerComponentItem
         anchors.horizontalCenter: main_page.Center
         anchors.top: parent.Top
-        height: pageHeader.height + formula.height + vars.height
+        anchors.bottomMargin: 3 * Theme.paddingLarge
+        height: pageHeader.height + formula.height + vars.height + 3 * Theme.paddingLarge
         width: main_page.width
         PageHeader {
           id: pageHeader
@@ -184,6 +185,8 @@ Page {
         x: Theme.horizontalPageMargin
         y: 0.5 * Theme.paddingLarge
         width: parent.width - 2 * Theme.horizontalPageMargin
+        anchors.topMargin: Theme.paddingMedium
+        anchors.bottomMargin: Theme.paddingMedium
         color: Theme.primaryColor
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium

@@ -76,7 +76,7 @@ Page {
         id: headerComponentItem
         anchors.horizontalCenter: main_page.Center
         anchors.top: parent.Top
-        height: pageHeader.height + formula.height
+        height: pageHeader.height + formula.height + help.height
         width: main_page.width
         PageHeader {
           id: pageHeader
@@ -127,6 +127,8 @@ Page {
       Text {
         id: result_text
         focus: false
+        anchors.topMargin: Theme.paddingMedium
+        anchors.bottomMargin: Theme.paddingMedium
         x: Theme.horizontalPageMargin
         y: 0.5 * Theme.paddingLarge
         width: parent.width - 2 * Theme.horizontalPageMargin
