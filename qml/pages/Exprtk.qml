@@ -37,7 +37,6 @@ Page {
   id: main_page
 
   property var varstxt
-  property var prefixed: "var pi := 3.14159265358979; var e := 2.71828182846; "
 
   function format(result, error) {
       return result + " " + error
@@ -49,6 +48,7 @@ Page {
       We shift the variable handling to javascript.
   */
 
+  /* add to app wide list to strip our syntax */
   function getVariables() {
       variablesListModel.clear()
       // get the internal vars common to all
@@ -67,9 +67,27 @@ Page {
           // add our special cases
           variablesListModel.append({variable: {"variable": m[1], "value": m[2] } })
       }
-
   }
-
+  /* strip vars from the result formula to present */
+  function stripVariables() {
+      /*
+      variablesListModel.clear()
+      var variables = calculator.getVariables()
+      for (var i in variables)
+        variablesListModel.append({variable: variables[i]})
+      */
+      const regex = /var\s*(\w*)\s*:=\s*(\d*);/gm;
+      var m
+      while ((m = regex.exec(varstxt)) !== null) {
+          // This is necessary to avoid infinite loops with zero-width matches
+          if (m.index === regex.lastIndex) {
+              regex.lastIndex++;
+          }
+          // The result can be accessed through the `m`-variable.
+          // add our special cases
+          variablesListModel.append({variable: {"variable": m[1], "value": m[2] } })
+      }
+  }
   SilicaListView {
     anchors.fill: parent
     id: listView
@@ -127,11 +145,11 @@ Page {
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
             varstxt = text
-            //var txt = prefixed + vars.text + " " + formula.text
-            //var res = calculator.exprtk(txt)
+            var txt = text + " " + formula.text
+            var res = calculator.exprtk(txt)
             //result = res.result
-            //resultsListModel.insert(0, res)
-            //getVariables()
+            resultsListModel.insert(0, res)
+            getVariables()
           }
         }
         QueryField {
@@ -144,7 +162,7 @@ Page {
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
               varstxt = vars.text
-              var txt = prefixed + vars.text + " " + formula.text
+              var txt = vars.text + " " + formula.text
               var res = calculator.exprtk(txt)
               // clear our form to not polute other views
               // but keep results

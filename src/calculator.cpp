@@ -139,11 +139,21 @@ QVariantMap calculator::exprtk(QString formula){
     typedef double T;
     typedef exprtk::expression<T> expression_t;
     typedef exprtk::parser<T> parser_t;
-    // not used yet
-    //typedef exprtk::symbol_table<T> symbol_table_t;
+    typedef exprtk::symbol_table<T> symbol_table_t;
+
+    // Setup global constants symbol table
+    T x = T(0);
+
+    symbol_table_t symbol_table;
+    symbol_table.add_constants();
+    symbol_table.add_variable("x",x);
 
     //instantiate classes
     expression_t expression;
+    // Register the various symbol tables
+    expression.register_symbol_table(symbol_table);
+
+    // instrantiate the parser
     parser_t parser;
 
     if(!parser.compile(expressionStr, expression)){
