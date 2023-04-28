@@ -143,10 +143,14 @@ QVariantMap calculator::exprtk(QString formula){
 
     // Setup global constants symbol table
     T x = T(0);
+    T y = T(0);
+    T z = T(0);
 
     symbol_table_t symbol_table;
     symbol_table.add_constants();
     symbol_table.add_variable("x",x);
+    symbol_table.add_variable("y",y);
+    symbol_table.add_variable("z",z);
 
     //instantiate classes
     expression_t expression;
@@ -167,7 +171,23 @@ QVariantMap calculator::exprtk(QString formula){
         qDebug() << "425: " << double(result);
         res_str = typeset(result);
     }
-
+    /* take on original var handling */
+    /*double res{std::numeric_limits<double>::quiet_NaN()};
+    static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*:=\s*(.*))"};
+    QString var_name;
+    try {
+      auto match{assignment_regex.match(formula)};
+      if (match.hasMatch()) {
+        var_name = match.capturedRef(1).toString();
+        if (var_name == "pi" or var_name == "e")
+          throw std::runtime_error{"protected variable"};
+        res = P.value(match.capturedRef(2).toString(), V);
+        V[var_name] = res;
+      } else
+        res = P.value(formula, V);
+    } catch (std::exception &e) {
+      error.append( e.what());
+    }*/
     res_map.insert("formula", formula);
     res_map.insert("variable", "");//var_name);
     res_map.insert("result", res_str);

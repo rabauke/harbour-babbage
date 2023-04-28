@@ -67,6 +67,13 @@ Page {
           // add our special cases
           variablesListModel.append({variable: {"variable": m[1], "value": m[2] } })
       }
+      const regex2 = /(\w*)\s*:=\s*(\d*);/gm;
+      while ((m = regex2.exec(varstxt)) !== null) {
+          if (m.index === regex.lastIndex) {
+              regex2.lastIndex++;
+          }
+          variablesListModel.append({variable: {"variable": m[1], "value": m[2] } })
+      }
   }
   /* strip vars from the result formula to present */
   function stripVariables() {
@@ -113,6 +120,10 @@ Page {
     }
     PushUpMenu {
         MenuItem {
+          text: qsTr("Prototype functions")
+          onClicked: pageStack.push(Qt.resolvedUrl("ExprtkPrototypes.qml"))
+        }
+        MenuItem {
             RemorsePopup { id: remorse_variables }
             text: qsTr("Remove all output")
             onClicked: remorse_output.execute(qsTr("Removing all output"),
@@ -139,7 +150,7 @@ Page {
           id: vars
           anchors.top: pageHeader.bottom
           width: listView.width
-          text: "var a:=0; var b:=2; var v[3]:={5,10,15};"
+          text: "x:=0; y:=1; z:=2; var w[3]:={5,10,15};"
           placeholderText: qsTr("Variables")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
@@ -147,7 +158,8 @@ Page {
             varstxt = text
             var txt = text + " " + formula.text
             var res = calculator.exprtk(txt)
-            //result = res.result
+            res.variable = text
+            res.formula = formula.text
             resultsListModel.insert(0, res)
             getVariables()
           }
@@ -156,7 +168,7 @@ Page {
           id: formula
           anchors.top: vars.bottom
           width: listView.width
-          text: "for ( a ; a < v[] ; a += 1) { b+=v[a]; }"
+          text: "for ( x ; x < w[] ; x += 1) { z+=w[x]; }"
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
@@ -164,10 +176,12 @@ Page {
               varstxt = vars.text
               var txt = vars.text + " " + formula.text
               var res = calculator.exprtk(txt)
+              res.variable = vars.text
+              res.formula = formula.text
               // clear our form to not polute other views
               // but keep results
               //res.formula = ""
-              res.variable = ""
+              //res.variable = ""
               resultsListModel.insert(0, res)
               getVariables()
           }

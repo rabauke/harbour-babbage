@@ -62,9 +62,28 @@
         <source>Variables</source>
         <translation type="unfinished">Variables</translation>
     </message>
+    <message>
+        <source>Prototype functions</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExprtkMenu</name>
+    <message>
+        <source>Operators and Functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy func/op</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy example</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExprtkPrototypes</name>
     <message>
         <source>Operators and Functions</source>
         <translation type="unfinished"></translation>
