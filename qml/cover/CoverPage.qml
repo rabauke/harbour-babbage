@@ -34,7 +34,11 @@ import Sailfish.Silica 1.0
 CoverBackground {
 
   function format(variable, formula, result) {
-      return (variable !== "") && (formula === result) ? variable + " = " + result : ((variable !== "" ? variable + " = " : "") + formula + " = " + result)
+       if (navigationState.name === "exprtk") {
+               return variable + "\n\n" + formula + " =\n " + result
+       } else {
+        return (variable !== "") && (formula === result) ? variable + " = " + result : ((variable !== "" ? variable + " = " : "") + formula + " = " + result)
+       }
   }
 
   Image {

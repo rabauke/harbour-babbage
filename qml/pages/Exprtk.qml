@@ -38,8 +38,9 @@ Page {
 
   property var varstxt
 
-  function format(result, error) {
-      return result + " " + error
+  function format(formula, variable, result, error) {
+     // return result + " " + error
+    return formula + " =\n " + result + " "  + error
     //return variable !== "" && formula === result ? variable + " := " + result : ((variable !== "" ? variable + " := " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
   }
 
@@ -223,7 +224,7 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: format(result, error)
+        text: format(formula, variable, result, error)
         //text: result
       }
       Component {
