@@ -61,13 +61,20 @@ Page {
         text: qsTr("Programmable calculator")
         onClicked: pageStack.replace(Qt.resolvedUrl("Exprtk.qml"))
       }
-      MenuItem {
-        text: qsTr("Remove all output")
-        onClicked: remorse_output.execute(qsTr("Removing all output"),
-                                          function() {
-                                            resultsListModel.clear()
-                                          } )
-      }
+    }
+    PushUpMenu {
+        MenuItem {
+          text: qsTr("Common functions")
+          onClicked: pageStack.push(Qt.resolvedUrl("ExprtkPrototypes.qml"))
+        }
+        MenuItem {
+            RemorsePopup { id: remorse_variables }
+            text: qsTr("Remove all output")
+            onClicked: remorse_output.execute(qsTr("Removing all output"),
+                                              function() {
+                                                  resultsListModel.clear()
+                                              } )
+        }
     }
 
     Component {

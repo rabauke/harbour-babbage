@@ -89,11 +89,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy func/op</source>
+        <source>Copy example</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy example</source>
+        <source>Copy function</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

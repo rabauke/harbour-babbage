@@ -78,24 +78,30 @@ SilicaListView {
     contentHeight: text.height + Theme.paddingLarge
     menu: contextMenu
     Label {
+        anchors {
+          rightMargin: Theme.paddingSmall
+          leftMargin: Theme.paddingSmall
+        }
+        width: parent.width * 1/4 - Theme.paddingMedium
         id: modelLabel
         text: model.name
         truncationMode: TruncationMode.Fade
         color: Theme.highlightColor
+        font.pixelSize: Theme.fontSizeSmall
     }
     Text {
       id: text
       anchors {
           left:modelLabel.right
-          leftMargin: Theme.paddingLarge
-          rightMargin: Theme.paddingLarge
-          bottomMargin: Theme.paddingLarge
+          leftMargin: Theme.paddingSmall
+          rightMargin: Theme.paddingSmall
+          bottomMargin: Theme.paddingSmall
       }
 
-      width: parent.width - parent.width/4
+      width: parent.width * 3/4 - Theme.paddingMedium
       color: Theme.primaryColor
       wrapMode: TextEdit.Wrap
-      font.pixelSize: Theme.fontSizeMedium
+      font.pixelSize: Theme.fontSizeSmall
       horizontalAlignment: TextEdit.AlignLeft
       text: model.desc
     }
@@ -103,7 +109,7 @@ SilicaListView {
       id: contextMenu
       ContextMenu {
         MenuItem {
-          text: qsTr("Copy func/op")
+          text: qsTr("Copy operator")
           onClicked: Clipboard.text = model.name
         }
         MenuItem {

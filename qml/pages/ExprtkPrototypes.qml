@@ -63,7 +63,7 @@ SilicaListView {
     width: page.width
     PageHeader {
       id: pageHeader
-      title: qsTr("Operators and Functions")
+      title: qsTr("Common Functions")
     }
   }
 
@@ -87,7 +87,8 @@ SilicaListView {
     Text {
       id: text
       anchors {
-          left:modelLabel.right
+          //left:modelLabel.right
+          left:parent.left
           leftMargin: Theme.paddingLarge
           rightMargin: Theme.paddingLarge
           bottomMargin: Theme.paddingLarge
@@ -104,7 +105,7 @@ SilicaListView {
       id: contextMenu
       ContextMenu {
         MenuItem {
-          text: qsTr("Copy func/op")
+          text: qsTr("Copy function")
           onClicked: Clipboard.text = model.op
         }
         MenuItem {
