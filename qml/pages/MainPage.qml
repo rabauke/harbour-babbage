@@ -72,7 +72,7 @@ Page {
         id: headerComponentItem
         anchors.horizontalCenter: main_page.Center
         anchors.top: parent.Top
-        height: pageHeader.height + formula.height
+        height: pageHeader.height + formula.height + help.height
         width: main_page.width
         PageHeader {
           id: pageHeader
@@ -96,6 +96,18 @@ Page {
               variablesListModel.append({variable: variables[i]})
           }
         }
+        IconButton {
+            id: help
+            width: icon.width
+            height: icon.height
+            icon.source: "image://theme/icon-m-question"
+            anchors {
+              top: formula.bottom
+              right: parent.right
+              rightMargin: Theme.horizontalPageMargin
+            }
+            onClicked:  pageStack.push(Qt.resolvedUrl("Functions.qml"))
+        }
       }
     }
 
@@ -111,6 +123,8 @@ Page {
       Text {
         id: result_text
         focus: false
+        anchors.topMargin: Theme.paddingMedium
+        anchors.bottomMargin: Theme.paddingMedium
         x: Theme.horizontalPageMargin
         y: 0.5 * Theme.paddingLarge
         width: parent.width - 2 * Theme.horizontalPageMargin
