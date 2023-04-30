@@ -74,26 +74,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy func/op</source>
+        <source>Copy example</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy example</source>
+        <source>Copy operator</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExprtkPrototypes</name>
     <message>
-        <source>Operators and Functions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Copy example</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Copy function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common Functions</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FunctionDoc</name>
+    <message>
+        <source>Copied</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -360,6 +367,10 @@
     </message>
     <message>
         <source>Programmable calculator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common functions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

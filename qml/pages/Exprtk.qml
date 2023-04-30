@@ -151,14 +151,15 @@ Page {
           id: vars
           anchors.top: pageHeader.bottom
           width: listView.width
-          text: "x:=0; y:=1; z:=2; var w[3]:={5,10,15};"
+          text: "x:=0; y:=1; var w; var t[2]:={0,1}; z:=12;"
           placeholderText: qsTr("Variables")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
             varstxt = text
-            var txt = text + " " + formula.text
+            var txt = varstxt + " " + formula.text
             var res = calculator.exprtk(txt)
+            console.log(varstxt)
             res.variable = text
             res.formula = formula.text
             resultsListModel.insert(0, res)
@@ -169,7 +170,7 @@ Page {
           id: formula
           anchors.top: vars.bottom
           width: listView.width
-          text: "for ( x ; x < w[] ; x += 1) { z+=w[x]; }"
+          text: "while((x+=1)<z){w:=sum(t);t[0]:=t[1];t[1]:=w}"
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
@@ -179,6 +180,7 @@ Page {
               var res = calculator.exprtk(txt)
               res.variable = vars.text
               res.formula = formula.text
+
               // clear our form to not polute other views
               // but keep results
               //res.formula = ""
