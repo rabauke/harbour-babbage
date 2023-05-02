@@ -111,6 +111,8 @@ Page {
       Text {
         id: result_text
         focus: false
+        anchors.topMargin: Theme.paddingMedium
+        anchors.bottomMargin: Theme.paddingMedium
         x: Theme.horizontalPageMargin
         y: 0.5 * Theme.paddingLarge
         width: parent.width - 2 * Theme.horizontalPageMargin
