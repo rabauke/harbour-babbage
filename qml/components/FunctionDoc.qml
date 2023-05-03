@@ -35,6 +35,7 @@ Item {
         horizontalAlignment: TextEdit.AlignJustify
         text: descriptionText
         onClicked: {
+            color: Theme.highlightColor
             message.visible = true
             Clipboard.text = functionText
             pressTimer.start()

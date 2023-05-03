@@ -3,7 +3,7 @@ import Sailfish.Silica 1.0
 
 Page {
   id: page
-  property bool debug: false
+  property bool debug: true
   property var funcs
   property var locale: Qt.locale()
 
@@ -20,9 +20,8 @@ Page {
   }
 
   function fetchLocal(){
-      debug = false;
-      console.log(locale.name)
-      var filename = locale.name + "-exprtk-functions.json"
+      //var filename = locale.name + "-exprtk-functions.json"
+      var filename = "en_US-exprtk-functions.json"
       loadJSON(filename, function(doc) {
           var response = JSON.parse(doc.responseText);
           functionsListModel.clear();
@@ -30,31 +29,15 @@ Page {
           for (var i = 0; i < response.length && i < 8000; i++) {
               functionsListModel.append(response[i]);
               //funcs[i] = response[i];
-              if (debug) console.debug(JSON.stringify(funcs[i]))
           };
       });
+
   }
 
-SilicaListView {
+  SilicaListView {
   anchors.fill: parent
   id: listView
   VerticalScrollDecorator { flickable: listView }
-/*
-  PullDownMenu {
-    RemorsePopup { id: remorse_variables }
-    MenuItem {
-      text: qsTr("Clear all variables")
-      onClicked: remorse_variables.execute(qsTr("Clearing all variables"),
-                                           function() {
-                                             calculator.clear()
-                                             variablesListModel.clear()
-                                             var variables=calculator.getVariables()
-                                             for (var i in variables)
-                                               variablesListModel.append({variable: variables[i]})
-                                           } )
-    }
-  }
-*/
 
   header: Item {
     anchors.horizontalCenter: page.Center
@@ -69,7 +52,6 @@ SilicaListView {
 
   model:   ListModel {
       id: functionsListModel
-      //Component.onCompleted:update()
   }
 
   delegate: ListItem {
@@ -123,7 +105,7 @@ SilicaListView {
 }
 Component.onCompleted: {
     fetchLocal()
-    console.log(navigationState.name)
+    if (debug) console.log(navigationState.name)
 }
 
 }

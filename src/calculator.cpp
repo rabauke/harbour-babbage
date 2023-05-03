@@ -171,6 +171,47 @@ QVariantMap calculator::exprtk(QString formula){
         qDebug() << "425: " << double(result);
         res_str = typeset(result);
     }
+
+    /* collect results from intermediate calculations */
+    QVariantList resultsList;
+    if (expression.results().count()) {
+        typedef exprtk::results_context<T> results_context_t;
+        typedef typename results_context_t::type_store_t type_t;
+
+        typedef typename type_t::scalar_view scalar_t;
+        typedef typename type_t::vector_view vector_t;
+        typedef typename type_t::string_view string_t;
+
+        const results_context_t& results = expression.results();
+
+        for (std::size_t i = 0; i < results.count(); ++i)
+        {
+                type_t t = results[i];
+                QString name;
+                switch (t.type)
+                {
+                case type_t::e_scalar :
+                    resultsList.push_front( scalar_t(t)()  );
+                                           break;
+
+                case type_t::e_vector :
+                {
+                    vector_t vector(t);
+                    for (std::size_t x = 0; x < vector.size(); ++x)
+                    {
+                        resultsList.push_front(  vector[x]  );
+                    }
+                }
+                                           break;
+
+                 case type_t::e_string :
+                        resultsList.push_front( to_str(string_t(t)).c_str() );
+                                           break;
+
+                 default               : continue;
+                }
+        }
+    }
     /* take on original var handling */
     /*double res{std::numeric_limits<double>::quiet_NaN()};
     static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*:=\s*(.*))"};
@@ -188,14 +229,15 @@ QVariantMap calculator::exprtk(QString formula){
     } catch (std::exception &e) {
       error.append( e.what());
     }*/
+
     res_map.insert("formula", formula);
     res_map.insert("variable", "");//var_name);
     res_map.insert("result", res_str);
+    res_map.insert("iresults", resultsList);
     res_map.insert("error", error);
     return res_map;
 
 }
-
 
 void calculator::removeVariable(int i) {
   if (i < 0 or static_cast<std::size_t>(i) >= V.size())

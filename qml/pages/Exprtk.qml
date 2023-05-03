@@ -151,26 +151,34 @@ Page {
           id: vars
           anchors.top: pageHeader.bottom
           width: listView.width
-          text: "x:=0; y:=1; var w; var t[2]:={0,1}; z:=12;"
+          text: "x:=0; y:=1; var t[2]:={0,1}; z:=12; var w[12]:={};"
           placeholderText: qsTr("Variables")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
           EnterKey.onClicked: {
-            varstxt = text
-            var txt = varstxt + " " + formula.text
-            var res = calculator.exprtk(txt)
-            console.log(varstxt)
-            res.variable = text
-            res.formula = formula.text
-            resultsListModel.insert(0, res)
-            getVariables()
+              varstxt = text
+              var txt = text + " " + formula.text
+              var res = calculator.exprtk(txt)
+              res.variable = text
+              res.formula = formula.text
+              if (res.iresults.length > 0 ) {
+                  var resultn = ""
+                  for (x in res.iresults) {
+                     resultn +=  res.iresults[x]
+                      if (x<res.iresults.length-1)
+                          resultn += ", "
+                  }
+                  res.result = resultn
+              }
+              resultsListModel.insert(0, res)
+              getVariables()
           }
         }
         QueryField {
           id: formula
           anchors.top: vars.bottom
           width: listView.width
-          text: "while((x+=1)<z){w:=sum(t);t[0]:=t[1];t[1]:=w}"
+          text: "while((x+=1)<z){y:=sum(t);t[0]:=t[1];t[1]:=y;w[x]:=y} return[w];"
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
@@ -180,11 +188,19 @@ Page {
               var res = calculator.exprtk(txt)
               res.variable = vars.text
               res.formula = formula.text
+              // if we have iresultes we had a return
+              // and we replace result with the contents of the
+              // expression.results()
+              if (res.iresults.length > 0 ) {
+                  var resultn = ""
+                  for (x in res.iresults) {
+                     resultn +=  res.iresults[x]
+                      if (x<res.iresults.length-1)
+                          resultn += ", "
+                  }
+                  res.result = resultn
+              }
 
-              // clear our form to not polute other views
-              // but keep results
-              //res.formula = ""
-              //res.variable = ""
               resultsListModel.insert(0, res)
               getVariables()
           }
@@ -202,6 +218,28 @@ Page {
             }
             onClicked:  pageStack.push(Qt.resolvedUrl("../components/ExprtkMenu.qml"))
         }
+        /*IconButton {
+            id: accept
+            width: icon.width
+            height: icon.height
+            icon.source: "image://theme/icon-m-enter-accept"
+            anchors {
+              top: formula.bottom
+              right: parent.right
+              leftMargin: 2*Theme.horizontalPageMargin
+              rightMargin: Theme.horizontalPageMargin
+            }
+            onClicked: {
+                varstxt = vars.text
+                var txt = vars.text + " " + formula.text
+                var res = calculator.exprtk(txt)
+                res.variable = vars.text
+                res.formula = formula.text
+                resultsListModel.insert(0, res)
+                getVariables()
+            }
+        }*/
+
       }
     }
 
