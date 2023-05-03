@@ -151,7 +151,7 @@ Page {
           id: vars
           anchors.top: pageHeader.bottom
           width: listView.width
-          text: "x:=0; y:=1; var t[2]:={0,1}; z:=12; var w[12]:={};"
+          text: "x:=0; y:=1; var t[2]:={0,1}; z:=12; "
           placeholderText: qsTr("Variables")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
@@ -178,7 +178,7 @@ Page {
           id: formula
           anchors.top: vars.bottom
           width: listView.width
-          text: "while((x+=1)<z){y:=sum(t);t[0]:=t[1];t[1]:=y;w[x]:=y} return[w];"
+          text: "while((x+=1)<z){y:=sum(r);r[0]:=r[1];r[1]:=y;a[x]:=y} return[a];"
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0

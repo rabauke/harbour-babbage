@@ -145,30 +145,38 @@ QVariantMap calculator::exprtk(QString formula){
     T x = T(0);
     T y = T(0);
     T z = T(0);
+    // r is the shift register 2 elements, can overide
+    T r[] = { T(0), T(1) };
+    // a  is the accumulator
+    T a[]  = { T(0), T(0),  T(0),  T(0),  T(0), T(0), T(0), T(0), T(0), T(0), T(0), T(0),T(0), T(0), T(0),  T(0), T(0), T(0), T(0), T(0), T(0), T(0) };
+    //std::vector<double> a (100,0);
 
     symbol_table_t symbol_table;
+
     symbol_table.add_constants();
     symbol_table.add_variable("x",x);
     symbol_table.add_variable("y",y);
     symbol_table.add_variable("z",z);
+    symbol_table.add_vector("r",r);
+    symbol_table.add_vector("a",a);
 
     //instantiate classes
     expression_t expression;
+
     // Register the various symbol tables
     expression.register_symbol_table(symbol_table);
 
     // instrantiate the parser
     parser_t parser;
 
-    if(!parser.compile(expressionStr, expression)){
+    // compile
+    if(!parser.compile(expressionStr, expression))
+    {
         //construct error Msg
         res_str = "";
-        qDebug() << "425: " << QString::fromStdString(parser.error().c_str());
         error.append(QString::fromStdString(parser.error().c_str()));
-    }
-    else{
+    } else {
         T result = expression.value();
-        qDebug() << "425: " << double(result);
         res_str = typeset(result);
     }
 
@@ -191,22 +199,22 @@ QVariantMap calculator::exprtk(QString formula){
                 switch (t.type)
                 {
                 case type_t::e_scalar :
-                    resultsList.push_front( scalar_t(t)()  );
-                                           break;
+                    resultsList.push_back( scalar_t(t)()  );
+                    break;
 
                 case type_t::e_vector :
                 {
                     vector_t vector(t);
                     for (std::size_t x = 0; x < vector.size(); ++x)
                     {
-                        resultsList.push_front(  vector[x]  );
+                        resultsList.push_back(  vector[x]  );
                     }
-                }
-                                           break;
+                  }
+                     break;
 
                  case type_t::e_string :
-                        resultsList.push_front( to_str(string_t(t)).c_str() );
-                                           break;
+                    resultsList.push_back( to_str(string_t(t)).c_str() );
+                    break;
 
                  default               : continue;
                 }
