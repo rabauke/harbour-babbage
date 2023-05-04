@@ -22,7 +22,8 @@ Page {
   function fetchLocal(){
       debug = false;
       console.log(locale.name)
-      var filename = "../components/"+locale.name + "-exprtk-prototypes.json"
+      //var filename = "../components/"+locale.name + "-exprtk-prototypes.json"
+      var filename = "../components/en_US-exprtk-prototypes.json"
       loadJSON(filename, function(doc) {
           var response = JSON.parse(doc.responseText);
           functionsListModel.clear();

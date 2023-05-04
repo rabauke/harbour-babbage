@@ -148,7 +148,8 @@ QVariantMap calculator::exprtk(QString formula){
     // r is the shift register 2 elements, can overide
     T r[] = { T(0), T(1) };
     // a  is the accumulator
-    T a[]  = { T(0), T(0),  T(0),  T(0),  T(0), T(0), T(0), T(0), T(0), T(0), T(0), T(0),T(0), T(0), T(0),  T(0), T(0), T(0), T(0), T(0), T(0), T(0) };
+    T a[]  = { T(0), T(0),  T(0),  T(0),  T(0), T(0), T(0), T(0), T(0), T(0) };
+               //, T(0), T(0),T(0), T(0), T(0),  T(0), T(0), T(0), T(0), T(0), T(0), T(0) };
     //std::vector<double> a (100,0);
 
     symbol_table_t symbol_table;

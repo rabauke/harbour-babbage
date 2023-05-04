@@ -39,9 +39,10 @@ Page {
   property var varstxt
 
   function format(formula, variable, result, error) {
-     // return result + " " + error
-    return formula + " =\n " + result + " "  + error
-    //return variable !== "" && formula === result ? variable + " := " + result : ((variable !== "" ? variable + " := " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
+      // return result + " " + error
+      formula = formula.replace(/(\r\n|\n|\r)/gm, "");
+      return formula + " =\n " + result + " "  + error
+      //return variable !== "" && formula === result ? variable + " := " + result : ((variable !== "" ? variable + " := " : "") + formula + " = " + result + (error !== "" ? " (" + error + ") ": ""))
   }
 
   /* c++ precre variant
@@ -174,15 +175,16 @@ Page {
               getVariables()
           }
         }
-        QueryField {
+        QueryArea {
           id: formula
           anchors.top: vars.bottom
           width: listView.width
-          text: "while((x+=1)<z){y:=sum(r);r[0]:=r[1];r[1]:=y;a[x]:=y} return[a];"
+          height: Theme.buttonWidthSmall
+          text: "while((x+=1)<z)" +"\n"+ "{y:=sum(r);r[0]:=r[1];r[1]:=y;a[x]:=y}"+ "\n" + "return[a];"
           placeholderText: qsTr("Mathematical expression")
           inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText
           EnterKey.enabled: text.length > 0
-          EnterKey.onClicked: {
+          /*EnterKey.onClicked: {
               varstxt = vars.text
               var txt = vars.text + " " + formula.text
               var res = calculator.exprtk(txt)
@@ -203,7 +205,7 @@ Page {
 
               resultsListModel.insert(0, res)
               getVariables()
-          }
+          }*/
 
         }
         IconButton {
@@ -214,7 +216,8 @@ Page {
             anchors {
               top: formula.bottom
               right: parent.right
-              rightMargin: Theme.horizontalPageMargin
+              topMargin: Theme.paddingSmall
+              rightMargin: Theme.paddingMedium
             }
             onClicked:  pageStack.push(Qt.resolvedUrl("../components/ExprtkMenu.qml"))
         }

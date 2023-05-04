@@ -49,6 +49,7 @@ TRANSLATIONS += translations/harbour-babbage.ts \
 
 DISTFILES += \
     qml/components/ExprtkMenu.qml \
+    qml/components/QueryArea.qml \
     qml/components/en_US-exprtk-functions.json \
     qml/components/en_US-exprtk-prototypes.json \
     qml/pages/Exprtk.qml \

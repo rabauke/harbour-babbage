@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-TextField {
+TextArea {
   id: queryField
 
   implicitWidth: _editor.implicitWidth + Theme.paddingSmall + Theme.itemSizeSmall
@@ -16,7 +16,7 @@ TextField {
 
   textLeftMargin: Theme.horizontalPageMargin
   textRightMargin: text.length == 0 ? Theme.horizontalPageMargin
-                                    : Theme.itemSizeSmall + Theme.paddingMedium + Theme.horizontalPageMargin - Theme.paddingLarge
+                                    : Theme.itemSizeSmall + Theme.paddingMedium //+ Theme.horizontalPageMargin
   textTopMargin: height/2 - _editor.implicitHeight/2
   labelVisible: false
 
@@ -33,10 +33,11 @@ TextField {
       id: clearButton
       anchors {
         right: parent.right
-        rightMargin: Theme.paddingMedium //horizontalPageMargin
+        bottom: parent.bottom
+        rightMargin: Theme.paddingMedium
       }
       width: icon.width
-      height: parent.height
+      height: icon.height
       icon.source: "image://theme/icon-m-clear"
 
       enabled: queryField.enabled
