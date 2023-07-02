@@ -4,7 +4,7 @@ on:
   push:
 
 env:
-  OS_VERSION: 4.4.0.68
+  OS_VERSION: 4.5.0.16
 
 jobs:
   build:
