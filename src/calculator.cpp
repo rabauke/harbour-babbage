@@ -55,6 +55,7 @@ QVariantMap calculator::calculate(QString formula) {
   static const QRegularExpression gamma_regex{R"(\bgamma\b)"};
   static const QRegularExpression leading_spaces_regex{R"(^\s*)"};
   static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))"};
+  static const QRegularExpression binary_operator_regex{R"(([=+−·/]))"};
 
   QString formula_plain{formula};
   formula_plain.replace("−", "-")
@@ -81,20 +82,16 @@ QVariantMap calculator::calculate(QString formula) {
   }
   QString res_str{typeset(res)};
   formula.replace(" ", "")
-      .replace("+", " + ")
-      .replace("−", " − ")
-      .replace("-", " − ")
-      .replace("·", " · ")
-      .replace("*", " · ")
-      .replace("/", " / ")
-      .replace("=", " = ")
+      .replace("-", "−")
+      .replace("*", "·")
+      .replace(binary_operator_regex, " \\1 ")
       .replace(",", ", ")
       .replace(pi_regex, "π")
       .replace(sqrt_regex, "√")
       .replace(Gamma_regex, "Γ")
       .replace(gamma_regex, "γ")
-      .replace("  ", " ")
-      .replace(leading_spaces_regex, "");
+      .replace(leading_spaces_regex, "")
+      .replace("  ", " ");
   if (auto match{assignment_regex.match(formula)}; match.hasMatch())
     formula = match.capturedRef(2).toString();
   QVariantMap res_map;

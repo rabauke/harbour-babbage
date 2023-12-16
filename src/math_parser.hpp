@@ -553,7 +553,7 @@ namespace math_parser {
       //   - an operator
       //   - an opening brace
       //   - a closing brace
-      //   - a function name (follwed by an opening brace)
+      //   - a function name (followed by an opening brace)
       //   - a function argument separator
       //   - a variable name
       //   - something else, which is a syntax error
@@ -565,24 +565,24 @@ namespace math_parser {
       while (i.hasNext()) {
         QRegularExpressionMatch match{i.next()};
         if (match.capturedRef(2).length() > 0)
-          token_list.push_back(token_t(match.captured(2).toDouble()));
+          token_list.push_back(token_t{match.captured(2).toDouble()});
         else if (match.capturedRef(3).length() > 0)
-          token_list.push_back(token_t(match.captured(3).toDouble()));
+          token_list.push_back(token_t{match.captured(3).toDouble()});
         else if (match.capturedRef(4).length() > 0)
-          token_list.push_back(token_t(match.captured(4), token_kind::op));
+          token_list.push_back(token_t{match.captured(4), token_kind::op});
         else if (match.capturedRef(5).length() > 0)
-          token_list.push_back(token_t(match.captured(5), token_kind::brace_open));
+          token_list.push_back(token_t{match.captured(5), token_kind::brace_open});
         else if (match.capturedRef(6).length() > 0)
-          token_list.push_back(token_t(match.captured(6), token_kind::brace_close));
+          token_list.push_back(token_t{match.captured(6), token_kind::brace_close});
         else if (match.capturedRef(7).length() > 0) {
           if (func_map.count(match.captured(7)) > 0)
-            token_list.push_back(token_t(match.captured(7), token_kind::func));
+            token_list.push_back(token_t{match.captured(7), token_kind::func});
           else
             throw unknown_function{};
         } else if (match.capturedRef(8).length() > 0)
-          token_list.push_back(token_t(match.captured(8), token_kind::arg_sep));
+          token_list.push_back(token_t{match.captured(8), token_kind::arg_sep});
         else if (match.capturedRef(9).length() > 0)
-          token_list.push_back(token_t(match.captured(9), token_kind::var));
+          token_list.push_back(token_t{match.captured(9), token_kind::var});
         else
           throw syntax_error{};
       }
@@ -604,7 +604,7 @@ namespace math_parser {
         else if (t == token_kind::func) {
           // functions go to the stack
           stack.push(t);
-          // put a counter for argument seperators of the argument counter stack
+          // put a counter for argument separators of the argument counter stack
           arg_counter.push(0);
         } else if (t == token_kind::arg_sep) {
           // there was no corresponding function token before, throw error
@@ -629,14 +629,17 @@ namespace math_parser {
                     last_token == token_kind::invalid)) {
             // suppress unary + or introduce unary - as operator "_"
             if (t == "-")
-              stack.push(token_t("_", token_kind::op));
+              stack.push(token_t{"_", token_kind::op});
           } else {
             // in case of binary operators remove operators from stack
             while (not stack.empty() and stack.top() == token_kind::op) {
-              if ((associativity_map.at(t.str()) == associativity::left and
-                   precedence_map.at(t.str()) <= precedence_map.at(stack.top().str())) or
-                  (associativity_map.at(t.str()) == associativity::right and
-                   precedence_map.at(t.str()) < precedence_map.at(stack.top().str()))) {
+              const auto token_associativity{associativity_map.at(t.str())};
+              const auto token_precedence{precedence_map.at(t.str())};
+              const auto top_precedence{precedence_map.at(stack.top().str())};
+              if ((token_associativity == associativity::left and
+                   token_precedence <= top_precedence) or
+                  (token_associativity == associativity::right and
+                   token_precedence < top_precedence)) {
                 rpn.push_back(stack.top());
                 stack.pop();
               } else
@@ -661,7 +664,7 @@ namespace math_parser {
           // function arguments as an extra argument, remove function from
           // stack, remove argument counter from stack
           if (not stack.empty() and stack.top() == token_kind::func) {
-            rpn.push_back(token_t(arg_counter.top() + 1.));  // number of function arguments
+            rpn.push_back(token_t{arg_counter.top() + 1.});  // number of function arguments
             arg_counter.pop();
             rpn.push_back(stack.top());
             stack.pop();
