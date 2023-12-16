@@ -45,45 +45,42 @@ Page {
     model: variablesListModel
 
     delegate: ListItem {
+      id: listItem
       width: parent.width
       contentWidth: parent.width
       contentHeight: result_text.height + Theme.paddingLarge
-      menu: contextMenu
+      menu: ContextMenu {
+        MenuItem {
+          text: qsTr('Copy value')
+          onClicked: Clipboard.text = variable['value']
+        }
+        MenuItem {
+          text: qsTr('Copy variable name')
+          onClicked: Clipboard.text = variable['variable']
+        }
+        MenuItem {
+          text: qsTr('Copy variable')
+          onClicked: Clipboard.text = variable['variable'] + ' = ' + variable['value']
+        }
+        MenuItem {
+          text: qsTr('Clear variable')
+          onClicked: listItem.remorseDelete(function () {
+            calculator.removeVariable(model.index)
+            variablesListModel.remove(model.index)
+          })
+          visible: !variable.protected
+        }
+      }
       Text {
         id: result_text
         x: Theme.horizontalPageMargin
-        y: 0.5 * Theme.paddingLarge
+        y: Theme.paddingMedium
         width: parent.width - 2 * Theme.horizontalPageMargin
         color: Theme.primaryColor
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
         text: variable['variable'] + ' = ' + variable['value']
-      }
-      Component {
-        id: contextMenu
-        ContextMenu {
-          MenuItem {
-            text: qsTr('Copy value')
-            onClicked: Clipboard.text = variable['value']
-          }
-          MenuItem {
-            text: qsTr('Copy variable name')
-            onClicked: Clipboard.text = variable['variable']
-          }
-          MenuItem {
-            text: qsTr('Copy variable')
-            onClicked: Clipboard.text = variable['variable'] + ' = ' + variable['value']
-          }
-          MenuItem {
-            text: qsTr('Clear variable')
-            onClicked: {
-              calculator.removeVariable(model.index)
-              variablesListModel.remove(model.index)
-            }
-            visible: !variable.protected
-          }
-        }
       }
     }
   }
