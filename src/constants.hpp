@@ -9,4 +9,4 @@ public:
 };
 
 
-#endif // CONSTANTS_HPP
+#endif  // CONSTANTS_HPP

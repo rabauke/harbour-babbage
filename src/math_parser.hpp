@@ -98,7 +98,9 @@ namespace math_parser {
       return val_;
     }
 
-    token_kind kind() const { return kind_; }
+    token_kind kind() const {
+      return kind_;
+    }
 
     ~token_t() {
       if (kind_ != token_kind::number)
@@ -117,10 +119,14 @@ namespace math_parser {
   }
 
 
-  inline bool operator==(const token_t &token, const char *str) { return token.str() == str; }
+  inline bool operator==(const token_t &token, const char *str) {
+    return token.str() == str;
+  }
 
 
-  inline bool operator!=(const token_t &token, const char *str) { return token.str() != str; }
+  inline bool operator!=(const token_t &token, const char *str) {
+    return token.str() != str;
+  }
 
 
   inline bool operator==(const token_t &token, token_t::token_kind kind) {
@@ -479,7 +485,9 @@ namespace math_parser {
       return res / (x.size() - 1);
     }
 
-    double std(const arg_list &x) const { return std::sqrt(var(x)); }
+    double std(const arg_list &x) const {
+      return std::sqrt(var(x));
+    }
 
     double median(const arg_list &X) const {
       arg_list x(X);

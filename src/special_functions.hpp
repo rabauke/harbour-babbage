@@ -19,19 +19,31 @@ namespace math {
 
   // --- natural logarithm -------------------------------------------
 
-  inline float ln(float x) { return std::log(x); }
+  inline float ln(float x) {
+    return std::log(x);
+  }
 
-  inline double ln(double x) { return std::log(x); }
+  inline double ln(double x) {
+    return std::log(x);
+  }
 
-  inline long double ln(long double x) { return std::log(x); }
+  inline long double ln(long double x) {
+    return std::log(x);
+  }
 
   // --- log-Gamma function ------------------------------------------
 
-  inline float ln_Gamma(float x) { return std::lgamma(x); }
+  inline float ln_Gamma(float x) {
+    return std::lgamma(x);
+  }
 
-  inline double ln_Gamma(double x) { return std::lgamma(x); }
+  inline double ln_Gamma(double x) {
+    return std::lgamma(x);
+  }
 
-  inline long double ln_Gamma(long double x) { return std::lgamma(x); }
+  inline long double ln_Gamma(long double x) {
+    return std::lgamma(x);
+  }
 
   // --- Beta function -----------------------------------------------
 
@@ -49,11 +61,17 @@ namespace math {
 
   // --- Gamma function ----------------------------------------------
 
-  inline float Gamma(float x) { return std::tgamma(x); }
+  inline float Gamma(float x) {
+    return std::tgamma(x);
+  }
 
-  inline double Gamma(double x) { return std::tgamma(x); }
+  inline double Gamma(double x) {
+    return std::tgamma(x);
+  }
 
-  inline long double Gamma(long double x) { return std::tgamma(x); }
+  inline long double Gamma(long double x) {
+    return std::tgamma(x);
+  }
 
   // --- incomplete Gamma functions ----------------------------------
 
@@ -155,36 +173,52 @@ namespace math {
   }  // namespace detail
 
   // P(x, a)
-  inline float GammaP(float a, float x) { return detail::GammaP<float, true>(a, x); }
+  inline float GammaP(float a, float x) {
+    return detail::GammaP<float, true>(a, x);
+  }
 
-  inline double GammaP(double a, double x) { return detail::GammaP<double, true>(a, x); }
+  inline double GammaP(double a, double x) {
+    return detail::GammaP<double, true>(a, x);
+  }
 
   inline long double GammaP(long double a, long double x) {
     return detail::GammaP<long double, true>(a, x);
   }
 
   // Q(x, a)
-  inline float GammaQ(float a, float x) { return detail::GammaQ<float, true>(a, x); }
+  inline float GammaQ(float a, float x) {
+    return detail::GammaQ<float, true>(a, x);
+  }
 
-  inline double GammaQ(double a, double x) { return detail::GammaQ<double, true>(a, x); }
+  inline double GammaQ(double a, double x) {
+    return detail::GammaQ<double, true>(a, x);
+  }
 
   inline long double GammaQ(long double a, long double x) {
     return detail::GammaQ<long double, true>(a, x);
   }
 
   // gamma(x, a)
-  inline float inc_gamma(float a, float x) { return detail::GammaP<float, false>(a, x); }
+  inline float inc_gamma(float a, float x) {
+    return detail::GammaP<float, false>(a, x);
+  }
 
-  inline double inc_gamma(double a, double x) { return detail::GammaP<double, false>(a, x); }
+  inline double inc_gamma(double a, double x) {
+    return detail::GammaP<double, false>(a, x);
+  }
 
   inline long double inc_gamma(long double a, long double x) {
     return detail::GammaP<long double, false>(a, x);
   }
 
   // Gamma(x, a)
-  inline float cinc_gamma(float a, float x) { return detail::GammaQ<float, false>(a, x); }
+  inline float cinc_gamma(float a, float x) {
+    return detail::GammaQ<float, false>(a, x);
+  }
 
-  inline double cinc_gamma(double a, double x) { return detail::GammaQ<double, false>(a, x); }
+  inline double cinc_gamma(double a, double x) {
+    return detail::GammaQ<double, false>(a, x);
+  }
 
   inline long double cinc_gamma(long double a, long double x) {
     return detail::GammaQ<long double, false>(a, x);
@@ -234,9 +268,13 @@ namespace math {
   }  // namespace detail
 
   // inverse of GammaP
-  inline float inv_GammaP(float a, float p) { return detail::inv_GammaP(a, p); }
+  inline float inv_GammaP(float a, float p) {
+    return detail::inv_GammaP(a, p);
+  }
 
-  inline double inv_GammaP(double a, double p) { return detail::inv_GammaP(a, p); }
+  inline double inv_GammaP(double a, double p) {
+    return detail::inv_GammaP(a, p);
+  }
 
   inline long double inv_GammaP(long double a, long double p) {
     return detail::inv_GammaP(a, p);
@@ -294,7 +332,9 @@ namespace math {
     return detail::Beta_I(x, p, q, norm);
   }
 
-  inline float Beta_I(float x, float p, float q) { return detail::Beta_I(x, p, q, Beta(p, q)); }
+  inline float Beta_I(float x, float p, float q) {
+    return detail::Beta_I(x, p, q, Beta(p, q));
+  }
 
   inline double Beta_I(double x, double p, double q, double norm) {
     return detail::Beta_I(x, p, q, norm);
