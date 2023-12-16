@@ -15,13 +15,15 @@ TextField {
   }
 
   textLeftMargin: Theme.horizontalPageMargin
-  textRightMargin: text.length == 0 ? Theme.horizontalPageMargin
-                                    : Theme.itemSizeSmall + Theme.paddingMedium + Theme.horizontalPageMargin - Theme.paddingLarge
-  textTopMargin: height/2 - _editor.implicitHeight/2
+  textRightMargin: text.length == 0 ? Theme.horizontalPageMargin : Theme.itemSizeSmall
+                                      + Theme.paddingMedium
+                                      + Theme.horizontalPageMargin - Theme.paddingLarge
+  textTopMargin: height / 2 - _editor.implicitHeight / 2
   labelVisible: false
 
-  placeholderText: ""
-  onFocusChanged: if (focus) cursorPosition = text.length
+  placeholderText: ''
+  onFocusChanged: if (focus)
+                    cursorPosition = text.length
 
   inputMethodHints: Qt.ImhNoPredictiveText
 
@@ -33,11 +35,11 @@ TextField {
       id: clearButton
       anchors {
         right: parent.right
-        rightMargin: Theme.horizontalPageMargin
+        rightMargin: Theme.paddingMedium
       }
       width: icon.width
       height: parent.height
-      icon.source: "image://theme/icon-m-clear"
+      icon.source: 'image://theme/icon-m-clear'
 
       enabled: queryField.enabled
 
@@ -47,10 +49,9 @@ TextField {
       }
 
       onClicked: {
-        queryField.text = ""
+        queryField.text = ''
         queryField._editor.forceActiveFocus()
       }
     }
   }
-
 }

@@ -29,13 +29,17 @@ MouseArea {
   Rectangle {
     anchors {
       fill: parent
-      topMargin: Screen.sizeCategory >= Screen.Large ? (button.height - Theme.itemSizeMedium) / 2 : (button.height - Theme.itemSizeExtraSmall) / 2
+      topMargin: Screen.sizeCategory
+                 >= Screen.Large ? (button.height - Theme.itemSizeMedium)
+                                   / 2 : (button.height - Theme.itemSizeExtraSmall) / 2
 
       bottomMargin: anchors.topMargin
     }
     radius: Theme.paddingSmall
-    color: _showPress ? Theme.rgba(button.highlightBackgroundColor, Theme.highlightBackgroundOpacity)
-                      : Theme.rgba(button.color, 0.2)
+    color: _showPress ? Theme.rgba(
+                          button.highlightBackgroundColor,
+                          Theme.highlightBackgroundOpacity) : Theme.rgba(
+                          button.color, 0.2)
 
     opacity: button.enabled ? 1.0 : 0.4
 
@@ -43,7 +47,8 @@ MouseArea {
       id: buttonText
       anchors.centerIn: parent
       color: _showPress ? button.highlightColor : button.color
-      font.pointSize: Screen.sizeCategory >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
+      font.pointSize: Screen.sizeCategory
+                      >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
     }
   }
 
