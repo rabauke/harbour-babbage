@@ -83,41 +83,39 @@ Page {
     model: resultsListModel
 
     delegate: ListItem {
+      id: listItem
       width: parent.width
       contentWidth: parent.width
       contentHeight: result_text.height + Theme.paddingLarge
-      menu: contextMenu
+      menu: ContextMenu {
+        MenuItem {
+          text: qsTr('Copy result')
+          onClicked: Clipboard.text = resultsListModel.get(model.index).result
+        }
+        MenuItem {
+          text: qsTr('Copy formula')
+          onClicked: Clipboard.text = resultsListModel.get(model.index).formula
+        }
+        MenuItem {
+          text: qsTr('Clear output')
+          onClicked: listItem.remorseDelete(function () {
+            resultsListModel.remove(model.index)
+          })
+        }
+      }
       Text {
         id: result_text
         focus: false
         anchors.topMargin: Theme.paddingMedium
         anchors.bottomMargin: Theme.paddingMedium
         x: Theme.horizontalPageMargin
-        y: 0.5 * Theme.paddingLarge
+        y: Theme.paddingMedium
         width: parent.width - 2 * Theme.horizontalPageMargin
         color: Theme.primaryColor
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
         text: format(variable, formula, result, error)
-      }
-      Component {
-        id: contextMenu
-        ContextMenu {
-          MenuItem {
-            text: qsTr('Copy result')
-            onClicked: Clipboard.text = resultsListModel.get(model.index).result
-          }
-          MenuItem {
-            text: qsTr('Copy formula')
-            onClicked: Clipboard.text = resultsListModel.get(
-                         model.index).formula
-          }
-          MenuItem {
-            text: qsTr('Remove output')
-            onClicked: resultsListModel.remove(model.index)
-          }
-        }
       }
     }
   }

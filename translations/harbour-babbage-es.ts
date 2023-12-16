@@ -270,7 +270,7 @@
         <translation>Borrando todas las salidas</translation>
     </message>
     <message>
-        <source>Remove output</source>
+        <source>Clear output</source>
         <translation>Borrar salida</translation>
     </message>
     <message>

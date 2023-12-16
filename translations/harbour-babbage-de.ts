@@ -270,8 +270,8 @@
         <translation>Entferne alle Ausgaben</translation>
     </message>
     <message>
-        <source>Remove output</source>
-        <translation>Entferne Ausgabe</translation>
+        <source>Clear output</source>
+        <translation>Lösche Ausgabe</translation>
     </message>
     <message>
         <source>Pocket calculator</source>
