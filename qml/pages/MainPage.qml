@@ -132,7 +132,4 @@ Page {
     }
   }
 
-  Component.onDestruction: {
-    console.log('MainPage off')
-  }
 }
