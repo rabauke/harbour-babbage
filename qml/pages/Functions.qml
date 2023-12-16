@@ -36,7 +36,7 @@ Page {
         text: qsTr('Rounding functions')
       }
       FunctionDoc {
-        functionText: 'round(x)'
+        functionText: 'round(x), round(x, n)'
         descriptionText: qsTr('round_description')
       }
       FunctionDoc {

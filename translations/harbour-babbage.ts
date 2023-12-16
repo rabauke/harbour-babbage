@@ -44,7 +44,7 @@
     </message>
     <message>
         <source>round_description</source>
-        <translation>Value of x rounded to the nearest integer.</translation>
+        <translation>Value of x rounded to the nearest integer or value of x rounded to n decimal places, respectively.</translation>
     </message>
     <message>
         <source>ceil_description</source>

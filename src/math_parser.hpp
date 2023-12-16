@@ -183,9 +183,14 @@ namespace math_parser {
     }
 
     double round(const arg_list &x) const {
-      if (x.size() != 1)
+      if (x.size() > 2)
         throw argument_error{};
-      return std::round(x[0]);
+      if (x.size() == 1)
+        return std::round(x[0]);
+      if (x[1] != std::round(x[1]))
+        throw argument_error{};
+      const double factor{std::pow(10.0, x[1])};
+      return std::round(x[0] * factor) / factor;
     }
 
     double floor(const arg_list &x) const {

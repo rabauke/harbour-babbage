@@ -44,7 +44,7 @@
     </message>
     <message>
         <source>round_description</source>
-        <translation>Ganzzahlig gerundeter Wert von x.</translation>
+        <translation>Ganzzahlig gerundeter Wert von x bzw. auf n Nachkommastellen gerundeter Wert von x.</translation>
     </message>
     <message>
         <source>ceil_description</source>
@@ -228,7 +228,7 @@
     </message>
     <message>
         <source>Inverse hyperbolic functions</source>
-        <translation>Inverse Hyperbelfunktionen</translation>
+        <translaround>Inverse Hyperbelfunktionen</translation>
     </message>
     <message>
         <source>gamma_description</source>
@@ -273,7 +273,7 @@
         <source>Clear output</source>
         <translation>Lösche Ausgabe</translation>
     </message>
-    <message>
+    <message>round_description
         <source>Pocket calculator</source>
         <translation>Taschenrechner</translation>
     </message>
