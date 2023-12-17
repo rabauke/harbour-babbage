@@ -1,7 +1,7 @@
 name: Build RPMs
 
 on:
-  push:
+  [push, workflow_dispatch]
 
 env:
   OS_VERSION: 4.5.0.16
