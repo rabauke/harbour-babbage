@@ -1,7 +1,11 @@
+#ifdef QT_QML_DEBUG
 #include <QtQuick>
-#include <QString>
-#include <QObject>
-#include <QtQml>
+#endif
+#include <QScopedPointer>
+#include <QGuiApplication>
+#include <QMetaType>
+#include <QQmlEngine>
+#include <QQuickView>
 #include <sailfishapp.h>
 #include "calculator.hpp"
 
