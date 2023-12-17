@@ -1,0 +1,9 @@
+#pragma once
+
+#include <string>
+
+inline constexpr int project_version_major = (@PROJECT_VERSION_MAJOR@);
+inline constexpr int project_version_minor = (@PROJECT_VERSION_MINOR@);
+inline constexpr int project_version_patch = (@PROJECT_VERSION_PATCH@);
+
+inline const std::string project_version{"@PROJECT_VERSION@"};

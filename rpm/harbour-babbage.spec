@@ -26,6 +26,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  desktop-file-utils
+BuildRequires:  cmake
 
 %description
 Scientific calculator for Sailfish OS
@@ -38,24 +39,11 @@ Scientific calculator for Sailfish OS
 # << setup
 
 %build
-# >> build pre
-# << build pre
-
-%qtc_qmake5 
-
-%qtc_make %{?_smp_mflags}
-
-# >> build post
-# << build post
+%cmake -DCMAKE_INSTALL_RPATH=%{_datadir}/%{name}/lib/
+%make_build
 
 %install
-rm -rf %{buildroot}
-# >> install pre
-# << install pre
-%qmake5_install
-
-# >> install post
-# << install post
+%make_install
 
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
