@@ -228,7 +228,7 @@
     </message>
     <message>
         <source>Inverse hyperbolic functions</source>
-        <translaround>Inverse Hyperbelfunktionen</translation>
+        <translation>Inverse Hyperbelfunktionen</translation>
     </message>
     <message>
         <source>gamma_description</source>
@@ -273,7 +273,7 @@
         <source>Clear output</source>
         <translation>Lösche Ausgabe</translation>
     </message>
-    <message>round_description
+    <message>
         <source>Pocket calculator</source>
         <translation>Taschenrechner</translation>
     </message>
