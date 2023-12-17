@@ -3,8 +3,13 @@ import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
 import 'pages'
 
+
 ApplicationWindow {
-  id: app_window
+  id: appWindow
+
+  AppModel {
+    id: appModel
+  }
 
   Calculator {
     id: calculator
@@ -21,5 +26,4 @@ ApplicationWindow {
   initialPage: Qt.resolvedUrl('pages/SimpleCalculator.qml')
   cover: Qt.resolvedUrl('cover/CoverPage.qml')
   allowedOrientations: Orientation.All
-  _defaultPageOrientations: Orientation.All
 }

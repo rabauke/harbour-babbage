@@ -44,9 +44,11 @@ list(TRANSFORM QM_FILES PREPEND ${CMAKE_BINARY_DIR}/)
 configure_file(src/Version.h.in ${CMAKE_BINARY_DIR}/src/Version.h @ONLY)
 
 add_executable(harbour-babbage
+    src/harbour-babbage.cpp
+    src/AppModel.hpp
+    src/AppModel.cpp
     src/special_functions.hpp
     src/constants.hpp
-    src/harbour-babbage.cpp
     src/math_parser.hpp
     src/calculator.hpp
     src/calculator.cpp

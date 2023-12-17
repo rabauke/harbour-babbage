@@ -4,10 +4,6 @@
 <context>
     <name>About</name>
     <message>
-        <source>About Babbage</source>
-        <translation>Über Babbage</translation>
-    </message>
-    <message>
         <source>_discription_</source>
         <translation>Babbage ist sowohl ein einfacher Taschen­rechner als auch wissen­schaft­licher Rech­ner.  Der wissen­schaftliche Rech­ner wertet mathe­matische Aus­drücke in Standard­nota­tion aus.  Mathe­ma­tische Oper­atoren für Addition (+), Sub­trak­tion (-), Multi­plika­tion (*), Divi­sion (/), Exponen­tiation (^), Fakul­tät (!) sowie Winkel­grad (°) werden unter­stützt.  Eine Viel­zahl mathe­ma­tischer Funk­tionen kann ver­wendet werden.  Gib die Kreis­zahl π als pi ein und e für die Euler­sche Zahl.  Resul­tate können Vari­ablen zu­ge­wiesen werden.  Variablen­namen bestehen aus alpha­numerischen Zeichen und be­ginnen mit einem Buch­staben.</translation>
     </message>

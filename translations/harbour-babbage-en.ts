@@ -4,12 +4,8 @@
 <context>
     <name>About</name>
     <message>
-        <source>About Babbage</source>
-        <translation>About Babbage</translation>
-    </message>
-    <message>
         <source>_discription_</source>
-        <translation>Babbage is a simple pocket calculator with a scientific calculator mode.  The scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^), factorial (!), and arc degee (°) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter. Enter pi for π and e for Euler&apos;s number.</translation>
+        <translation>Babbage is a simple pocket calculator with a scientific calculator mode.  The scientific calculator evaluates mathe­matical expressions in stan­dard mathe­matical notation.  Mathe­matical operators for addition (+), subtraction (-), multi­plication (*), division (/), exponen­tiation (^), factorial (!), and arc degee (°) are supported.  Various mathe­matical func­tions may be used.  Results may be assigned to variables.  Variable names consist of alpha­numeric symbols and start with a letter.  Enter pi for π and e for Euler&apos;s number.</translation>
     </message>
     <message>
         <source>List of functions</source>

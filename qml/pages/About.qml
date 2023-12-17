@@ -1,6 +1,7 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 
+
 Page {
   id: about_page
 
@@ -15,7 +16,7 @@ Page {
       spacing: Theme.paddingMedium
 
       PageHeader {
-        title: qsTr('About Babbage')
+        title: 'Babbage v' + appModel.version
       }
       TextArea {
         width: column.width
