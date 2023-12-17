@@ -3,6 +3,7 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include <QDir>
+#include <QMetaEnum>
 
 
 #ifdef SAILJAIL
@@ -25,6 +26,15 @@ AppModel::AppModel(QObject* parent) : QObject{parent} {
 #else
   QSettings settings;
 #endif
+  const auto calculator_type_variant{settings.value("calculator_type")};
+  if (calculator_type_variant.isValid()) {
+    auto calculator_type_meta{QMetaEnum::fromType<CalculatorType>()};
+    bool success{false};
+    int value{calculator_type_meta.keyToValue(qPrintable(calculator_type_variant.toString()),
+                                              &success)};
+    if (success)
+      m_calculator_type = static_cast<CalculatorType>(value);
+  }
 }
 
 
@@ -34,4 +44,9 @@ AppModel::~AppModel() {
 #else
   QSettings settings;
 #endif
+
+  auto calculator_type_meta{QMetaEnum::fromType<CalculatorType>()};
+  auto* calculator_type_str{calculator_type_meta.key(static_cast<int>(m_calculator_type))};
+  if (calculator_type_str != nullptr)
+    settings.setValue("calculator_type", calculator_type_str);
 }

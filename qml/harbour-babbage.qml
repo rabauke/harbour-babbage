@@ -23,7 +23,7 @@ ApplicationWindow {
     id: variablesListModel
   }
 
-  initialPage: Qt.resolvedUrl('pages/SimpleCalculator.qml')
+  initialPage: Qt.resolvedUrl(appModel.calculatorType == AppModel.ScientificCalculator ? 'pages/MainPage.qml' : 'pages/SimpleCalculator.qml')
   cover: Qt.resolvedUrl('cover/CoverPage.qml')
   allowedOrientations: Orientation.All
 }

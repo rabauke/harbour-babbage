@@ -132,4 +132,7 @@ Page {
     }
   }
 
+  Component.onCompleted: {
+    appModel.calculatorType = AppModel.ScientificCalculator
+  }
 }
