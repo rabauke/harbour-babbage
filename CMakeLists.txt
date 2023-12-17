@@ -98,6 +98,9 @@ install(FILES icons/172x172/harbour-babbage.png
 install(FILES icons/256x256/harbour-babbage.png
     DESTINATION share/icons/hicolor/256x256/apps
 )
+install(FILES images/cover_background.png
+    DESTINATION share/harbour-babbage/images
+)
 
 # Get the other files reachable from the project tree in Qt Creator
 FILE(GLOB TsFiles "translations/*.ts")
