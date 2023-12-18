@@ -122,19 +122,19 @@ Page {
           columnSpacing: Theme.paddingMedium
 
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '√'
             onClicked: formula.text = formula.text + '√('
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '^'
             onClicked: formula.text = formula.text + '^'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '<b>AC</b>'
             onClicked: {
@@ -143,7 +143,7 @@ Page {
             }
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '<b>C</b>'
             onClicked: {
@@ -169,115 +169,115 @@ Page {
             }
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '('
             onClicked: formula.text = formula.text + '('
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: ')'
             onClicked: formula.text = formula.text + ')'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'π'
             onClicked: formula.text = formula.text + 'π'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '+'
             onClicked: formula.text = formula.text + ' + '
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '1'
             onClicked: formula.text = formula.text + '1'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '2'
             onClicked: formula.text = formula.text + '2'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '3'
             onClicked: formula.text = formula.text + '3'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '−'
             onClicked: formula.text = formula.text + ' − '
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '4'
             onClicked: formula.text = formula.text + '4'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '5'
             onClicked: formula.text = formula.text + '5'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '6'
             onClicked: formula.text = formula.text + '6'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '×'
             onClicked: formula.text = formula.text + ' · '
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '7'
             onClicked: formula.text = formula.text + '7'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '8'
             onClicked: formula.text = formula.text + '8'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '9'
             onClicked: formula.text = formula.text + '9'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '/'
             onClicked: formula.text = formula.text + ' / '
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '0'
             onClicked: formula.text = formula.text + '0'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '.'
             onClicked: formula.text = formula.text + '.'
           }
           PCButton {
-            visible: index === 0
+            visible: model.index === 0
             Layout.preferredWidth: 2 * Theme.buttonWidthSmall / 2.125 + Theme.paddingMedium
             Layout.columnSpan: 2
             text: '<b>=</b>'
@@ -288,145 +288,145 @@ Page {
             }
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sin'
             onClicked: formula.text = formula.text + 'sin('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asin'
             onClicked: formula.text = formula.text + 'asin('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sinh'
             onClicked: formula.text = formula.text + 'sinh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asinh'
             onClicked: formula.text = formula.text + 'asinh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cos'
             onClicked: formula.text = formula.text + 'cos('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acos'
             onClicked: formula.text = formula.text + 'acos('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cosh'
             onClicked: formula.text = formula.text + 'cosh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acosh'
             onClicked: formula.text = formula.text + 'acosh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tan'
             onClicked: formula.text = formula.text + 'tan('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atan'
             onClicked: formula.text = formula.text + 'atan('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tanh'
             onClicked: formula.text = formula.text + 'tanh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atanh'
             onClicked: formula.text = formula.text + 'atanh('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cot'
             onClicked: formula.text = formula.text + 'cot('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acot'
             onClicked: formula.text = formula.text + 'acot('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'coth'
             onClicked: formula.text = formula.text + 'coth('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acoth'
             onClicked: formula.text = formula.text + 'acoth('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'exp'
             onClicked: formula.text = formula.text + 'exp('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'ln'
             onClicked: formula.text = formula.text + 'ln('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '!'
             onClicked: formula.text = formula.text + '!'
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '°'
             onClicked: formula.text = formula.text + '°'
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'abs'
             onClicked: formula.text = formula.text + 'abs('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'log'
             onClicked: formula.text = formula.text + 'log('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'rad'
             onClicked: formula.text = formula.text + 'rad('
           }
           PCButton {
-            visible: index === 1
+            visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'deg'
             onClicked: formula.text = formula.text + 'deg('
