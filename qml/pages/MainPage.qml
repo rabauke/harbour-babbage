@@ -43,42 +43,38 @@ Page {
       }
     }
 
-    Component {
-      id: headerComponent
-      Item {
-        id: headerComponentItem
-        anchors.horizontalCenter: main_page.Center
-        anchors.top: parent.Top
-        height: pageHeader.height + formula.height
-        width: main_page.width
-        PageHeader {
-          id: pageHeader
-          title: qsTr('Scientific calculator')
-        }
-        QueryField {
-          id: formula
-          anchors.top: pageHeader.bottom
-          width: listView.width
-          text: ''
-          placeholderText: qsTr('Mathematical expression')
-          inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
-          EnterKey.enabled: text.length > 0
-          EnterKey.onClicked: {
-            var res = calculator.calculate(formula.text)
-            resultsListModel.insert(0, res)
-            formula.text = res.variable !== '' ? res.variable + ' = ' + res.formula : res.formula
-            variablesListModel.clear()
-            var variables = calculator.getVariables()
-            for (var i in variables)
-              variablesListModel.append({
-                                          'variable': variables[i]
-                                        })
-          }
+    header: Item {
+      id: headerItem
+      anchors.horizontalCenter: main_page.Center
+      anchors.top: parent.Top
+      height: pageHeader.height + formula.height
+      width: main_page.width
+      PageHeader {
+        id: pageHeader
+        title: qsTr('Scientific calculator')
+        titleColor: Theme.highlightColor
+      }
+      QueryField {
+        id: formula
+        anchors.top: pageHeader.bottom
+        width: listView.width
+        text: ''
+        placeholderText: qsTr('Mathematical expression')
+        inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
+        EnterKey.enabled: text.length > 0
+        EnterKey.onClicked: {
+          var res = calculator.calculate(formula.text)
+          resultsListModel.insert(0, res)
+          formula.text = res.variable !== '' ? res.variable + ' = ' + res.formula : res.formula
+          variablesListModel.clear()
+          var variables = calculator.getVariables()
+          for (var i in variables)
+            variablesListModel.append({
+                                        'variable': variables[i]
+                                      })
         }
       }
     }
-
-    header: headerComponent
 
     model: resultsListModel
 
