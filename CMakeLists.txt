@@ -50,8 +50,8 @@ add_executable(harbour-babbage
     src/special_functions.hpp
     src/constants.hpp
     src/math_parser.hpp
-    src/calculator.hpp
-    src/calculator.cpp
+    src/Calculator.hpp
+    src/Calculator.cpp
     )
 target_compile_definitions(harbour-babbage PRIVATE
     $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>

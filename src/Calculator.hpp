@@ -8,7 +8,7 @@
 #include "math_parser.hpp"
 
 
-class calculator : public QObject {
+class Calculator : public QObject {
   Q_OBJECT
   math_parser::arithmetic_parser P;
   math_parser::arithmetic_parser::var_map_t V;
@@ -18,8 +18,8 @@ class calculator : public QObject {
   static QString get_settings_path();
 
 public:
-  explicit calculator(QObject *parent = nullptr);
-  virtual ~calculator();
+  explicit Calculator(QObject *parent = nullptr);
+  virtual ~Calculator();
   Q_INVOKABLE QVariantMap calculate(QString formula);
   Q_INVOKABLE void removeVariable(int);
   Q_INVOKABLE void clear();

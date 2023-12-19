@@ -8,7 +8,7 @@
 #include <QQuickView>
 #include <sailfishapp.h>
 #include "AppModel.hpp"
-#include "calculator.hpp"
+#include "Calculator.hpp"
 
 
 int main(int argc, char *argv[]) {
@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   app->setApplicationName("harbour-babbage");
   app->setOrganizationDomain("rabauke");
 
-  qmlRegisterType<calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
+  qmlRegisterType<Calculator>("harbour.babbage.qmlcomponents", 1, 0, "Calculator");
   qmlRegisterType<AppModel>("harbour.babbage.qmlcomponents", 1, 0, "AppModel");
 
   QScopedPointer<QQuickView> view{SailfishApp::createView()};

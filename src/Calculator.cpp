@@ -1,5 +1,5 @@
 #include "constants.hpp"
-#include "calculator.hpp"
+#include "Calculator.hpp"
 #include "math_parser.hpp"
 #include <limits>
 #include <cmath>
@@ -10,7 +10,7 @@
 #include <QCoreApplication>
 
 
-calculator::calculator(QObject *parent) : QObject(parent) {
+Calculator::Calculator(QObject *parent) : QObject(parent) {
   static const QRegularExpression variable_regex{R"(^[[:alpha:]]\w*$)"};
 
   QSettings settings(get_settings_path(), QSettings::NativeFormat);
@@ -31,7 +31,7 @@ calculator::calculator(QObject *parent) : QObject(parent) {
 }
 
 
-calculator::~calculator() {
+Calculator::~Calculator() {
   QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   settings.remove("");
@@ -42,13 +42,13 @@ calculator::~calculator() {
 }
 
 
-void calculator::init_variables() {
+void Calculator::init_variables() {
   V.insert("pi", constants::pi);
   V.insert("e", constants::e);
 }
 
 
-QVariantMap calculator::calculate(QString formula) {
+QVariantMap Calculator::calculate(QString formula) {
   static const QRegularExpression pi_regex{R"(\bpi\b)"};
   static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
   static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
@@ -103,7 +103,7 @@ QVariantMap calculator::calculate(QString formula) {
 }
 
 
-void calculator::removeVariable(int i) {
+void Calculator::removeVariable(int i) {
   if (i < 0 or static_cast<std::size_t>(i) >= V.size())
     return;
   auto j{V.begin()};
@@ -112,13 +112,13 @@ void calculator::removeVariable(int i) {
 }
 
 
-void calculator::clear() {
+void Calculator::clear() {
   V.clear();
   init_variables();
 }
 
 
-QVariantList calculator::getVariables() const {
+QVariantList Calculator::getVariables() const {
   QVariantList list;
   for (const auto &x : V) {
     QString value_str{typeset(x.second)};
@@ -136,7 +136,7 @@ QVariantList calculator::getVariables() const {
 }
 
 
-QString calculator::typeset(double x) {
+QString Calculator::typeset(double x) {
   static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
   static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
 
@@ -148,7 +148,7 @@ QString calculator::typeset(double x) {
 }
 
 
-QString calculator::get_settings_path() {
+QString Calculator::get_settings_path() {
   return QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/" +
          QCoreApplication::applicationName() + ".conf";
 }
