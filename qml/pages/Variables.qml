@@ -19,15 +19,7 @@ Page {
       MenuItem {
         text: qsTr('Clear all variables')
         onClicked: remorse_variables.execute(qsTr('Clearing all variables'),
-                                             function () {
-                                               calculator.clear()
-                                               variablesListModel.clear()
-                                               var variables = calculator.getVariables()
-                                               for (var i in variables)
-                                                 variablesListModel.append({
-                                                                             'variable': variables[i]
-                                                                           })
-                                             })
+                                             calculator.clear())
       }
     }
 
@@ -42,7 +34,7 @@ Page {
       }
     }
 
-    model: variablesListModel
+    model: calculator.variables
 
     delegate: ListItem {
       id: listItem
@@ -52,23 +44,22 @@ Page {
       menu: ContextMenu {
         MenuItem {
           text: qsTr('Copy value')
-          onClicked: Clipboard.text = variable['value']
+          onClicked: Clipboard.text = modelData.value
         }
         MenuItem {
           text: qsTr('Copy variable name')
-          onClicked: Clipboard.text = variable['variable']
+          onClicked: Clipboard.text = modelData.variable
         }
         MenuItem {
           text: qsTr('Copy variable')
-          onClicked: Clipboard.text = variable['variable'] + ' = ' + variable['value']
+          onClicked: Clipboard.text = modelData.variable + ' = ' + modelData.value
         }
         MenuItem {
           text: qsTr('Clear variable')
           onClicked: listItem.remorseDelete(function () {
             calculator.removeVariable(model.index)
-            variablesListModel.remove(model.index)
           })
-          visible: !variable.protected
+          visible: !modelData.protected
         }
       }
       Text {
@@ -80,7 +71,7 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: variable['variable'] + ' = ' + variable['value']
+        text: modelData.variable + ' = ' + modelData.value
       }
     }
   }

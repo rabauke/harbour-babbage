@@ -66,12 +66,6 @@ Page {
           var res = calculator.calculate(formula.text)
           resultsListModel.insert(0, res)
           formula.text = res.variable !== '' ? res.variable + ' = ' + res.formula : res.formula
-          variablesListModel.clear()
-          var variables = calculator.getVariables()
-          for (var i in variables)
-            variablesListModel.append({
-                                        'variable': variables[i]
-                                      })
         }
       }
     }
@@ -118,12 +112,6 @@ Page {
 
   onStatusChanged: {
     if (status === PageStatus.Active) {
-      variablesListModel.clear()
-      var variables = calculator.getVariables()
-      for (var i in variables)
-        variablesListModel.append({
-                                    'variable': variables[i]
-                                  })
       pageStack.pushAttached(Qt.resolvedUrl('Variables.qml'))
     }
   }

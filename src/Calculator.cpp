@@ -75,6 +75,7 @@ QVariantMap Calculator::calculate(QString formula) {
         throw std::runtime_error{"protected variable"};
       res = P.value(match.capturedRef(2).toString(), V);
       V[var_name] = res;
+      emit variablesChanged();
     } else
       res = P.value(formula_plain, V);
   } catch (std::exception &e) {
@@ -109,12 +110,14 @@ void Calculator::removeVariable(int i) {
   auto j{V.begin()};
   std::advance(j, i);
   V.erase(j);
+  emit variablesChanged();
 }
 
 
 void Calculator::clear() {
   V.clear();
   init_variables();
+  emit variablesChanged();
 }
 
 

@@ -20,12 +20,16 @@ class Calculator : public QObject {
 public:
   explicit Calculator(QObject *parent = nullptr);
   virtual ~Calculator();
+
   Q_INVOKABLE QVariantMap calculate(QString formula);
   Q_INVOKABLE void removeVariable(int);
   Q_INVOKABLE void clear();
   Q_INVOKABLE QVariantList getVariables() const;
 
+  Q_PROPERTY(QVariantList variables READ getVariables NOTIFY variablesChanged)
+
 signals:
+  void variablesChanged();
 
 public slots:
 };
