@@ -4,8 +4,9 @@ import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
 import "../components"
 
+
 Page {
-  id: simpleCalculator
+  id: simpleCalculatorPage
   allowedOrientations: Orientation.Portrait
 
   property string memory
@@ -24,13 +25,13 @@ Page {
       }
       MenuItem {
         text: qsTr('Get memory')
-        onClicked: formula.text = formula.text + simpleCalculator.memory
+        onClicked: formula.text = formula.text + simpleCalculatorPage.memory
       }
       MenuItem {
         text: qsTr('Save result')
         onClicked: {
           Clipboard.text = result.text.substr(2)
-          simpleCalculator.memory = result.text.substr(2)
+          simpleCalculatorPage.memory = result.text.substr(2)
         }
       }
     }
@@ -93,7 +94,7 @@ Page {
         rightMargin: 2 * Theme.paddingMedium
       }
 
-      text: 'M: ' + simpleCalculator.memory
+      text: 'M: ' + simpleCalculatorPage.memory
       horizontalAlignment: Text.AlignLeft
       font.pointSize: Screen.sizeCategory
                       >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
@@ -437,6 +438,6 @@ Page {
   }
 
   Component.onCompleted: {
-    appModel.calculatorType = AppModel.SimpleCalculator
+    appModel.calculatorType = AppModel.simpleCalculator
   }
 }

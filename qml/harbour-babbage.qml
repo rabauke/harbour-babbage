@@ -15,6 +15,11 @@ ApplicationWindow {
     id: calculator
   }
 
+  Item {
+    id: viewModel
+    property string formulaText
+  }
+
   ListModel {
     id: resultsListModel
   }

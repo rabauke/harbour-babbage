@@ -1,8 +1,9 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 
+
 Page {
-  id: page
+  id: expressionsPage
 
   SilicaListView {
     anchors.fill: parent
@@ -24,7 +25,7 @@ Page {
     }
 
     header: Item {
-      anchors.horizontalCenter: page.Center
+      anchors.horizontalCenter: parent.Center
       anchors.top: parent.Top
       height: pageHeader.height
       width: page.width
@@ -44,9 +45,19 @@ Page {
       contentHeight: result_text.height + Theme.paddingLarge
       menu: ContextMenu {
         MenuItem {
+          text: qsTr('Use expression')
+          onClicked: {
+            viewModel.formulaText = modelData
+            var res = calculator.calculate(viewModel.formulaText)
+            resultsListModel.insert(0, res)
+            pageStack.navigateBack(PageStackAction.Animated)
+          }
+        }
+        MenuItem {
           text: qsTr('Copy expression')
           onClicked: {
             Clipboard.text = modelData
+            viewModel.formulaText = modelData
           }
         }
         MenuItem {
@@ -75,5 +86,4 @@ Page {
       pageStack.pushAttached(Qt.resolvedUrl('Variables.qml'))
     }
   }
-
 }

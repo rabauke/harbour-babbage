@@ -3,8 +3,9 @@ import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
 import '../components'
 
+
 Page {
-  id: main_page
+  id: mainPage
 
   function format(variable, formula, result, error) {
     return variable !== '' && formula
@@ -12,6 +13,8 @@ Page {
                      + result : ((variable !== '' ? variable + ' = ' : '') + formula
                                  + ' = ' + result + (error !== '' ? ' (' + error + ') ' : ''))
   }
+
+  property string formulaText: ''
 
   SilicaListView {
     anchors.fill: parent
@@ -45,10 +48,10 @@ Page {
 
     header: Item {
       id: headerItem
-      anchors.horizontalCenter: main_page.Center
+      anchors.horizontalCenter: mainPage.Center
       anchors.top: parent.Top
       height: pageHeader.height + formula.height
-      width: main_page.width
+      width: mainPage.width
       PageHeader {
         id: pageHeader
         title: qsTr('Scientific calculator')
@@ -58,7 +61,6 @@ Page {
         id: formula
         anchors.top: pageHeader.bottom
         width: listView.width
-        text: ''
         placeholderText: qsTr('Mathematical expression')
         inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
         EnterKey.enabled: text.length > 0
@@ -67,6 +69,11 @@ Page {
           resultsListModel.insert(0, res)
           formula.text = res.variable !== '' ? res.variable + ' = ' + res.formula : res.formula
         }
+      }    
+      Binding {
+        target: formula
+        property: 'text'
+        value: viewModel.formulaText
       }
     }
 

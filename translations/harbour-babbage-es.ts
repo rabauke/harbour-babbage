@@ -34,6 +34,10 @@
         <source>Remove expression</source>
         <translation>Eliminar expresión</translation>
     </message>
+    <message>
+        <source>Use expression</source>
+        <translation>Usar expresión</translation>
+    </message>
 </context>
 <context>
     <name>Functions</name>
