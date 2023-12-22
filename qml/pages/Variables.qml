@@ -31,6 +31,7 @@ Page {
       PageHeader {
         id: pageHeader
         title: qsTr('Variables')
+        titleColor: Theme.highlightColor
       }
     }
 
