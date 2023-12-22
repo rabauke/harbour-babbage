@@ -22,7 +22,7 @@ Calculator::Calculator(QObject *parent) : QObject(parent) {
       bool success;
       const auto valueAsDouble{value.toDouble(&success)};
       if (success)
-        V.insert(variable, valueAsDouble);
+        m_variables.insert(variable, valueAsDouble);
     }
   }
   settings.endGroup();
@@ -35,7 +35,7 @@ Calculator::~Calculator() {
   QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   settings.remove("");
-  for (const auto &variable : V)
+  for (const auto &variable : m_variables)
     settings.setValue(variable.first, variable.second);
   settings.endGroup();
   settings.sync();
@@ -43,8 +43,8 @@ Calculator::~Calculator() {
 
 
 void Calculator::init_variables() {
-  V.insert("pi", constants::pi);
-  V.insert("e", constants::e);
+  m_variables.insert("pi", constants::pi);
+  m_variables.insert("e", constants::e);
 }
 
 
@@ -73,11 +73,11 @@ QVariantMap Calculator::calculate(QString formula) {
       var_name = match.capturedRef(1).toString();
       if (var_name == "pi" or var_name == "e")
         throw std::runtime_error{"protected variable"};
-      res = P.value(match.capturedRef(2).toString(), V);
-      V[var_name] = res;
+      res = m_parser.value(match.capturedRef(2).toString(), m_variables);
+      m_variables[var_name] = res;
       emit variablesChanged();
     } else
-      res = P.value(formula_plain, V);
+      res = m_parser.value(formula_plain, m_variables);
   } catch (std::exception &e) {
     error = e.what();
   }
@@ -105,17 +105,17 @@ QVariantMap Calculator::calculate(QString formula) {
 
 
 void Calculator::removeVariable(int i) {
-  if (i < 0 or static_cast<std::size_t>(i) >= V.size())
+  if (i < 0 or static_cast<std::size_t>(i) >= m_variables.size())
     return;
-  auto j{V.begin()};
+  auto j{m_variables.begin()};
   std::advance(j, i);
-  V.erase(j);
+  m_variables.erase(j);
   emit variablesChanged();
 }
 
 
 void Calculator::clear() {
-  V.clear();
+  m_variables.clear();
   init_variables();
   emit variablesChanged();
 }
@@ -123,7 +123,7 @@ void Calculator::clear() {
 
 QVariantList Calculator::getVariables() const {
   QVariantList list;
-  for (const auto &x : V) {
+  for (const auto &x : m_variables) {
     QString value_str{typeset(x.second)};
     QString name_str{x.first};
     if (name_str == "pi")

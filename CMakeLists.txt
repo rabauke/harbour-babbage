@@ -22,6 +22,7 @@ set(CMAKE_INSTALL_RPATH /usr/share/harbour-babbage/lib)
 set(QML_FILES
     qml/pages/Functions.qml
     qml/pages/Variables.qml
+    qml/pages/Expressions.qml
     qml/pages/MainPage.qml
     qml/pages/About.qml
     qml/pages/SimpleCalculator.qml

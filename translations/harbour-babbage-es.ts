@@ -13,6 +13,29 @@
     </message>
 </context>
 <context>
+    <name>Expressions</name>
+    <message>
+        <source>Clear all expressions</source>
+        <translation>Eliminar todas las expresiones</translation>
+    </message>
+    <message>
+        <source>Clearing all expressions</source>
+        <translation>Borrar todas las expresiones</translation>
+    </message>
+    <message>
+        <source>Formulary</source>
+        <translation>Colección de fórmulas</translation>
+    </message>
+    <message>
+        <source>Copy expression</source>
+        <translation>Copiar expresión</translation>
+    </message>
+    <message>
+        <source>Remove expression</source>
+        <translation>Eliminar expresión</translation>
+    </message>
+</context>
+<context>
     <name>Functions</name>
     <message>
         <source>List of functions</source>
@@ -224,15 +247,15 @@
     </message>
     <message>
         <source>Units of angle conversion</source>
-        <translation type="unfinished"></translation>
+        <translation>Conversión de unidades de ángulo</translation>
     </message>
     <message>
         <source>deg_description</source>
-        <translation type="unfinished"></translation>
+        <translation>Convierte el argumento dado en radianes en grados de arco.</translation>
     </message>
     <message>
         <source>rad_description</source>
-        <translation type="unfinished"></translation>
+        <translation>Convierte el argumento dado en grados de arco a radianes.</translation>
     </message>
 </context>
 <context>
@@ -272,6 +295,10 @@
     <message>
         <source>Pocket calculator</source>
         <translation>Calculadora de bolsillo</translation>
+    </message>
+    <message>
+        <source>Add formula to formulary</source>
+        <translation>Agregar fórmula a la colección de fórmulas</translation>
     </message>
 </context>
 <context>
@@ -325,7 +352,7 @@
     </message>
     <message>
         <source>Copy variable name</source>
-        <translation type="unfinished"></translation>
+        <translation>Copiar nombre de variable</translation>
     </message>
 </context>
 </TS>

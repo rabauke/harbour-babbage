@@ -87,6 +87,10 @@ Page {
           onClicked: Clipboard.text = resultsListModel.get(model.index).formula
         }
         MenuItem {
+          text: qsTr('Add formula to formulary')
+          onClicked: appModel.addExpression(resultsListModel.get(model.index).formula)
+        }
+        MenuItem {
           text: qsTr('Clear output')
           onClicked: listItem.remorseDelete(function () {
             resultsListModel.remove(model.index)
@@ -112,7 +116,7 @@ Page {
 
   onStatusChanged: {
     if (status === PageStatus.Active) {
-      pageStack.pushAttached(Qt.resolvedUrl('Variables.qml'))
+      pageStack.pushAttached(Qt.resolvedUrl('Expressions.qml'))
     }
   }
 

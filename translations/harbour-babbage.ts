@@ -13,6 +13,29 @@
     </message>
 </context>
 <context>
+    <name>Expressions</name>
+    <message>
+        <source>Clear all expressions</source>
+        <translation>Clear all expressions</translation>
+    </message>
+    <message>
+        <source>Clearing all expressions</source>
+        <translation>Clearing all expressions</translation>
+    </message>
+    <message>
+        <source>Formulary</source>
+        <translation>Formulary</translation>
+    </message>
+    <message>
+        <source>Copy expression</source>
+        <translation>Copy expression</translation>
+    </message>
+    <message>
+        <source>Remove expression</source>
+        <translation>Remove expression</translation>
+    </message>
+</context>
+<context>
     <name>Functions</name>
     <message>
         <source>List of functions</source>
@@ -272,6 +295,10 @@
     <message>
         <source>Pocket calculator</source>
         <translation>Pocket calculator</translation>
+    </message>
+    <message>
+        <source>Add formula to formulary</source>
+        <translation>Add formula to formulary</translation>
     </message>
 </context>
 <context>
