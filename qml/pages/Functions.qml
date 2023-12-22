@@ -1,9 +1,10 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
-import "../components"
+import '../components'
+
 
 Page {
-  id: functions_page
+  id: functionsPage
 
   SilicaFlickable {
     anchors.fill: parent

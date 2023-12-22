@@ -1,8 +1,9 @@
 import QtQuick 2.2
 import Sailfish.Silica 1.0
 
+
 Page {
-  id: page
+  id: variablesPage
 
   SilicaListView {
     anchors.fill: parent
@@ -24,7 +25,7 @@ Page {
     }
 
     header: Item {
-      anchors.horizontalCenter: page.Center
+      anchors.horizontalCenter: parent.Center
       anchors.top: parent.Top
       height: pageHeader.height
       width: page.width
