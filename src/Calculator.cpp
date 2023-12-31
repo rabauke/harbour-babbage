@@ -49,13 +49,7 @@ void Calculator::init_variables() {
 
 
 QVariantMap Calculator::calculate(QString formula) {
-  static const QRegularExpression pi_regex{R"(\bpi\b)"};
-  static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
-  static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
-  static const QRegularExpression gamma_regex{R"(\bgamma\b)"};
-  static const QRegularExpression leading_spaces_regex{R"(^\s*)"};
   static const QRegularExpression assignment_regex{R"(^\s*([[:alpha:]]\w*)\s*=\s*(.*))"};
-  static const QRegularExpression binary_operator_regex{R"(([=+−·/]))"};
 
   QString formula_plain{formula};
   formula_plain.replace("−", "-")
@@ -81,18 +75,8 @@ QVariantMap Calculator::calculate(QString formula) {
   } catch (std::exception &e) {
     error = e.what();
   }
-  QString res_str{typeset(res)};
-  formula.replace(" ", "")
-      .replace("-", "−")
-      .replace("*", "·")
-      .replace(binary_operator_regex, " \\1 ")
-      .replace(",", ", ")
-      .replace(pi_regex, "π")
-      .replace(sqrt_regex, "√")
-      .replace(Gamma_regex, "Γ")
-      .replace(gamma_regex, "γ")
-      .replace(leading_spaces_regex, "")
-      .replace("  ", " ");
+  QString res_str{typeset_value(res)};
+  formula = typeset(formula);
   if (auto match{assignment_regex.match(formula)}; match.hasMatch())
     formula = match.capturedRef(2).toString();
   QVariantMap res_map;
@@ -121,10 +105,37 @@ void Calculator::clear() {
 }
 
 
+QString Calculator::typeset(QString formula) const {
+  static const QRegularExpression pi_regex{R"(\bpi\b)"};
+  static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
+  static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
+  static const QRegularExpression gamma_regex{R"(\bgamma\b)"};
+  static const QRegularExpression leading_spaces_regex{R"(^\s*)"};
+  static const QRegularExpression ending_spaces_regex{R"(\s*$)"};
+  static const QRegularExpression binary_operator1_regex{R"((?<!^|\(|=)([+−]))"};
+  static const QRegularExpression binary_operator2_regex{R"(([=·/]))"};
+
+  formula.replace(" ", "")
+      .replace("-", "−")
+      .replace("*", "·")
+      .replace(binary_operator1_regex, " \\1 ")
+      .replace(binary_operator2_regex, " \\1 ")
+      .replace(",", ", ")
+      .replace(pi_regex, "π")
+      .replace(sqrt_regex, "√")
+      .replace(Gamma_regex, "Γ")
+      .replace(gamma_regex, "γ")
+      .replace(leading_spaces_regex, "")
+      .replace(ending_spaces_regex, "")
+      .replace("  ", " ");
+  return formula;
+};
+
+
 QVariantList Calculator::getVariables() const {
   QVariantList list;
   for (const auto &x : m_variables) {
-    QString value_str{typeset(x.second)};
+    QString value_str{typeset_value(x.second)};
     QString name_str{x.first};
     if (name_str == "pi")
       name_str = "π";
@@ -139,7 +150,7 @@ QVariantList Calculator::getVariables() const {
 }
 
 
-QString Calculator::typeset(double x) {
+QString Calculator::typeset_value(double x) {
   static const QRegularExpression pos_exponent_regex{R"(e[+](\d+))"};
   static const QRegularExpression neg_exponent_regex{R"(e[-](\d+))"};
 
