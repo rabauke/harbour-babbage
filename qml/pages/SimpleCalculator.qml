@@ -439,7 +439,9 @@ Page {
     }
   }
 
-  Component.onCompleted: {
-    appModel.calculatorType = AppModel.simpleCalculator
+  onStatusChanged: {
+    if (status === PageStatus.Active) {
+      appModel.calculatorType = AppModel.SimpleCalculator
+    }
   }
 }

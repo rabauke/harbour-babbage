@@ -124,10 +124,7 @@ Page {
   onStatusChanged: {
     if (status === PageStatus.Active) {
       pageStack.pushAttached(Qt.resolvedUrl('Expressions.qml'))
+      appModel.calculatorType = AppModel.ScientificCalculator
     }
-  }
-
-  Component.onCompleted: {
-    appModel.calculatorType = AppModel.ScientificCalculator
   }
 }
