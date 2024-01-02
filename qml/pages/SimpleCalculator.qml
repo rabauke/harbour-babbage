@@ -41,7 +41,7 @@ Page {
       title: qsTr('Pocket calculator')
     }
 
-    Text {
+    TextArea {
       id: formula
 
       anchors {
@@ -49,18 +49,11 @@ Page {
         right: parent.right
         top: pageHeader.bottom
         topMargin: Theme.paddingLarge
-        leftMargin: 2 * Theme.paddingMedium
-        rightMargin: 2 * Theme.paddingMedium
-      }
-
-      text: ''
-      horizontalAlignment: {
-        text == '' || contentWidth < width ? Text.AlignLeft : Text.AlignRight
       }
       font.pointSize: Screen.sizeCategory
                       >= Screen.Large ? Theme.fontSizeMedium : Theme.fontSizeSmall
       color: Theme.primaryColor
-      elide: Text.ElideLeft
+      backgroundStyle: TextEditor.NoBackground
     }
 
     Text {
@@ -70,7 +63,6 @@ Page {
         left: parent.left
         right: parent.right
         top: formula.bottom
-        topMargin: Theme.paddingLarge
         leftMargin: 2 * Theme.paddingMedium
         rightMargin: 2 * Theme.paddingMedium
       }
@@ -103,7 +95,13 @@ Page {
 
     SlideshowView {
       id: view
-      anchors.fill: parent
+      anchors {
+        horizontalCenter: parent.horizontalCenter
+        bottom: parent.bottom
+        bottomMargin: Screen.sizeCategory
+                      >= Screen.Large ? 4 * Theme.paddingLarge : 2 * Theme.paddingLarge
+      }
+      height: (Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall) * 6 + Theme.paddingMedium *6
 
       model: 2
       delegate: Item {
@@ -111,11 +109,9 @@ Page {
         height: view.height
         GridLayout {
           id: grid
-          anchors.horizontalCenter: parent.horizontalCenter
           anchors {
+            horizontalCenter: parent.horizontalCenter
             bottom: parent.bottom
-            bottomMargin: Screen.sizeCategory
-                          >= Screen.Large ? 4 * Theme.paddingLarge : 2 * Theme.paddingLarge
           }
           rows: 6
           columns: 4
