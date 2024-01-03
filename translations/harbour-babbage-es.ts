@@ -319,6 +319,10 @@
         <source>Scientific calculator</source>
         <translation>Calculadora científica</translation>
     </message>
+    <message>
+        <source>Copy value</source>
+        <translation>Copiar valor</translation>
+    </message>
 </context>
 <context>
     <name>Variables</name>

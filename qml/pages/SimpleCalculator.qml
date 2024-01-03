@@ -4,7 +4,6 @@ import Sailfish.Silica 1.0
 import harbour.babbage.qmlcomponents 1.0
 import "../components"
 
-
 Page {
   id: simpleCalculatorPage
   allowedOrientations: Orientation.Portrait
@@ -13,7 +12,7 @@ Page {
   property string memory
 
   function enter(str) {
-    if (str !== '' ) {
+    if (str !== '') {
       result = ''
       formula.text = calculator.typeset(formula.text + str)
     }
@@ -63,41 +62,70 @@ Page {
       readOnly: true
     }
 
-    Text {
+    ListItem {
       id: resultItem
 
       anchors {
         left: parent.left
         right: parent.right
         top: formula.bottom
-        leftMargin: 2 * Theme.paddingMedium
-        rightMargin: 2 * Theme.paddingMedium
       }
 
-      text: '= ' + result
-      horizontalAlignment: Text.AlignLeft
-      font.pointSize: Screen.sizeCategory
-                      >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
-      color: Theme.highlightColor
+      Text {
+        anchors {
+          fill: parent
+          leftMargin: 2 * Theme.paddingMedium
+          rightMargin: 2 * Theme.paddingMedium
+        }
+
+        text: '= ' + result
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        font.pointSize: Screen.sizeCategory
+                        >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
+        color: Theme.highlightColor
+      }
+
+      menu: ContextMenu {
+        MenuItem {
+          text: qsTr('Copy value')
+          enabled: result !== ''
+          onClicked: Clipboard.text = result
+        }
+      }
     }
 
-    Text {
-      id: memoryText
+    ListItem {
+      id: memoryItem
 
       anchors {
         left: parent.left
         right: parent.right
         top: resultItem.bottom
-        topMargin: Theme.paddingLarge
-        leftMargin: 2 * Theme.paddingMedium
-        rightMargin: 2 * Theme.paddingMedium
       }
 
-      text: 'M: ' + simpleCalculatorPage.memory
-      horizontalAlignment: Text.AlignLeft
-      font.pointSize: Screen.sizeCategory
-                      >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
-      color: Theme.highlightColor
+      Text {
+        anchors {
+          fill: parent
+          leftMargin: 2 * Theme.paddingMedium
+          rightMargin: 2 * Theme.paddingMedium
+        }
+
+        text: 'M: ' + memory
+        horizontalAlignment: Text.AlignLeft
+        verticalAlignment: Text.AlignVCenter
+        font.pointSize: Screen.sizeCategory
+                        >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
+        color: Theme.highlightColor
+      }
+
+      menu: ContextMenu {
+        MenuItem {
+          text: qsTr('Copy value')
+          enabled: memory !== ''
+          onClicked: Clipboard.text = memory
+        }
+      }
     }
 
     SlideshowView {
@@ -105,10 +133,12 @@ Page {
       anchors {
         horizontalCenter: parent.horizontalCenter
         bottom: parent.bottom
-        bottomMargin: Screen.sizeCategory
-                      >= Screen.Large ? 4 * Theme.paddingLarge : 2 * Theme.paddingLarge
+        bottomMargin: Screen.sizeCategory >= Screen.Large ? 4 * Theme.paddingLarge : 2
+                                                            * Theme.paddingLarge
       }
-      height: (Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall) * 7 + Theme.paddingMedium * 7
+      height: (Screen.sizeCategory
+               >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall)
+              * 7 + Theme.paddingMedium * 7
 
       model: 2
       delegate: Item {
@@ -141,9 +171,10 @@ Page {
             onClicked: {
               evaluate()
               if (result !== '' && result !== 'nan') {
-                var res;
+                var res
                 if (memory !== '') {
-                  res = calculator.calculate('( ' + memory + ' ) - ( ' + result + ' )')
+                  res = calculator.calculate(
+                        '( ' + memory + ' ) - ( ' + result + ' )')
                   memory = res.result
                 } else {
                   res = calculator.calculate('- ( ' + result + ' )')
@@ -158,9 +189,10 @@ Page {
             onClicked: {
               evaluate()
               if (result !== '' && result !== 'nan') {
-                var res;
+                var res
                 if (memory !== '') {
-                  res = calculator.calculate('( ' + memory + ' ) + ( ' + result + ' )')
+                  res = calculator.calculate(
+                        '( ' + memory + ' ) + ( ' + result + ' )')
                   memory = res.result
                 } else {
                   res = calculator.calculate('( ' + result + ' )')
