@@ -13,8 +13,18 @@ Page {
   property string memory
 
   function enter(str) {
-    result = ''
-    formula.text = calculator.typeset(formula.text + str)
+    if (str !== '' ) {
+      result = ''
+      formula.text = calculator.typeset(formula.text + str)
+    }
+  }
+
+  function evaluate() {
+    if (formula.text !== '') {
+      var res = calculator.calculate(formula.text)
+      resultsListModel.insert(0, res)
+      result = res.result
+    }
   }
 
   SilicaFlickable {
@@ -28,17 +38,6 @@ Page {
       MenuItem {
         text: qsTr('Scientific calculator')
         onClicked: pageStack.replace(Qt.resolvedUrl('MainPage.qml'))
-      }
-      MenuItem {
-        text: qsTr('Get memory')
-        onClicked: enter(memory)
-      }
-      MenuItem {
-        text: qsTr('Save result')
-        onClicked: {
-          Clipboard.text = result
-          memory = result
-        }
       }
     }
 
@@ -126,6 +125,54 @@ Page {
           rowSpacing: Theme.paddingMedium
           columnSpacing: Theme.paddingMedium
 
+          PCButton {
+            visible: model.index === 0
+            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
+            text: 'MC'
+            onClicked: memory = ''
+          }
+          PCButton {
+            visible: model.index === 0
+            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
+            text: 'MR'
+            onClicked: enter(memory)
+          }
+          PCButton {
+            visible: model.index === 0
+            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
+            text: 'M−'
+            onClicked: {
+              evaluate()
+              if (result !== '' && result !== 'nan') {
+                var res;
+                if (memory !== '') {
+                  res = calculator.calculate('( ' + memory + ' ) - ( ' + result + ' )')
+                  memory = res.result
+                } else {
+                  res = calculator.calculate('- ( ' + result + ' )')
+                  memory = res.result
+                }
+              }
+            }
+          }
+          PCButton {
+            visible: model.index === 0
+            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
+            text: 'M+'
+            onClicked: {
+              evaluate()
+              if (result !== '' && result !== 'nan') {
+                var res;
+                if (memory !== '') {
+                  res = calculator.calculate('( ' + memory + ' ) + ( ' + result + ' )')
+                  memory = res.result
+                } else {
+                  res = calculator.calculate('( ' + result + ' )')
+                  memory = res.result
+                }
+              }
+            }
+          }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
@@ -289,13 +336,7 @@ Page {
             Layout.preferredWidth: 2 * Theme.buttonWidthSmall / 2.125 + Theme.paddingMedium
             Layout.columnSpan: 2
             text: '<b>=</b>'
-            onClicked: {
-              if (formula.text != '') {
-                var res = calculator.calculate(formula.text)
-                resultsListModel.insert(0, res)
-                result = res.result
-              }
-            }
+            onClicked: evaluate()
           }
           PCButton {
             visible: model.index === 1

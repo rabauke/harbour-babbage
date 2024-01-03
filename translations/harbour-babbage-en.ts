@@ -312,14 +312,6 @@
         <translation>Pocket calculator</translation>
     </message>
     <message>
-        <source>Get memory</source>
-        <translation>Get memory</translation>
-    </message>
-    <message>
-        <source>Save result</source>
-        <translation>Save result</translation>
-    </message>
-    <message>
         <source>About Babbage</source>
         <translation>About Babbage</translation>
     </message>

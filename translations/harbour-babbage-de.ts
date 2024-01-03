@@ -312,14 +312,6 @@
         <translation>Taschenrechner</translation>
     </message>
     <message>
-        <source>Get memory</source>
-        <translation>Lese Speicher</translation>
-    </message>
-    <message>
-        <source>Save result</source>
-        <translation>Speichere Resultat</translation>
-    </message>
-    <message>
         <source>About Babbage</source>
         <translation>Über Babbage</translation>
     </message>

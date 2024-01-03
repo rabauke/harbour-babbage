@@ -312,14 +312,6 @@
         <translation>Calculadora de bolsillo</translation>
     </message>
     <message>
-        <source>Get memory</source>
-        <translation>Usar memoria</translation>
-    </message>
-    <message>
-        <source>Save result</source>
-        <translation>Guardar resultado</translation>
-    </message>
-    <message>
         <source>About Babbage</source>
         <translation>Acerca de Babbage</translation>
     </message>
