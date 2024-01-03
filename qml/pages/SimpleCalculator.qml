@@ -108,7 +108,7 @@ Page {
         bottomMargin: Screen.sizeCategory
                       >= Screen.Large ? 4 * Theme.paddingLarge : 2 * Theme.paddingLarge
       }
-      height: (Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall) * 6 + Theme.paddingMedium *6
+      height: (Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall) * 7 + Theme.paddingMedium * 7
 
       model: 2
       delegate: Item {
@@ -127,19 +127,16 @@ Page {
 
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'MC'
             onClicked: memory = ''
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'MR'
             onClicked: enter(memory)
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'M−'
             onClicked: {
               evaluate()
@@ -157,7 +154,6 @@ Page {
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'M+'
             onClicked: {
               evaluate()
@@ -175,19 +171,16 @@ Page {
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '√'
             onClicked: enter('√(')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '^'
             onClicked: enter('^')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '<b>AC</b>'
             onClicked: {
               formula.text = ''
@@ -196,7 +189,6 @@ Page {
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '<b>C</b>'
             onClicked: {
               var text = formula.text
@@ -225,260 +217,218 @@ Page {
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '('
             onClicked: enter('(')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: ')'
             onClicked: enter(')')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'π'
             onClicked: enter('π')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '+'
             onClicked: enter('+')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '1'
             onClicked: enter('1')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '2'
             onClicked: enter('2')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '3'
             onClicked: enter('3')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '−'
             onClicked: enter('−')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '4'
             onClicked: enter('4')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '5'
             onClicked: enter('5')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '6'
             onClicked: enter('6')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '×'
             onClicked: enter('·')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '7'
             onClicked: enter('7')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '8'
             onClicked: enter('8')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '9'
             onClicked: enter('9')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '/'
             onClicked: enter('/')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '0'
             onClicked: enter('0')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '.'
             onClicked: enter('.')
           }
           PCButton {
             visible: model.index === 0
-            Layout.preferredWidth: 2 * Theme.buttonWidthSmall / 2.125 + Theme.paddingMedium
+            Layout.fillWidth: true
             Layout.columnSpan: 2
             text: '<b>=</b>'
             onClicked: evaluate()
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sin'
             onClicked: enter('sin(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asin'
             onClicked: enter('asin(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sinh'
             onClicked: enter('sinh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asinh'
             onClicked: enter('asinh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cos'
             onClicked: enter('cos(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acos'
             onClicked: enter('acos(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cosh'
             onClicked: enter('cosh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acosh'
             onClicked: enter('acosh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tan'
             onClicked: enter('tan(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atan'
             onClicked: enter('atan(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tanh'
             onClicked: enter('tanh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atanh'
             onClicked: enter('atanh(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cot'
             onClicked: enter('cot(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acot'
             onClicked: enter('acot(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'coth'
             onClicked: enter('coth(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acoth'
             onClicked: enter('acoth(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'exp'
             onClicked: enter('exp(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'ln'
             onClicked: enter('ln(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '!'
             onClicked: enter('!')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '°'
             onClicked: enter('°')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'abs'
             onClicked: enter('abs(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'log'
             onClicked: enter('log(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'rad'
             onClicked: enter('rad(')
           }
           PCButton {
             visible: model.index === 1
-            Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'deg'
             onClicked: enter('deg(')
           }

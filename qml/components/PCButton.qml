@@ -24,7 +24,7 @@ MouseArea {
   }
 
   height: Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall
-  implicitWidth: Math.max(preferredWidth, buttonText.width + Theme.paddingLarge)
+  width: Theme.buttonWidthSmall / 2.125
 
   Rectangle {
     anchors {
