@@ -9,7 +9,13 @@ Page {
   id: simpleCalculatorPage
   allowedOrientations: Orientation.Portrait
 
+  property string result
   property string memory
+
+  function enter(str) {
+    result = ''
+    formula.text = calculator.typeset(formula.text + str)
+  }
 
   SilicaFlickable {
     anchors.fill: parent
@@ -25,13 +31,13 @@ Page {
       }
       MenuItem {
         text: qsTr('Get memory')
-        onClicked: formula.text = calculator.typeset(formula.text + simpleCalculatorPage.memory)
+        onClicked: enter(memory)
       }
       MenuItem {
         text: qsTr('Save result')
         onClicked: {
-          Clipboard.text = result.text.substr(2)
-          simpleCalculatorPage.memory = result.text.substr(2)
+          Clipboard.text = result
+          memory = result
         }
       }
     }
@@ -50,6 +56,7 @@ Page {
         top: pageHeader.bottom
         topMargin: Theme.paddingLarge
       }
+
       font.pointSize: Screen.sizeCategory
                       >= Screen.Large ? Theme.fontSizeMedium : Theme.fontSizeSmall
       color: Theme.primaryColor
@@ -57,7 +64,7 @@ Page {
     }
 
     Text {
-      id: result
+      id: resultItem
 
       anchors {
         left: parent.left
@@ -67,7 +74,7 @@ Page {
         rightMargin: 2 * Theme.paddingMedium
       }
 
-      text: '= '
+      text: '= ' + result
       horizontalAlignment: Text.AlignLeft
       font.pointSize: Screen.sizeCategory
                       >= Screen.Large ? Theme.fontSizeLarge : Theme.fontSizeMedium
@@ -80,7 +87,7 @@ Page {
       anchors {
         left: parent.left
         right: parent.right
-        top: result.bottom
+        top: resultItem.bottom
         topMargin: Theme.paddingLarge
         leftMargin: 2 * Theme.paddingMedium
         rightMargin: 2 * Theme.paddingMedium
@@ -122,13 +129,13 @@ Page {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '√'
-            onClicked: formula.text = calculator.typeset(formula.text + '√(')
+            onClicked: enter('√(')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '^'
-            onClicked: formula.text = calculator.typeset(formula.text + '^')
+            onClicked: enter('^')
           }
           PCButton {
             visible: model.index === 0
@@ -136,7 +143,7 @@ Page {
             text: '<b>AC</b>'
             onClicked: {
               formula.text = ''
-              result.text = '= '
+              result = ''
             }
           }
           PCButton {
@@ -165,115 +172,116 @@ Page {
                 }
               }
               formula.text = calculator.typeset(text)
+              result = ''
             }
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '('
-            onClicked: formula.text = calculator.typeset(formula.text + '(')
+            onClicked: enter('(')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: ')'
-            onClicked: formula.text = calculator.typeset(formula.text + ')')
+            onClicked: enter(')')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'π'
-            onClicked: formula.text = calculator.typeset(formula.text + 'π')
+            onClicked: enter('π')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '+'
-            onClicked: formula.text = calculator.typeset(formula.text + '+')
+            onClicked: enter('+')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '1'
-            onClicked: formula.text = calculator.typeset(formula.text + '1')
+            onClicked: enter('1')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '2'
-            onClicked: formula.text = calculator.typeset(formula.text + '2')
+            onClicked: enter('2')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '3'
-            onClicked: formula.text = calculator.typeset(formula.text + '3')
+            onClicked: enter('3')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '−'
-            onClicked: formula.text = calculator.typeset(formula.text + '−')
+            onClicked: enter('−')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '4'
-            onClicked: formula.text = calculator.typeset(formula.text + '4')
+            onClicked: enter('4')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '5'
-            onClicked: formula.text = calculator.typeset(formula.text + '5')
+            onClicked: enter('5')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '6'
-            onClicked: formula.text = calculator.typeset(formula.text + '6')
+            onClicked: enter('6')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '×'
-            onClicked: formula.text = calculator.typeset(formula.text + '·')
+            onClicked: enter('·')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '7'
-            onClicked: formula.text = calculator.typeset(formula.text + '7')
+            onClicked: enter('7')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '8'
-            onClicked: formula.text = calculator.typeset(formula.text + '8')
+            onClicked: enter('8')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '9'
-            onClicked: formula.text = calculator.typeset(formula.text + '9')
+            onClicked: enter('9')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '/'
-            onClicked: formula.text = calculator.typeset(formula.text + '/')
+            onClicked: enter('/')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '0'
-            onClicked: formula.text = calculator.typeset(formula.text + '0')
+            onClicked: enter('0')
           }
           PCButton {
             visible: model.index === 0
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '.'
-            onClicked: formula.text = calculator.typeset(formula.text + '.')
+            onClicked: enter('.')
           }
           PCButton {
             visible: model.index === 0
@@ -281,154 +289,156 @@ Page {
             Layout.columnSpan: 2
             text: '<b>=</b>'
             onClicked: {
-              var res = calculator.calculate(formula.text)
-              resultsListModel.insert(0, res)
-              result.text = '= ' + res.result
+              if (formula.text != '') {
+                var res = calculator.calculate(formula.text)
+                resultsListModel.insert(0, res)
+                result = res.result
+              }
             }
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sin'
-            onClicked: formula.text = calculator.typeset(formula.text + 'sin(')
+            onClicked: enter('sin(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asin'
-            onClicked: formula.text = calculator.typeset(formula.text + 'asin(')
+            onClicked: enter('asin(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'sinh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'sinh(')
+            onClicked: enter('sinh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'asinh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'asinh(')
+            onClicked: enter('asinh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cos'
-            onClicked: formula.text = calculator.typeset(formula.text + 'cos(')
+            onClicked: enter('cos(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acos'
-            onClicked: formula.text = calculator.typeset(formula.text + 'acos(')
+            onClicked: enter('acos(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cosh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'cosh(')
+            onClicked: enter('cosh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acosh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'acosh(')
+            onClicked: enter('acosh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tan'
-            onClicked: formula.text = calculator.typeset(formula.text + 'tan(')
+            onClicked: enter('tan(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atan'
-            onClicked: formula.text = calculator.typeset(formula.text + 'atan(')
+            onClicked: enter('atan(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'tanh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'tanh(')
+            onClicked: enter('tanh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'atanh'
-            onClicked: formula.text = calculator.typeset(formula.text + 'atanh(')
+            onClicked: enter('atanh(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'cot'
-            onClicked: formula.text = calculator.typeset(formula.text + 'cot(')
+            onClicked: enter('cot(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acot'
-            onClicked: formula.text = calculator.typeset(formula.text + 'acot(')
+            onClicked: enter('acot(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'coth'
-            onClicked: formula.text = calculator.typeset(formula.text + 'coth(')
+            onClicked: enter('coth(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'acoth'
-            onClicked: formula.text = calculator.typeset(formula.text + 'acoth(')
+            onClicked: enter('acoth(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'exp'
-            onClicked: formula.text = calculator.typeset(formula.text + 'exp(')
+            onClicked: enter('exp(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'ln'
-            onClicked: formula.text = calculator.typeset(formula.text + 'ln(')
+            onClicked: enter('ln(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '!'
-            onClicked: formula.text = calculator.typeset(formula.text + '!')
+            onClicked: enter('!')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: '°'
-            onClicked: formula.text = calculator.typeset(formula.text + '°')
+            onClicked: enter('°')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'abs'
-            onClicked: formula.text = calculator.typeset(formula.text + 'abs(')
+            onClicked: enter('abs(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'log'
-            onClicked: formula.text = calculator.typeset(formula.text + 'log(')
+            onClicked: enter('log(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'rad'
-            onClicked: formula.text = calculator.typeset(formula.text + 'rad(')
+            onClicked: enter('rad(')
           }
           PCButton {
             visible: model.index === 1
             Layout.preferredWidth: Theme.buttonWidthSmall / 2.125
             text: 'deg'
-            onClicked: formula.text = calculator.typeset(formula.text + 'deg(')
+            onClicked: enter('deg(')
           }
         }
       }
