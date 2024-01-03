@@ -61,6 +61,7 @@ Page {
                       >= Screen.Large ? Theme.fontSizeMedium : Theme.fontSizeSmall
       color: Theme.primaryColor
       backgroundStyle: TextEditor.NoBackground
+      readOnly: true
     }
 
     Text {
