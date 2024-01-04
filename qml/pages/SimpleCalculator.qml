@@ -436,13 +436,13 @@ Page {
           }
           PCButton {
             visible: model.index === 1
-            text: '!'
-            onClicked: enter('!')
+            text: 'log'
+            onClicked: enter('log()')
           }
           PCButton {
             visible: model.index === 1
-            text: '°'
-            onClicked: enter('°')
+            text: '!'
+            onClicked: enter('!')
           }
           PCButton {
             visible: model.index === 1
@@ -451,8 +451,8 @@ Page {
           }
           PCButton {
             visible: model.index === 1
-            text: 'log'
-            onClicked: enter('log(')
+            text: 'deg'
+            onClicked: enter('deg(')
           }
           PCButton {
             visible: model.index === 1
@@ -461,8 +461,28 @@ Page {
           }
           PCButton {
             visible: model.index === 1
-            text: 'deg'
-            onClicked: enter('deg(')
+            text: '°'
+            onClicked: enter('°')
+          }
+          PCButton {
+            visible: model.index === 1
+            text: 'round'
+            onClicked: enter('round(')
+          }
+          PCButton {
+            visible: model.index === 1
+            text: 'ceil'
+            onClicked: enter('ceil(')
+          }
+          PCButton {
+            visible: model.index === 1
+            text: 'floor'
+            onClicked: enter('floor(')
+          }
+          PCButton {
+            visible: model.index === 1
+            text: ','
+            onClicked: enter(',')
           }
         }
       }
