@@ -23,17 +23,12 @@ MouseArea {
     pressTimer.stop()
   }
 
-  height: Screen.sizeCategory >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall
-  width: Theme.buttonWidthSmall / 2.125
+  height: Screen.sizeCategory >= Screen.Large ? Theme.itemSizeSmall : Theme.itemSizeExtraSmall
+  width: Screen.sizeCategory >= Screen.Large ? Theme.buttonWidthSmall / 1.75 : Theme.buttonWidthSmall / 2.125
 
   Rectangle {
     anchors {
       fill: parent
-      topMargin: Screen.sizeCategory
-                 >= Screen.Large ? (button.height - Theme.itemSizeMedium)
-                                   / 2 : (button.height - Theme.itemSizeExtraSmall) / 2
-
-      bottomMargin: anchors.topMargin
     }
     radius: Theme.paddingSmall
     color: _showPress ? Theme.rgba(

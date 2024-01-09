@@ -52,7 +52,7 @@ Page {
         left: parent.left
         right: parent.right
         top: pageHeader.bottom
-        topMargin: Theme.paddingLarge
+        topMargin: Theme.paddingMedium
       }
 
       font.pointSize: Screen.sizeCategory
@@ -60,6 +60,7 @@ Page {
       color: Theme.primaryColor
       backgroundStyle: TextEditor.NoBackground
       readOnly: true
+      labelVisible: false
     }
 
     ListItem {
@@ -74,8 +75,8 @@ Page {
       Text {
         anchors {
           fill: parent
-          leftMargin: 2 * Theme.paddingMedium
-          rightMargin: 2 * Theme.paddingMedium
+          leftMargin: Theme.horizontalPageMargin
+          rightMargin: Theme.horizontalPageMargin
         }
 
         text: '= ' + result
@@ -107,8 +108,8 @@ Page {
       Text {
         anchors {
           fill: parent
-          leftMargin: 2 * Theme.paddingMedium
-          rightMargin: 2 * Theme.paddingMedium
+          leftMargin: Theme.horizontalPageMargin
+          rightMargin: Theme.horizontalPageMargin
         }
 
         text: 'M: ' + memory
@@ -133,8 +134,7 @@ Page {
       anchors {
         horizontalCenter: parent.horizontalCenter
         bottom: parent.bottom
-        bottomMargin: Screen.sizeCategory >= Screen.Large ? 4 * Theme.paddingLarge : 2
-                                                            * Theme.paddingLarge
+        bottomMargin: 2 * Theme.paddingLarge
       }
       height: (Screen.sizeCategory
                >= Screen.Large ? Theme.itemSizeMedium : Theme.itemSizeExtraSmall)
