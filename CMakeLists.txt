@@ -23,6 +23,7 @@ set(QML_FILES
     qml/pages/Functions.qml
     qml/pages/Variables.qml
     qml/pages/Expressions.qml
+    qml/pages/EditExpression.qml
     qml/pages/MainPage.qml
     qml/pages/About.qml
     qml/pages/SimpleCalculator.qml
@@ -46,6 +47,8 @@ configure_file(src/Version.h.in ${CMAKE_BINARY_DIR}/src/Version.h @ONLY)
 
 add_executable(harbour-babbage
     src/harbour-babbage.cpp
+    src/FormularyExpression.hpp
+    src/FormularyExpression.cpp
     src/AppModel.hpp
     src/AppModel.cpp
     src/special_functions.hpp

@@ -13,6 +13,17 @@
     </message>
 </context>
 <context>
+    <name>EditExpression</name>
+    <message>
+        <source>Mathematical expression</source>
+        <translation>Mathematical expression</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>Description</translation>
+    </message>
+</context>
+<context>
     <name>Expressions</name>
     <message>
         <source>Clear all expressions</source>
@@ -37,6 +48,10 @@
     <message>
         <source>Use expression</source>
         <translation>Use expression</translation>
+    </message>
+    <message>
+        <source>Edit expression</source>
+        <translation>Edit expression</translation>
     </message>
 </context>
 <context>

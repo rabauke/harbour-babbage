@@ -4,6 +4,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QMetaEnum>
+#include "FormularyExpression.hpp"
 
 
 #ifdef SAILJAIL
@@ -37,8 +38,13 @@ AppModel::AppModel(QObject* parent) : QObject{parent} {
   }
 
   const auto expressions_variant{settings.value("expressions")};
-  if (expressions_variant.isValid() and expressions_variant.canConvert<QStringList>())
-    m_expressions = expressions_variant.toStringList();
+  if (expressions_variant.isValid() and expressions_variant.canConvert<QVariantList>()) {
+    QSequentialIterable iterable{expressions_variant.value<QSequentialIterable>()};
+    for (const QVariant& v : iterable) {
+      if (v.canConvert<FormularyExpression>())
+        m_expressions.append(v);
+    }
+  }
 }
 
 
@@ -59,8 +65,13 @@ AppModel::~AppModel() {
 }
 
 
-void AppModel::addExpression(QString expression) {
-  m_expressions.append(expression);
+void AppModel::addExpression(const QString& expression) {
+  FormularyExpression formularyExpression;
+  formularyExpression.expression = expression;
+  formularyExpression.description = "";
+  QVariant var;
+  var.setValue(formularyExpression);
+  m_expressions.append(var);
   emit expressionsChanged();
 }
 
@@ -73,12 +84,23 @@ void AppModel::removeExpression(qint32 index) {
 }
 
 
+void AppModel::updateExpression(qint32 index, const QString& expression,
+                                const QString& description) {
+  if (0 <= index && index < m_expressions.size()) {
+    FormularyExpression formularyExpression;
+    formularyExpression.expression = expression;
+    formularyExpression.description = description;
+    m_expressions[index].setValue(formularyExpression);
+    emit expressionsChanged();
+  }
+}
+
 void AppModel::clearExpressions() {
   m_expressions.clear();
   emit expressionsChanged();
 }
 
 
-QStringList AppModel::getExpressions() const {
+QVariantList AppModel::getExpressions() const {
   return m_expressions;
 }

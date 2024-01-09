@@ -29,10 +29,12 @@ public:
   Q_PROPERTY(QString version MEMBER m_version CONSTANT)
   Q_PROPERTY(
       CalculatorType calculatorType MEMBER m_calculator_type NOTIFY calculatorTypeChanged)
-  Q_PROPERTY(QStringList expressions READ getExpressions NOTIFY expressionsChanged)
+  Q_PROPERTY(QVariantList expressions READ getExpressions NOTIFY expressionsChanged)
 
-  Q_INVOKABLE void addExpression(QString expression);
+  Q_INVOKABLE void addExpression(const QString &expression);
   Q_INVOKABLE void removeExpression(qint32 index);
+  Q_INVOKABLE void updateExpression(qint32 index, const QString &expression,
+                                    const QString &description);
   Q_INVOKABLE void clearExpressions();
 
 signals:
@@ -40,9 +42,9 @@ signals:
   void expressionsChanged();
 
 private:
-  QStringList getExpressions() const;
+  QVariantList getExpressions() const;
 
   QString m_version{QString::fromStdString(project_version)};
   CalculatorType m_calculator_type{CalculatorType::SimpleCalculator};
-  QStringList m_expressions;
+  QVariantList m_expressions;
 };

@@ -42,12 +42,12 @@ Page {
       id: listItem
       width: parent.width
       contentWidth: parent.width
-      contentHeight: result_text.height + Theme.paddingLarge
+      contentHeight: expressionText.height + descriptionText.height + Theme.paddingLarge
       menu: ContextMenu {
         MenuItem {
           text: qsTr('Use expression')
           onClicked: {
-            viewModel.formulaText = modelData
+            viewModel.formulaText = modelData.expression
             var res = calculator.calculate(viewModel.formulaText)
             resultsListModel.insert(0, res)
             pageStack.navigateBack(PageStackAction.Animated)
@@ -56,8 +56,18 @@ Page {
         MenuItem {
           text: qsTr('Copy expression')
           onClicked: {
-            Clipboard.text = modelData
-            viewModel.formulaText = modelData
+            Clipboard.text = modelData.expression
+          }
+        }
+        MenuItem {
+          text: qsTr('Edit expression')
+          onClicked: {
+            var dialog = pageStack.push(Qt.resolvedUrl('EditExpression.qml'),
+                                        {'expression': modelData.expression,
+                                         'description': modelData.description})
+            dialog.accepted.connect(function() {
+              appModel.updateExpression(model.index, calculator.typeset(dialog.expression), dialog.description.trim())
+            })
           }
         }
         MenuItem {
@@ -68,7 +78,7 @@ Page {
         }
       }
       Text {
-        id: result_text
+        id: expressionText
         x: Theme.horizontalPageMargin
         y: Theme.paddingMedium
         width: parent.width - 2 * Theme.horizontalPageMargin
@@ -76,7 +86,19 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: modelData
+        text: modelData.expression
+      }
+      Text {
+        id: descriptionText
+        x: Theme.horizontalPageMargin
+        anchors.top: expressionText.bottom
+        width: parent.width - 2 * Theme.horizontalPageMargin
+        color: Theme.secondaryColor
+        wrapMode: TextEdit.Wrap
+        font.pixelSize: Theme.fontSizeSmall
+        horizontalAlignment: TextEdit.AlignLeft
+        text: modelData.description
+        visible: text !== ''
       }
     }
   }
