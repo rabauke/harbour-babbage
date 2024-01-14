@@ -14,13 +14,13 @@ Page {
   function enter(str) {
     if (str !== '') {
       result = ''
-      formula.text = calculator.typeset(formula.text + str)
+      formula.text = appModel.calculator.typeset(formula.text + str)
     }
   }
 
   function evaluate() {
     if (formula.text !== '') {
-      var res = calculator.calculate(formula.text)
+      var res = appModel.calculator.calculate(formula.text)
       resultsListModel.insert(0, res)
       result = res.result
     }
@@ -173,11 +173,11 @@ Page {
               if (result !== '' && result !== 'nan') {
                 var res
                 if (memory !== '') {
-                  res = calculator.calculate(
+                  res = appModel.calculator.calculate(
                         '( ' + memory + ' ) - ( ' + result + ' )')
                   memory = res.result
                 } else {
-                  res = calculator.calculate('- ( ' + result + ' )')
+                  res = appModel.calculator.calculate('- ( ' + result + ' )')
                   memory = res.result
                 }
               }
@@ -191,11 +191,11 @@ Page {
               if (result !== '' && result !== 'nan') {
                 var res
                 if (memory !== '') {
-                  res = calculator.calculate(
+                  res = appModel.calculator.calculate(
                         '( ' + memory + ' ) + ( ' + result + ' )')
                   memory = res.result
                 } else {
-                  res = calculator.calculate('( ' + result + ' )')
+                  res = appModel.calculator.calculate('( ' + result + ' )')
                   memory = res.result
                 }
               }
@@ -243,7 +243,7 @@ Page {
                     text = text.slice(0, -1)
                 }
               }
-              formula.text = calculator.typeset(text)
+              formula.text = appModel.calculator.typeset(text)
               result = ''
             }
           }

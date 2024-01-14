@@ -65,7 +65,7 @@ Page {
         inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
         EnterKey.enabled: text.length > 0
         EnterKey.onClicked: {
-          var res = calculator.calculate(formula.text)
+          var res = appModel.calculator.calculate(formula.text)
           resultsListModel.insert(0, res)
           formula.text = res.variable !== '' ? res.variable + ' = ' + res.formula : res.formula
         }
@@ -95,7 +95,7 @@ Page {
         }
         MenuItem {
           text: qsTr('Add formula to formulary')
-          onClicked: appModel.addExpression(resultsListModel.get(model.index).formula)
+          onClicked: appModel.formulary.add({expression: resultsListModel.get(model.index).formula, description: ''})
         }
         MenuItem {
           text: qsTr('Clear output')

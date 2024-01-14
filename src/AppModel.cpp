@@ -42,7 +42,7 @@ AppModel::AppModel(QObject* parent) : QObject{parent} {
     QSequentialIterable iterable{expressions_variant.value<QSequentialIterable>()};
     for (const QVariant& v : iterable) {
       if (v.canConvert<FormularyExpression>())
-        m_expressions.append(v);
+        m_formulary.add(v.value<FormularyExpression>());
     }
   }
 }
@@ -60,47 +60,22 @@ AppModel::~AppModel() {
   if (calculator_type_str != nullptr)
     settings.setValue("calculator_type", calculator_type_str);
 
-  settings.setValue("expressions", m_expressions);
+  QVariantList expressions;
+  for (const auto& expression : m_formulary) {
+    QVariant expression_variant;
+    expression_variant.setValue(expression);
+    expressions.append(expression_variant);
+  }
+  settings.setValue("expressions", expressions);
   settings.sync();
 }
 
 
-void AppModel::addExpression(const QString& expression) {
-  FormularyExpression formularyExpression;
-  formularyExpression.expression = expression;
-  formularyExpression.description = "";
-  QVariant var;
-  var.setValue(formularyExpression);
-  m_expressions.append(var);
-  emit expressionsChanged();
+Calculator* AppModel::getCalculator() {
+  return &m_calculator;
 }
 
 
-void AppModel::removeExpression(qint32 index) {
-  if (0 <= index && index < m_expressions.size()) {
-    m_expressions.removeAt(index);
-    emit expressionsChanged();
-  }
-}
-
-
-void AppModel::updateExpression(qint32 index, const QString& expression,
-                                const QString& description) {
-  if (0 <= index && index < m_expressions.size()) {
-    FormularyExpression formularyExpression;
-    formularyExpression.expression = expression;
-    formularyExpression.description = description;
-    m_expressions[index].setValue(formularyExpression);
-    emit expressionsChanged();
-  }
-}
-
-void AppModel::clearExpressions() {
-  m_expressions.clear();
-  emit expressionsChanged();
-}
-
-
-QVariantList AppModel::getExpressions() const {
-  return m_expressions;
+FormularyListModel* AppModel::getFormulary() {
+  return &m_formulary;
 }

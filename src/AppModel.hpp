@@ -10,6 +10,8 @@
 #include <QtQmlIntegration>
 #endif
 #include "Version.h"
+#include "Calculator.hpp"
+#include "FormularyListModel.hpp"
 
 
 class AppModel : public QObject {
@@ -27,24 +29,22 @@ public:
   ~AppModel();
 
   Q_PROPERTY(QString version MEMBER m_version CONSTANT)
+  Q_PROPERTY(FormularyListModel* formulary READ getFormulary CONSTANT)
+  Q_PROPERTY(Calculator* calculator READ getCalculator CONSTANT)
   Q_PROPERTY(
       CalculatorType calculatorType MEMBER m_calculator_type NOTIFY calculatorTypeChanged)
-  Q_PROPERTY(QVariantList expressions READ getExpressions NOTIFY expressionsChanged)
-
-  Q_INVOKABLE void addExpression(const QString &expression);
-  Q_INVOKABLE void removeExpression(qint32 index);
-  Q_INVOKABLE void updateExpression(qint32 index, const QString &expression,
-                                    const QString &description);
-  Q_INVOKABLE void clearExpressions();
+  Q_PROPERTY(FormularyListModel* formulary READ getFormulary CONSTANT)
 
 signals:
   void calculatorTypeChanged(CalculatorType new_calculator_type);
-  void expressionsChanged();
+  void formularyChanged();
 
 private:
-  QVariantList getExpressions() const;
+  Calculator* getCalculator();
+  FormularyListModel* getFormulary();
 
   QString m_version{QString::fromStdString(project_version)};
+  Calculator m_calculator;
   CalculatorType m_calculator_type{CalculatorType::SimpleCalculator};
-  QVariantList m_expressions;
+  FormularyListModel m_formulary;
 };

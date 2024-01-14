@@ -20,7 +20,9 @@ Page {
       MenuItem {
         text: qsTr('Clear all variables')
         onClicked: remorse_variables.execute(qsTr('Clearing all variables'),
-                                             calculator.clear())
+                                             function() {
+                                               appModel.calculator.variables.clear()
+                                             })
       }
     }
 
@@ -36,7 +38,7 @@ Page {
       }
     }
 
-    model: calculator.variables
+    model: appModel.calculator.variables
 
     delegate: ListItem {
       id: listItem
@@ -46,22 +48,22 @@ Page {
       menu: ContextMenu {
         MenuItem {
           text: qsTr('Copy value')
-          onClicked: Clipboard.text = modelData.value
+          onClicked: Clipboard.text = appModel.calculator.typeset(value)
         }
         MenuItem {
           text: qsTr('Copy variable name')
-          onClicked: Clipboard.text = modelData.variable
+          onClicked: Clipboard.text = appModel.calculator.typeset(name)
         }
         MenuItem {
           text: qsTr('Copy variable')
-          onClicked: Clipboard.text = modelData.variable + ' = ' + modelData.value
+          onClicked: Clipboard.text = appModel.calculator.typeset(name + ' = ' + value)
         }
         MenuItem {
           text: qsTr('Clear variable')
           onClicked: listItem.remorseDelete(function () {
-            calculator.removeVariable(model.index)
+            appModel.calculator.variables.remove(model.index)
           })
-          visible: !modelData.protected
+          visible: !is_protected
         }
       }
       Text {
@@ -73,7 +75,7 @@ Page {
         wrapMode: TextEdit.Wrap
         font.pixelSize: Theme.fontSizeMedium
         horizontalAlignment: TextEdit.AlignLeft
-        text: modelData.variable + ' = ' + modelData.value
+        text: appModel.calculator.typeset(name + '=' + value)
       }
     }
   }

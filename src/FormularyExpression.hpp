@@ -4,15 +4,18 @@
 #include <QString>
 #include <QMetaType>
 #include <QDataStream>
+#include <QVariantMap>
 
 
 struct FormularyExpression {
   Q_GADGET
 
+public:
   Q_PROPERTY(QString expression MEMBER expression)
   Q_PROPERTY(QString description MEMBER description)
 
-public:
+  static FormularyExpression create(const QVariantMap &map);
+
   QString expression;
   QString description;
 };

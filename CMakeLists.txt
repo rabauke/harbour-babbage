@@ -49,11 +49,17 @@ add_executable(harbour-babbage
     src/harbour-babbage.cpp
     src/FormularyExpression.hpp
     src/FormularyExpression.cpp
+    src/FormularyListModel.hpp
+    src/FormularyListModel.cpp
     src/AppModel.hpp
     src/AppModel.cpp
     src/special_functions.hpp
     src/constants.hpp
     src/math_parser.hpp
+    src/Variable.hpp
+    src/Variable.cpp
+    src/VariablesListModel.hpp
+    src/VariablesListModel.cpp
     src/Calculator.hpp
     src/Calculator.cpp
     )

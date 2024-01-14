@@ -11,10 +11,6 @@ ApplicationWindow {
     id: appModel
   }
 
-  Calculator {
-    id: calculator
-  }
-
   Item {
     id: viewModel
     property string formulaText

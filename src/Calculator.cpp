@@ -13,6 +13,7 @@
 Calculator::Calculator(QObject *parent) : QObject(parent) {
   static const QRegularExpression variable_regex{R"(^[[:alpha:]]\w*$)"};
 
+  init_variables();
   QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   const auto variables{settings.allKeys()};
@@ -22,12 +23,10 @@ Calculator::Calculator(QObject *parent) : QObject(parent) {
       bool success;
       const auto valueAsDouble{value.toDouble(&success)};
       if (success)
-        m_variables.insert(variable, valueAsDouble);
+        m_variables.add(Variable{variable, valueAsDouble, false});
     }
   }
   settings.endGroup();
-
-  init_variables();
 }
 
 
@@ -36,15 +35,9 @@ Calculator::~Calculator() {
   settings.beginGroup("variables");
   settings.remove("");
   for (const auto &variable : m_variables)
-    settings.setValue(variable.first, variable.second);
+    settings.setValue(variable.name, variable.value);
   settings.endGroup();
   settings.sync();
-}
-
-
-void Calculator::init_variables() {
-  m_variables.insert("pi", constants::pi);
-  m_variables.insert("e", constants::e);
 }
 
 
@@ -67,11 +60,10 @@ QVariantMap Calculator::calculate(QString formula) {
       var_name = match.capturedRef(1).toString();
       if (var_name == "pi" or var_name == "e")
         throw std::runtime_error{"protected variable"};
-      res = m_parser.value(match.capturedRef(2).toString(), m_variables);
-      m_variables[var_name] = res;
-      emit variablesChanged();
+      res = m_parser.value(match.capturedRef(2).toString(), getVariablesMap());
+      m_variables.add(Variable{var_name, res, false});
     } else
-      res = m_parser.value(formula_plain, m_variables);
+      res = m_parser.value(formula_plain, getVariablesMap());
   } catch (std::exception &e) {
     error = e.what();
   }
@@ -85,23 +77,6 @@ QVariantMap Calculator::calculate(QString formula) {
   res_map.insert("result", res_str);
   res_map.insert("error", error);
   return res_map;
-}
-
-
-void Calculator::removeVariable(int i) {
-  if (i < 0 or static_cast<std::size_t>(i) >= m_variables.size())
-    return;
-  auto j{m_variables.begin()};
-  std::advance(j, i);
-  m_variables.erase(j);
-  emit variablesChanged();
-}
-
-
-void Calculator::clear() {
-  m_variables.clear();
-  init_variables();
-  emit variablesChanged();
 }
 
 
@@ -129,24 +104,25 @@ QString Calculator::typeset(QString formula) const {
       .replace(ending_spaces_regex, "")
       .replace("  ", " ");
   return formula;
-};
+}
 
 
-QVariantList Calculator::getVariables() const {
-  QVariantList list;
-  for (const auto &x : m_variables) {
-    QString value_str{typeset_value(x.second)};
-    QString name_str{x.first};
-    if (name_str == "pi")
-      name_str = "π";
-    bool is_protected{name_str == "π" or name_str == "e"};
-    QMap<QString, QVariant> map;
-    map.insert("variable", name_str);
-    map.insert("value", value_str);
-    map.insert("protected", is_protected);
-    list.append(map);
-  }
-  return list;
+VariablesListModel *Calculator::getVariables() {
+  return &m_variables;
+}
+
+
+void Calculator::init_variables() {
+  m_variables.add(Variable{"pi", constants::pi, true});
+  m_variables.add(Variable{"e", constants::e, true});
+}
+
+
+math_parser::arithmetic_parser::var_map_t Calculator::getVariablesMap() const {
+  math_parser::arithmetic_parser::var_map_t variables;
+  for (const auto &variable : m_variables)
+    variables[variable.name] = variable.value;
+  return variables;
 }
 
 
