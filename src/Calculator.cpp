@@ -13,7 +13,15 @@
 Calculator::Calculator(QObject *parent) : QObject(parent) {
   static const QRegularExpression variable_regex{R"(^[[:alpha:]]\w*$)"};
 
+  QObject::connect(&m_variables, &VariablesListModel::variableAdded, [this](Variable variable) {
+    m_variables_map[variable.name] = variable.value;
+  });
+
+  QObject::connect(&m_variables, &VariablesListModel::variableRemoved,
+                   [this](QString name) { m_variables_map.erase(name); });
+
   init_variables();
+
   QSettings settings(get_settings_path(), QSettings::NativeFormat);
   settings.beginGroup("variables");
   const auto variables{settings.allKeys()};
@@ -60,14 +68,14 @@ QVariantMap Calculator::calculate(QString formula) {
       var_name = match.capturedRef(1).toString();
       if (var_name == "pi" or var_name == "e")
         throw std::runtime_error{"protected variable"};
-      res = m_parser.value(match.capturedRef(2).toString(), getVariablesMap());
+      res = m_parser.value(match.capturedRef(2).toString(), m_variables_map);
       m_variables.add(Variable{var_name, res, false});
     } else
-      res = m_parser.value(formula_plain, getVariablesMap());
+      res = m_parser.value(formula_plain, m_variables_map);
   } catch (std::exception &e) {
     error = e.what();
   }
-  QString res_str{typeset_value(res)};
+  const QString res_str{typeset_value(res)};
   formula = typeset(formula);
   if (auto match{assignment_regex.match(formula)}; match.hasMatch())
     formula = match.capturedRef(2).toString();
@@ -116,14 +124,6 @@ VariablesListModel *Calculator::getVariables() {
 void Calculator::init_variables() {
   m_variables.add(Variable{"pi", constants::pi, true});
   m_variables.add(Variable{"e", constants::e, true});
-}
-
-
-math_parser::arithmetic_parser::var_map_t Calculator::getVariablesMap() const {
-  math_parser::arithmetic_parser::var_map_t variables;
-  for (const auto &variable : m_variables)
-    variables[variable.name] = variable.value;
-  return variables;
 }
 
 

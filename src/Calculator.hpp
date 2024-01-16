@@ -31,9 +31,9 @@ signals:
 private:
   VariablesListModel *getVariables();
   void init_variables();
-  math_parser::arithmetic_parser::var_map_t getVariablesMap() const;
 
   math_parser::arithmetic_parser m_parser;
+  math_parser::arithmetic_parser::var_map_t m_variables_map;
   VariablesListModel m_variables;
 
   static QString typeset_value(double x);

@@ -61,7 +61,7 @@ Page {
         MenuItem {
           text: qsTr('Clear variable')
           onClicked: listItem.remorseDelete(function () {
-            appModel.calculator.variables.remove(model.index)
+            appModel.calculator.variables.remove(name)
           })
           visible: !is_protected
         }

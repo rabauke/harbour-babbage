@@ -13,6 +13,7 @@
 class FormularyListModel : public QAbstractListModel {
   Q_OBJECT
 public:
+  using size_type = QVector<FormularyExpression>::size_type;
   using const_iterator = QVector<FormularyExpression>::const_iterator;
 
   using QAbstractListModel::QAbstractListModel;
@@ -23,19 +24,6 @@ public:
   QML_NAMED_ELEMENT(FormularyListModel)
 #endif
 
-  [[nodiscard]] int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-  [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
-  bool setData(const QModelIndex &index, const QVariant &value, int role) override;
-  void setData(int row, const FormularyExpression &expression);
-  bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-  bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-  Q_INVOKABLE Qt::ItemFlags flags(const QModelIndex &index) const override;
-
-  const_iterator begin() const;
-  const_iterator cbegin() const;
-  const_iterator end() const;
-  const_iterator cend() const;
-
   void add(const FormularyExpression &expression);
   Q_INVOKABLE void add(const QVariantMap &object);
   void set(int row, const FormularyExpression &expression);
@@ -44,10 +32,26 @@ public:
   Q_INVOKABLE void remove(int row);
   Q_INVOKABLE void clear();
 
+  Q_INVOKABLE Qt::ItemFlags flags(const QModelIndex &index) const override;
+
+  size_type size() const;
+  bool empty() const;
+  const_iterator begin() const;
+  const_iterator cbegin() const;
+  const_iterator end() const;
+  const_iterator cend() const;
+
 protected:
   QHash<int, QByteArray> roleNames() const override;
 
 private:
+  [[nodiscard]] int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+  [[nodiscard]] QVariant data(const QModelIndex &index, int role) const override;
+  bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+  void setData(int row, const FormularyExpression &expression);
+  bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
+  bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
+
   static constexpr int expression_role = Qt::UserRole;
   static constexpr int description_role = Qt::UserRole + 1;
 

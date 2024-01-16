@@ -1,5 +1,88 @@
 #include "FormularyListModel.hpp"
 
+void FormularyListModel::add(const FormularyExpression &expression) {
+  const int new_row{rowCount()};
+  insertRow(new_row);
+  setData(new_row, expression);
+}
+
+
+void FormularyListModel::add(const QVariantMap &object) {
+  const auto expression{FormularyExpression::create(object)};
+  add(expression);
+}
+
+
+void FormularyListModel::set(int row, const FormularyExpression &expression) {
+  setData(row, expression);
+}
+
+
+void FormularyListModel::set(int row, const QVariantMap &object) {
+  const auto expression{FormularyExpression::create(object)};
+  setData(row, expression);
+}
+
+
+FormularyExpression FormularyListModel::get(int row) const {
+  if (0 <= row and row < rowCount())
+    return m_expressions[row];
+  return {};
+}
+
+
+void FormularyListModel::remove(int row) {
+  removeRow(row);
+}
+
+
+void FormularyListModel::clear() {
+  removeRows(0, rowCount());
+}
+
+
+Qt::ItemFlags FormularyListModel::flags(const QModelIndex &index) const {
+  return Qt::ItemIsEditable;
+}
+
+
+FormularyListModel::size_type FormularyListModel::size() const {
+  return m_expressions.size();
+}
+
+
+bool FormularyListModel::empty() const {
+  return m_expressions.empty();
+}
+
+
+FormularyListModel::const_iterator FormularyListModel::begin() const {
+  return m_expressions.begin();
+}
+
+
+FormularyListModel::const_iterator FormularyListModel::cbegin() const {
+  return m_expressions.cbegin();
+}
+
+
+FormularyListModel::const_iterator FormularyListModel::end() const {
+  return m_expressions.end();
+}
+
+
+FormularyListModel::const_iterator FormularyListModel::cend() const {
+  return m_expressions.cend();
+}
+
+
+QHash<int, QByteArray> FormularyListModel::roleNames() const {
+  static const QHash<int, QByteArray> role_names{{expression_role, "expression"},
+                                                 {description_role, "description"}};
+  return role_names;
+}
+
+
 int FormularyListModel::rowCount([[maybe_unused]] const QModelIndex &parent) const {
   return m_expressions.count();
 }
@@ -72,77 +155,4 @@ bool FormularyListModel::removeRows(int row, int count, const QModelIndex &paren
   endRemoveRows();
 
   return true;
-}
-
-
-Qt::ItemFlags FormularyListModel::flags(const QModelIndex &index) const {
-  return Qt::ItemIsEditable;
-}
-
-
-FormularyListModel::const_iterator FormularyListModel::begin() const {
-  return m_expressions.begin();
-}
-
-
-FormularyListModel::const_iterator FormularyListModel::cbegin() const {
-  return m_expressions.cbegin();
-}
-
-
-FormularyListModel::const_iterator FormularyListModel::end() const {
-  return m_expressions.end();
-}
-
-
-FormularyListModel::const_iterator FormularyListModel::cend() const {
-  return m_expressions.cend();
-}
-
-
-void FormularyListModel::add(const FormularyExpression &expression) {
-  const int new_row{rowCount()};
-  insertRow(new_row);
-  setData(new_row, expression);
-}
-
-
-void FormularyListModel::add(const QVariantMap &object) {
-  const auto expression{FormularyExpression::create(object)};
-  add(expression);
-}
-
-
-void FormularyListModel::set(int row, const FormularyExpression &expression) {
-  setData(row, expression);
-}
-
-
-void FormularyListModel::set(int row, const QVariantMap &object) {
-  const auto expression{FormularyExpression::create(object)};
-  setData(row, expression);
-}
-
-
-FormularyExpression FormularyListModel::get(int row) const {
-  if (0 <= row and row < rowCount())
-    return m_expressions[row];
-  return {};
-}
-
-
-void FormularyListModel::remove(int row) {
-  removeRow(row);
-}
-
-
-void FormularyListModel::clear() {
-  removeRows(0, rowCount());
-}
-
-
-QHash<int, QByteArray> FormularyListModel::roleNames() const {
-  static const QHash<int, QByteArray> role_names{{expression_role, "expression"},
-                                                 {description_role, "description"}};
-  return role_names;
 }

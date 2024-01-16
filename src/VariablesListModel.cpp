@@ -2,6 +2,96 @@
 #include <algorithm>
 
 
+void VariablesListModel::add(const Variable &variable) {
+  const auto insert_pos{
+      std::lower_bound(m_variables.begin(), m_variables.end(), variable,
+                       [](const Variable &x, const Variable &y) { return x.name < y.name; })};
+  if (insert_pos == m_variables.cend()) {
+    const int new_row{rowCount()};
+    insertRow(new_row);
+    setData(new_row, variable);
+    emit variableAdded(variable);
+  } else if (insert_pos->name == variable.name) {
+    if (not insert_pos->is_protected) {
+      const int row{static_cast<int>(insert_pos - m_variables.begin())};
+      setData(row, variable);
+      emit variableAdded(variable);
+    }
+  } else {
+    const int new_row{static_cast<int>(insert_pos - m_variables.begin())};
+    insertRow(new_row);
+    setData(new_row, variable);
+    emit variableAdded(variable);
+  }
+}
+
+
+void VariablesListModel::remove(const QString &name) {
+  const auto iter{
+      std::find_if(begin(), end(), [&name](const auto &value) { return value.name == name; })};
+  if (iter == end())
+    return;
+  if (iter->is_protected)
+    return;
+  const auto row{iter - begin()};
+  removeRow(row);
+  emit variableRemoved(name);
+}
+
+
+void VariablesListModel::clear() {
+  QVector<QString> names;
+  for (const auto &variable : *this) {
+    if (not variable.is_protected)
+      names.push_back(variable.name);
+  }
+  for (const auto &name : names)
+    remove(name);
+}
+
+
+Qt::ItemFlags VariablesListModel::flags(const QModelIndex &index) const {
+  return Qt::ItemIsEditable;
+}
+
+
+VariablesListModel::size_type VariablesListModel::size() const {
+  return m_variables.size();
+}
+
+
+bool VariablesListModel::empty() const {
+  return m_variables.empty();
+}
+
+
+VariablesListModel::const_iterator VariablesListModel::begin() const {
+  return m_variables.begin();
+}
+
+
+VariablesListModel::const_iterator VariablesListModel::cbegin() const {
+  return m_variables.cbegin();
+}
+
+
+VariablesListModel::const_iterator VariablesListModel::end() const {
+  return m_variables.end();
+}
+
+
+VariablesListModel::const_iterator VariablesListModel::cend() const {
+  return m_variables.cend();
+}
+
+
+QHash<int, QByteArray> VariablesListModel::roleNames() const {
+  static const QHash<int, QByteArray> role_names{
+      {name_role, "name"}, {value_role, "value"}, {is_protected_role, "is_protected"}};
+  return role_names;
+}
+
+
 int VariablesListModel::rowCount([[maybe_unused]] const QModelIndex &parent) const {
   return m_variables.count();
 }
@@ -78,81 +168,4 @@ bool VariablesListModel::removeRows(int row, int count, const QModelIndex &paren
   endRemoveRows();
 
   return true;
-}
-
-
-Qt::ItemFlags VariablesListModel::flags(const QModelIndex &index) const {
-  return Qt::ItemIsEditable;
-}
-
-
-VariablesListModel::const_iterator VariablesListModel::begin() const {
-  return m_variables.begin();
-}
-
-
-VariablesListModel::const_iterator VariablesListModel::cbegin() const {
-  return m_variables.cbegin();
-}
-
-
-VariablesListModel::const_iterator VariablesListModel::end() const {
-  return m_variables.end();
-}
-
-
-VariablesListModel::const_iterator VariablesListModel::cend() const {
-  return m_variables.cend();
-}
-
-
-void VariablesListModel::add(const Variable &variable) {
-  auto insert_pos{
-      std::lower_bound(m_variables.begin(), m_variables.end(), variable,
-                       [](const Variable &x, const Variable &y) { return x.name < y.name; })};
-  if (insert_pos == m_variables.cend()) {
-    const int new_row{rowCount()};
-    insertRow(new_row);
-    setData(new_row, variable);
-  } else if (insert_pos->name == variable.name) {
-    if (not insert_pos->is_protected) {
-      const int row{static_cast<int>(insert_pos - m_variables.begin())};
-      setData(row, variable);
-    }
-  } else {
-    const int new_row{static_cast<int>(insert_pos - m_variables.begin())};
-    insertRow(new_row);
-    setData(new_row, variable);
-  }
-}
-
-
-Variable VariablesListModel::get(int row) const {
-  if (0 <= row and row < rowCount())
-    return m_variables[row];
-  return {};
-}
-
-
-void VariablesListModel::remove(int row) {
-  if (0 <= row and row < rowCount() and not m_variables[row].is_protected)
-    removeRow(row);
-}
-
-
-void VariablesListModel::clear() {
-  int row{0};
-  while (row < rowCount()) {
-    if (m_variables[row].is_protected)
-      ++row;
-    else
-      remove(row);
-  }
-}
-
-
-QHash<int, QByteArray> VariablesListModel::roleNames() const {
-  static const QHash<int, QByteArray> role_names{
-      {name_role, "name"}, {value_role, "value"}, {is_protected_role, "is_protected"}};
-  return role_names;
 }
