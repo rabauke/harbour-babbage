@@ -63,6 +63,7 @@ Page {
         width: listView.width
         placeholderText: qsTr('Mathematical expression')
         inputMethodHints: Qt.ImhNoAutoUppercase | Qt.ImhNoPredictiveText | Qt.ImhPreferNumbers
+        EnterKey.iconSource: 'image://theme/icon-m-enter-next'
         EnterKey.enabled: text.length > 0
         EnterKey.onClicked: {
           var res = appModel.calculator.calculate(formula.text)

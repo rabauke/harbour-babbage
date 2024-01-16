@@ -81,6 +81,7 @@ QVariantMap Calculator::calculate(QString formula) {
 
 
 QString Calculator::typeset(QString formula) const {
+  static const QRegularExpression whitespace_regex{R"(\s+)"};
   static const QRegularExpression pi_regex{R"(\bpi\b)"};
   static const QRegularExpression sqrt_regex{R"(\bsqrt\b)"};
   static const QRegularExpression Gamma_regex{R"(\bGamma\b)"};
@@ -90,7 +91,7 @@ QString Calculator::typeset(QString formula) const {
   static const QRegularExpression binary_operator1_regex{R"((?<!^|\(|=)([+−]))"};
   static const QRegularExpression binary_operator2_regex{R"(([=·/]))"};
 
-  formula.replace(" ", "")
+  formula.replace(whitespace_regex, "")
       .replace("-", "−")
       .replace("*", "·")
       .replace(binary_operator1_regex, " \\1 ")
