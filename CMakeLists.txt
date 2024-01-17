@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
-project(harbour-babbage VERSION 0.19.0 LANGUAGES CXX)
+project(harbour-babbage VERSION 0.20.0 LANGUAGES CXX)
 
 find_package(Qt5 COMPONENTS Core Qml Quick LinguistTools REQUIRED)
 
