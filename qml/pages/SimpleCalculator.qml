@@ -437,7 +437,7 @@ Page {
           PCButton {
             visible: model.index === 1
             text: 'log'
-            onClicked: enter('log()')
+            onClicked: enter('log(')
           }
           PCButton {
             visible: model.index === 1
