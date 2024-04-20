@@ -4,26 +4,6 @@ X-Nemo-Application-Type=silica-qt5
 Icon=harbour-babbage
 Exec=harbour-babbage
 Name=Babbage
-Name[cz]=Kalkulačka
-Name[de]=Rechner
-Name[dk]=Computer
-Name[ee]=Kalkulaator
-Name[en]=Calculator
-Name[es]=Calculadora
-Name[fi]=Tietokone
-Name[fr]=Calculatrice
-Name[hu]=Számológép
-Name[it]=Calcolatrice
-Name[lt]=Skaičiuotuvas
-Name[lv]=Kalkulators
-Name[nl]=Rekenmachine
-Name[no]=Regnemaskin
-Name[pl]=Kalkulator
-Name[pt]=Calculadora
-Name[ru]=Калькуля́тор
-Name[se]=Dator
-Name[sk]=Kalkulačka
-Name[tr]=Hesap makinesi
 
 [X-Sailjail]
 Permissions=UserDirs
