@@ -23,7 +23,7 @@ jobs:
             cd build ;
             cp -r /share/* . ;
             mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
-            sudo cp -r RPMS/*.rpm /share/output"
+            cp -r RPMS/*.rpm /share/output"
     - name: Upload RPM (${{ matrix.arch }})
       uses: actions/upload-artifact@v4
       with:
