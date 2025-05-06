@@ -4,7 +4,7 @@ on:
   [push, workflow_dispatch]
 
 env:
-  OS_VERSION: 4.6.0.13
+  OS_VERSION: 5.0.0.43
 
 jobs:
   build:
