@@ -10,25 +10,28 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     name: Build App
+    defaults:
+      run:
+        # Note that 'bash' provides -o pipefail, in contrast to the default (i.e., unspecified, which also uses bash) or 'sh',
+        # see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+        shell: sh
     strategy:
       matrix:
         arch: ['armv7hl', 'aarch64', 'i486']
     steps:
     - uses: actions/checkout@v4
     - name: Prepare
-      run: docker pull coderus/sailfishos-platform-sdk:$OS_VERSION && mkdir output
+      run: mkdir RPMS
     - name: Build ${{ matrix.arch }}
-      run: docker run --rm --privileged -v $PWD:/share coderus/sailfishos-platform-sdk:$OS_VERSION /bin/bash -c "
-            mkdir -p build ;
-            cd build ;
-            cp -r /share/* . ;
-            mb2 -t SailfishOS-$OS_VERSION-${{ matrix.arch }} build ;
-            cp -r RPMS/*.rpm /share/output"
-    - name: Upload RPM (${{ matrix.arch }})
+      uses: coderus/github-sfos-build@master
+      with:
+        release: ${{ env.OS_VERSION }}
+        arch: ${{ matrix.arch }}
+    - name: Upload RPM ${{ matrix.arch }}
       uses: actions/upload-artifact@v4
       with:
-        name: rpm-${{ matrix.arch }}
-        path: output
+        name: RPM-build-results_SFOS${{ env.RELEASE }}
+        path: RPMS/
 
   release:
     name: Release
